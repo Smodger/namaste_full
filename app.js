@@ -10,9 +10,6 @@ const lessonSchema = require('./models/Lesson.js')
 const retreatRoutes = require('./routes/retreats.js')
 const retreatSchema = require('./models/Retreat.js')
 
-const bedroomRoutes = require('./routes/bedrooms.js')
-const bedroomSchema = require('./models/Bedroom.js')
-
 const accommodationRoutes = require('./routes/accommodations.js')
 const accommodationSchema = require('./models/Accommodation.js')
 
@@ -30,7 +27,6 @@ const port = 1234;
 
 app.use('/lessons', lessonRoutes)
 app.use('/retreats', retreatRoutes)
-app.use('/bedrooms', bedroomRoutes)
 app.use('/accommodations', accommodationRoutes)
 
 app.listen(port, () => {

@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const lessonModel = require('../models/Lesson.js')
+const validator = require('validator');
+
 
 router.get('/', function(req, res){
   lessonModel.find(function(err, lessons){
@@ -13,8 +15,8 @@ router.get('/', function(req, res){
 });
 
 router.get('/:id', function(req, res){
-
   let id = req.params.id;
+
 
   lessonModel.findById(id, function(err, lesson){
     if(err){
@@ -29,6 +31,12 @@ router.post('/addLesson', function(req, res){
 
   let newLesson = new lessonModel(req.body);
 
+  if(newLesson.linkToStudio.length <= 0 && newLesson.location !== "Tooting Bec Lido"){
+    newLesson.linkToStudio = "email me at emthomsonyoga@gmail.com for booking information"
+  }else if(newLesson.linkToStudio.length <= 0 && newLesson.location === "Tooting Bec Lido"){
+    newLesson.linkToStudio = "Drop in sessions cost between £5 - £8 CONFIRM"
+  }
+  
   newLesson.save()
     .then(function(newLesson){
       res.status(200).json({'newLesson' : 'Lesson added successfully'});

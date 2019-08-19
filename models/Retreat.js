@@ -3,22 +3,18 @@ const Schema = mongoose.Schema;
 
 let retreatSchema = new Schema({
   name : { type : String },
-  dateStart : { type: Date },
-  dateEnd : { type : Date },
+  dateStart : { type: String },
+  dateEnd : { type : String },
   retreatSummary : { type : String },
   housing : [{
       type : Schema.Types.ObjectId,
       ref : 'Accommodation'
     }],
   food : { type : String },
-  travel : {
-    byCar : { type : String },
-    byTrain : { type : String }
-  },
-  bookingInfo : {
-    details : { type : String },
-    url : { type : String }
-  },
+  byCar : { type : String },
+  byTrain : { type : String },
+  bookingDetails : { type : String },
+  bookingUrl : { type : String },
   whatsIncluded : {
     tags : [{ type : String }]
   }
