@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const accommodationModel = require('../models/Accommodation.js')
+const accommodationModel = require('../models/Accommodation.js');
+const checkAuth = require('../auth/check-auth.js');
 
 router.get('/', function(req, res){
   accommodationModel.find(function(err, accomodations){
@@ -25,7 +26,7 @@ router.get('/:id', function(req, res){
   });
 });
 
-router.post('/addAccommodation', function(req, res){
+router.post('/addAccommodation', checkAuth, function(req, res){
 
   let newAccommodation = new accommodationModel(req.body);
 
@@ -39,7 +40,7 @@ router.post('/addAccommodation', function(req, res){
     })
 });
 
-router.post('/update/:id', function(req,res){
+router.post('/update/:id', checkAuth, function(req,res){
   accommodationModel.findById(req.params.id, function(err, accommodation){
     if(!accommodation){
       res.status(404).send('Data not found')
@@ -59,7 +60,7 @@ router.post('/update/:id', function(req,res){
   });
 });
 
-router.delete('/delete/:id', function(req, res){
+router.delete('/delete/:id', checkAuth, function(req, res){
   accommodationModel.findByIdAndDelete({_id : req.params.id}, function(err){
     if(err){
       res.status(404).send("Data not found")

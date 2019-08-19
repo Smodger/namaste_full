@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let retreatSchema = new Schema({
+const retreatSchema = new Schema({
   name : { type : String },
   dateStart : { type: String },
   dateEnd : { type : String },

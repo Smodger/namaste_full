@@ -10,6 +10,9 @@ const lessonSchema = require('./models/Lesson.js')
 const retreatRoutes = require('./routes/retreats.js')
 const retreatSchema = require('./models/Retreat.js')
 
+const userRoutes = require('./routes/users.js')
+const userSchema = require('./models/User.js')
+
 const accommodationRoutes = require('./routes/accommodations.js')
 const accommodationSchema = require('./models/Accommodation.js')
 
@@ -28,6 +31,7 @@ const port = 1234;
 app.use('/lessons', lessonRoutes)
 app.use('/retreats', retreatRoutes)
 app.use('/accommodations', accommodationRoutes)
+app.use('/user', userRoutes)
 
 app.listen(port, () => {
   console.log('Server running on ' + port);

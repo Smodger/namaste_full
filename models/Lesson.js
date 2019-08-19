@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let lessonSchema = new Schema({
+const lessonSchema = new Schema({
     dayOfTheWeek: {type : String},
     time: {type: Number},
     location: {type: String},

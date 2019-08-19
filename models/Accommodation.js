@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let accommodationSchema = new Schema({
+const accommodationSchema = new Schema({
   fullyBooked : { type : Boolean , default : false },
   costOverview : { type : String },
   bedRooms :{

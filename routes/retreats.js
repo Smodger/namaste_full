@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const retreatModel = require('../models/Retreat.js')
+const retreatModel = require('../models/Retreat.js');
+const checkAuth = require('../auth/check-auth.js');
 
 router.get('/', function(req, res){
   retreatModel.find(function(err, retreats){
@@ -25,13 +26,13 @@ router.get('/:id', function(req, res){
   });
 });
 
-router.post('/addRetreat', function(req, res){
+router.post('/addRetreat', checkAuth,  function(req, res){
 
   let newRetreat = new retreatModel(req.body);
 
   newRetreat.save()
     .then(function(newRetreat){
-      res.status(200).json({'newRetreat' : 'Retreat added successfully'});
+      res.status(201).json({'newRetreat' : 'Retreat added successfully'});
     })
     .catch(function(err){
       console.log('err', err);
@@ -39,7 +40,7 @@ router.post('/addRetreat', function(req, res){
     })
 });
 
-router.post('/update/:id', function(req,res){
+router.post('/update/:id', checkAuth, function(req,res){
   retreatModel.findById(req.params.id, function(err, retreat){
     if(!retreat){
       res.status(404).send('Data not found')
@@ -66,7 +67,7 @@ router.post('/update/:id', function(req,res){
   });
 });
 
-router.delete('/delete/:id', function(req, res){
+router.delete('/delete/:id', checkAuth, function(req, res){
   retreatModel.findByIdAndDelete({_id : req.params.id}, function(err){
     if(err){
       res.status(404).send("Data not found")

@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const lessonModel = require('../models/Lesson.js')
+const lessonModel = require('../models/Lesson.js');
 const validator = require('validator');
+const checkAuth = require('../auth/check-auth.js');
 
 
 router.get('/', function(req, res){
@@ -27,7 +28,7 @@ router.get('/:id', function(req, res){
   });
 });
 
-router.post('/addLesson', function(req, res){
+router.post('/addLesson', checkAuth, function(req, res){
 
   let newLesson = new lessonModel(req.body);
 
@@ -36,7 +37,7 @@ router.post('/addLesson', function(req, res){
   }else if(newLesson.linkToStudio.length <= 0 && newLesson.location === "Tooting Bec Lido"){
     newLesson.linkToStudio = "Drop in sessions cost between £5 - £8 CONFIRM"
   }
-  
+
   newLesson.save()
     .then(function(newLesson){
       res.status(200).json({'newLesson' : 'Lesson added successfully'});
@@ -47,7 +48,7 @@ router.post('/addLesson', function(req, res){
     })
 });
 
-router.post('/update/:id', function(req,res){
+router.post('/update/:id', checkAuth, function(req,res){
   lessonModel.findById(req.params.id, function(err, lesson){
     if(!lesson){
       res.status(404).send('Data not found')
@@ -68,7 +69,7 @@ router.post('/update/:id', function(req,res){
   });
 });
 
-router.delete('/delete/:id', function(req, res){
+router.delete('/delete/:id', checkAuth, function(req, res){
   lessonModel.findByIdAndDelete({_id : req.params.id}, function(err){
     if(err){
       res.status(404).send("Data not found")
