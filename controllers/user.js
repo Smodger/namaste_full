@@ -3,9 +3,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-export.userSignUp = function(req, res, next){
+exports.userSignUp = function(req, res, next){
   // IF WE WANT ONLY ONE EMAIL SIGN UP, EG JUST emthomsonyoga@gmail.com THEN ADD STATEMENT REQ.BODY.EMAIL !== 'emthomsonyoga@gmail.com'
-
   userModel.find({ email : req.body.email}).exec()
   .then(function(user){
     if(user.length >= 1){
@@ -18,6 +17,7 @@ export.userSignUp = function(req, res, next){
             error : err
           });
         }else{
+
         // using a more verbose method to create user as per bcrypt documemtation
           const newUser = new userModel ({
             _id : new mongoose.Types.ObjectId(),
@@ -26,8 +26,18 @@ export.userSignUp = function(req, res, next){
           });
           newUser.save()
             .then(function(newUser){
+              //create token for when user signs up too.
+              const token = jwt.sign({
+                email : newUser.email,
+                id : newUser._id
+              },
+              process.env.JWT_KEY,
+              {
+                expiresIn : "1h"
+              })
+
               console.log('User', newUser);
-              res.status(201).json({'newUser' : 'User added successfully'});
+              res.status(201).json({'newUser' : 'User added successfully', token : token});
             })
             .catch(function(err){
               console.log('err', err);
