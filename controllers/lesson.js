@@ -23,7 +23,6 @@ exports.showLesson = function(req, res){
 }
 
 exports.createLesson = function(req, res){
-
   let newLesson = new lessonModel(req.body);
 
   if(newLesson.linkToStudio.length <= 0 && newLesson.location !== "Tooting Bec Lido"){

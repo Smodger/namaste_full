@@ -19,6 +19,7 @@ const accommodationSchema = require('./models/Accommodation.js')
 app.use(cors());
 app.use(bodyParser.json());
 
+
 mongoose.connect('mongodb://127.0.0.1:27017/namaste', {useNewUrlParser : true});
 const connection = mongoose.connection;
 

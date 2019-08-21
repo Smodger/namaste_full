@@ -30,14 +30,16 @@ exports.userSignUp = function(req, res, next){
               const token = jwt.sign({
                 email : newUser.email,
                 id : newUser._id
-              },
-              process.env.JWT_KEY,
+              }, process.env.JWT_KEY,
               {
                 expiresIn : "1h"
+              }, function(err, token){
+                if (err) {
+                  console.log('token error');
+                  return res.status(401).send('Unable to authenticate new user :', err)
+                }
+                res.status(201).json({user : newUser, token : token});
               })
-
-              console.log('User', newUser);
-              res.status(201).json({'newUser' : 'User added successfully', token : token});
             })
             .catch(function(err){
               console.log('err', err);
@@ -88,4 +90,12 @@ exports.deleteUser = function(req, res, next){
       res.status(200).json({message : 'User successfully removed'})
     }
   });
+}
+
+exports.getUser = function(req,res){
+  userModel.findById( req.userData.id )
+    .select('-password')
+    .then(function(user){
+      return res.json({ user : user})
+    })
 }

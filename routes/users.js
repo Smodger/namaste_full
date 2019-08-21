@@ -3,8 +3,9 @@ const router = express.Router();
 const userController = require('../controllers/user.js')
 const checkAuth = require('../auth/check-auth.js')
 
+router.get('/user', checkAuth, userController.getUser)
 
-router.post('/signin', userController.userSignUp);
+router.post('/signup', userController.userSignUp);
 
 router.post('/login', userController.userLogin);
 
