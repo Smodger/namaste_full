@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const lessonSchema = new Schema({
     dayOfTheWeek: {type : String},
-    time: {type: Number},
+    startHour: {type: Number, max: 24},
+    startMinutes: {type: Number, max: 60},
     location: {type: String},
     yogaStyle: {type: String},
     linkToStudio : {type: String}

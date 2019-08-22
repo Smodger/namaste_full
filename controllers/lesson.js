@@ -22,6 +22,8 @@ exports.showLesson = function(req, res){
   });
 }
 
+const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+
 exports.createLesson = function(req, res){
   let newLesson = new lessonModel(req.body);
 
@@ -29,6 +31,11 @@ exports.createLesson = function(req, res){
     newLesson.linkToStudio = "email me at emthomsonyoga@gmail.com for booking information"
   }else if(newLesson.linkToStudio.length <= 0 && newLesson.location === "Tooting Bec Lido"){
     newLesson.linkToStudio = "Drop in sessions cost between £5 - £8 CONFIRM"
+  }
+
+  let lowerCase = newLesson.dayOfTheWeek.toLowerCase()
+  if(!days.includes(lowerCase)){
+    return res.status(400).json({ message : "Invalid entry: Must be a day of the week"})
   }
 
   newLesson.save()
@@ -47,7 +54,8 @@ exports.updateLesson = function(req,res){
       res.status(404).send('Data not found')
     }else{
       lesson.dayOfTheWeek = req.body.dayOfTheWeek;
-      lesson.time = req.body.time;
+      lesson.startHour = req.body.startHour;
+      lesson.startMinutes = req.body.startMinutes;
       lesson.location = req.body.location;
       lesson.yogaStyle = req.body.yogaStyle;
       lesson.linkToStudio = req.body.linkToStudio;

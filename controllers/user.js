@@ -17,8 +17,6 @@ exports.userSignUp = function(req, res, next){
             error : err
           });
         }else{
-
-        // using a more verbose method to create user as per bcrypt documemtation
           const newUser = new userModel ({
             _id : new mongoose.Types.ObjectId(),
             email : req.body.email,
