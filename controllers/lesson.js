@@ -60,6 +60,22 @@ exports.updateLesson = function(req,res){
       lesson.yogaStyle = req.body.yogaStyle;
       lesson.linkToStudio = req.body.linkToStudio;
 
+      // force all DOW to lower case so we can set a universal standard for checking user entry is day of the week.
+      const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+      let lowerCase = lesson.dayOfTheWeek.toLowerCase();
+
+      if(!days.includes(lowerCase)){
+        return res.status(400).json({ message : "Invalid entry: Must be a day of the week"})
+      }
+
+      // accommodate for empty field for linkToStudio
+      if(lesson.linkToStudio.length <= 0 && lesson.location !== "Tooting Bec Lido"){
+        lesson.linkToStudio = "email me at emthomsonyoga@gmail.com for booking information"
+      }else if(lesson.linkToStudio.length <= 0 && lesson.location === "Tooting Bec Lido"){
+        lesson.linkToStudio = "Drop in sessions cost between £5 - £8 CONFIRM"
+      }
+
+
       lesson.save().then(function(lesson){
         res.status(200).json('Update successful')
       })
