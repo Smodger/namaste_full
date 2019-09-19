@@ -26,6 +26,7 @@ exports.showRetreat = function(req, res){
 exports.addRetreat = function(req, res){
 
   let newRetreat = new retreatModel(req.body);
+    newRetreat.whatsIncluded = newRetreat.whatsIncluded[0].split(',')
 
   newRetreat.save()
     .then(function(newRetreat){

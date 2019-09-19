@@ -15,9 +15,7 @@ const retreatSchema = new Schema({
   byTrain : { type : String },
   bookingDetails : { type : String },
   bookingUrl : { type : String },
-  whatsIncluded : {
-    tags : [{ type : String }]
-  }
+  whatsIncluded : [ String ]
 });
 
 module.exports = mongoose.model('Retreat', retreatSchema);

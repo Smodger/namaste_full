@@ -69,10 +69,12 @@ exports.updateLesson = function(req,res){
       }
 
       // accommodate for empty field for linkToStudio
+
+      //MAKE CASE INSENSITIVE
       if(lesson.linkToStudio.length <= 0 && lesson.location !== "Tooting Bec Lido"){
         lesson.linkToStudio = "email me at emthomsonyoga@gmail.com for booking information"
       }else if(lesson.linkToStudio.length <= 0 && lesson.location === "Tooting Bec Lido"){
-        lesson.linkToStudio = "Drop in sessions cost between £5 - £8 CONFIRM"
+        lesson.linkToStudio = "Drop in sessions cost between £5 - £8"
       }
 
 
