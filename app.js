@@ -25,7 +25,7 @@ const connection = mongoose.connection;
 
 connection.once('open', () => {
   console.log('MongoDb running successfully')
-})
+});
 
 const port = 1234;
 

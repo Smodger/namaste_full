@@ -9,6 +9,6 @@ const accommodationSchema = new Schema({
     description : { type : String },
     costPerPerson : { type : Number }
   }
-})
+});
 
 module.exports = mongoose.model('Accommodation', accommodationSchema);

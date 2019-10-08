@@ -30,7 +30,7 @@ exports.createLesson = function(req, res){
   if(newLesson.linkToStudio.length <= 0 && newLesson.location !== "Tooting Bec Lido"){
     newLesson.linkToStudio = "email me at emthomsonyoga@gmail.com for booking information"
   }else if(newLesson.linkToStudio.length <= 0 && newLesson.location === "Tooting Bec Lido"){
-    newLesson.linkToStudio = "Drop in sessions cost between £5 - £8 CONFIRM"
+    newLesson.linkToStudio = "Email me at emthomsonyoga@gmail.com, £5/£8"
   }
 
   let lowerCase = newLesson.dayOfTheWeek.toLowerCase()

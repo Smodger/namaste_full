@@ -47,7 +47,12 @@ exports.updateRetreat = function(req,res){
       retreat.dateStart = req.body.dateStart;
       retreat.dateEnd = req.body.dateEnd;
       retreat.retreatSummary = req.body.retreatSummary;
-      retreat.housing = req.body.housing;
+
+      retreat.fullyBooked = req.body.fullyBooked;
+      retreat.costOverview = req.body.costOverview;
+      // Do we need fully booked?
+      // how do we set up room stuff etc?
+
       retreat.food = req.body.food;
       retreat.byCar = req.body.byCar;
       retreat.byTrain = req.body.byTrain;
