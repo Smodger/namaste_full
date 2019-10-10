@@ -53,12 +53,12 @@ exports.userLogin = function(req,res, next){
   userModel.find({ email : req.body.email }).exec()
     .then(function(user){
       if(user.length < 1){
-        return res.status(401).json({ message : "Auth failed"})
+        return res.status(401).json({ message : "Auth failed - user not found"})
       }
 
       bcrypt.compare(req.body.password, user[0].password, function(err, result){
         if(err){
-          return res.status(401).json({ message : "Auth failed"});
+          return res.status(401).json({ message : "Auth failed", error : err});
         }
         if(result){
           const token = jwt.sign({
@@ -71,7 +71,8 @@ exports.userLogin = function(req,res, next){
           })
           return res.status(200).json({ message : "Auth successful" , token : token });
         }
-        return res.status(401).json({ message : "Auth failed"});
+        // error msg below only shows if incorrect pwd. BUT the message says password or email so we do not specifically say email is correct. 
+        return res.status(401).json({ message : "Auth failed - incorrect password or email"});
       });
     })
     .catch(function(err){
