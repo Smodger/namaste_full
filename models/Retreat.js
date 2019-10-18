@@ -9,14 +9,12 @@ const retreatSchema = new Schema({
   dateStart : { type: String },
   dateEnd : { type : String },
   retreatSummary : { type : String },
-  costOverview : { type : String },
   accomodationOverview : { type : String},
-  // MAKE BEDROOMS AN ARRAY TO LOOP THROUGH
-  bedRooms :{
+  bedRooms :[{
     booked : { type : Boolean , default : false },
     description : { type : String },
     costPerPerson : { type : Number }
-  },
+  }],
   food : { type : String },
   byCar : { type : String },
   byTrain : { type : String },

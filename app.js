@@ -13,9 +13,6 @@ const retreatSchema = require('./models/Retreat.js')
 const userRoutes = require('./routes/users.js')
 const userSchema = require('./models/User.js')
 
-const accommodationRoutes = require('./routes/accommodations.js')
-const accommodationSchema = require('./models/Accommodation.js')
-
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -31,7 +28,6 @@ const port = 1234;
 
 app.use('/lessons', lessonRoutes)
 app.use('/retreats', retreatRoutes)
-app.use('/accommodations', accommodationRoutes)
 app.use('/user', userRoutes)
 
 app.listen(port, () => {

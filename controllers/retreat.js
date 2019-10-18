@@ -1,4 +1,5 @@
 const retreatModel = require('../models/Retreat.js')
+const moment = require('moment')
 
 exports.getAllRetreats = function(req, res){
   retreatModel.find(function(err, retreats){
@@ -26,7 +27,17 @@ exports.showRetreat = function(req, res){
 exports.addRetreat = function(req, res){
 
   let newRetreat = new retreatModel(req.body);
+
+  if(newRetreat.whatsIncluded.length > 0){
     newRetreat.whatsIncluded = newRetreat.whatsIncluded[0].split(',')
+  }
+
+  if(newRetreat.dateStart){
+    var x = moment( new Date(newRetreat.dateStart)).format("DD/MM/YYYY")
+    newRetreat.dateStart = x;
+    console.log('nerds', newRetreat.dateStart, x);
+  }
+
 
   newRetreat.save()
     .then(function(newRetreat){
@@ -44,21 +55,20 @@ exports.updateRetreat = function(req,res){
       res.status(404).send('Data not found')
     }else{
 
+      retreat.name = req.body.name;
       retreat.dateStart = req.body.dateStart;
       retreat.dateEnd = req.body.dateEnd;
       retreat.retreatSummary = req.body.retreatSummary;
-
-      retreat.fullyBooked = req.body.fullyBooked;
-      retreat.costOverview = req.body.costOverview;
-      // Do we need fully booked?
-      // how do we set up room stuff etc?
-
+      retreat.accomodationOverview = req.body.accomodationOverview;
+      retreat.bedRooms.booked = req.body.bedRooms.booked;
+      retreat.bedRooms.description = req.body.bedRooms.description;
+      retreat.bedRooms.costPerPerson = req.body.bedRooms.costPerPerson;
       retreat.food = req.body.food;
       retreat.byCar = req.body.byCar;
       retreat.byTrain = req.body.byTrain;
       retreat.bookingDetails = req.body.bookingDetails;
       retreat.bookingUrl = req.body.bookingUrl;
-      retreat.whatsIncluded.tags = req.body.whatsIncluded.tags;
+      retreat.whatsIncluded = req.body.whatsIncluded.tags;
 
       retreat.save().then(function(retreat){
         res.status(200).json('Update successful')
