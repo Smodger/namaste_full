@@ -1,5 +1,5 @@
-const retreatModel = require('../models/Retreat.js')
-const moment = require('moment')
+const retreatModel = require('../models/Retreat.js');
+const moment = require('moment');
 
 exports.getAllRetreats = function(req, res){
   retreatModel.find(function(err, retreats){
@@ -24,8 +24,8 @@ exports.showRetreat = function(req, res){
   });
 }
 
-exports.addRetreat = function(req, res){
-
+exports.addRetreat = function(req, res, next){
+  console.log('req.file', req.body, req.file);
   let newRetreat = new retreatModel(req.body);
 
   if(newRetreat.whatsIncluded.length > 0){
@@ -35,13 +35,11 @@ exports.addRetreat = function(req, res){
   if(newRetreat.dateStart){
     var x = moment( new Date(newRetreat.dateStart)).format("DD/MM/YYYY")
     newRetreat.dateStart = x;
-    console.log('nerds', newRetreat.dateStart, x);
   }
-
 
   newRetreat.save()
     .then(function(newRetreat){
-      res.status(201).json({'newRetreat' : 'Retreat added successfully'});
+      res.status(201).json({'newRetreat' : 'Retreat added successfully', "data" : req.file});
     })
     .catch(function(err){
       console.log('err', err);

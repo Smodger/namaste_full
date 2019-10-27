@@ -20,7 +20,8 @@ const retreatSchema = new Schema({
   byTrain : { type : String },
   bookingDetails : { type : String },
   bookingUrl : { type : String },
-  whatsIncluded : [ String ]
+  whatsIncluded : [ String ],
+  retreatImage : { data : Buffer }
 });
 
 module.exports = mongoose.model('Retreat', retreatSchema);

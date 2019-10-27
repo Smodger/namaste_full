@@ -13,9 +13,10 @@ const retreatSchema = require('./models/Retreat.js')
 const userRoutes = require('./routes/users.js')
 const userSchema = require('./models/User.js')
 
+app.use('/uploads', express.static('uploads'));
+
 app.use(cors());
 app.use(bodyParser.json());
-
 
 mongoose.connect('mongodb://127.0.0.1:27017/namaste', {useNewUrlParser : true});
 const connection = mongoose.connection;
