@@ -1,5 +1,6 @@
 const retreatModel = require('../models/Retreat.js');
 const moment = require('moment');
+const mongoose = require('mongoose');
 
 exports.getAllRetreats = function(req, res){
   retreatModel.find(function(err, retreats){
@@ -25,8 +26,44 @@ exports.showRetreat = function(req, res){
 }
 
 exports.addRetreat = function(req, res, next){
-  console.log('req.file', req.body, req.file);
-  let newRetreat = new retreatModel(req.body);
+
+  if(Array.isArray(req.body.bedRooms)){
+    if(req.body.bedRooms && req.body.bedRooms.length >= 0){
+      req.body.bedRooms = req.body.bedRooms.map((room) => {
+        return JSON.parse(room);
+      })
+    }
+  }else{
+    let room = JSON.parse(req.body.bedRooms);
+    req.body.bedRooms = [];
+    req.body.bedRooms.push(room)
+  }
+
+
+  let imgArray = [];
+
+  if(req.files && req.files.length >= 0){
+    req.files.map((image) => {
+      return imgArray.push(image.path)
+    });
+  }
+
+  let newRetreat = new retreatModel({
+    _id: new mongoose.Types.ObjectId(),
+    name : req.body.name,
+    dateStart : req.body.dateStart,
+    dateEnd : req.body.dateEnd,
+    retreatSummary : req.body.retreatSummary,
+    accomodationOverview : req.body.accomodationOverview,
+    food : req.body.food,
+    byCar : req.body.byCar,
+    byTrain : req.body.byTrain,
+    bookingDetails : req.body.bookingDetails,
+    bookingUrl : req.body.bookingUrl,
+    whatsIncluded : req.body.whatsIncluded,
+    bedRooms : req.body.bedRooms,
+    retreatImages : imgArray
+  });
 
   if(newRetreat.whatsIncluded.length > 0){
     newRetreat.whatsIncluded = newRetreat.whatsIncluded[0].split(',')
@@ -37,9 +74,14 @@ exports.addRetreat = function(req, res, next){
     newRetreat.dateStart = x;
   }
 
+  if(newRetreat.dateEnd){
+    var x = moment( new Date(newRetreat.dateEnd)).format("DD/MM/YYYY")
+    newRetreat.dateEnd = x;
+  }
+
   newRetreat.save()
     .then(function(newRetreat){
-      res.status(201).json({'newRetreat' : 'Retreat added successfully', "data" : req.file});
+      res.status(201).json({'newRetreat' : 'Retreat added successfully'});
     })
     .catch(function(err){
       console.log('err', err);

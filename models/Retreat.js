@@ -13,7 +13,7 @@ const retreatSchema = new Schema({
   bedRooms :[{
     booked : { type : Boolean , default : false },
     description : { type : String },
-    costPerPerson : { type : Number }
+    cost : { type : Number }
   }],
   food : { type : String },
   byCar : { type : String },
@@ -21,7 +21,7 @@ const retreatSchema = new Schema({
   bookingDetails : { type : String },
   bookingUrl : { type : String },
   whatsIncluded : [ String ],
-  retreatImage : { data : Buffer }
+  retreatImages : [ String ]
 });
 
 module.exports = mongoose.model('Retreat', retreatSchema);

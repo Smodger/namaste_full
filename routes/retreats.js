@@ -25,7 +25,7 @@ router.get('/', retreatController.getAllRetreats);
 
 router.get('/:id', retreatController.showRetreat);
 
-router.post('/addRetreat', upload.single('retreatImg1'), checkAuth, retreatController.addRetreat);
+router.post('/addRetreat', upload.array('retreatImages', 3), checkAuth, retreatController.addRetreat);
 
 router.post('/update/:id', checkAuth, retreatController.updateRetreat);
 
