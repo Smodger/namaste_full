@@ -13,7 +13,6 @@ exports.getAllRetreats = function(req, res){
 }
 
 exports.showRetreat = function(req, res){
-
   let id = req.params.id;
 
   retreatModel.findById(id, function(err, retreat){
@@ -94,21 +93,19 @@ exports.updateRetreat = function(req,res){
     if(!retreat){
       res.status(404).send('Data not found')
     }else{
-
       retreat.name = req.body.name;
       retreat.dateStart = req.body.dateStart;
       retreat.dateEnd = req.body.dateEnd;
       retreat.retreatSummary = req.body.retreatSummary;
       retreat.accomodationOverview = req.body.accomodationOverview;
-      retreat.bedRooms.booked = req.body.bedRooms.booked;
-      retreat.bedRooms.description = req.body.bedRooms.description;
-      retreat.bedRooms.costPerPerson = req.body.bedRooms.costPerPerson;
       retreat.food = req.body.food;
       retreat.byCar = req.body.byCar;
       retreat.byTrain = req.body.byTrain;
       retreat.bookingDetails = req.body.bookingDetails;
       retreat.bookingUrl = req.body.bookingUrl;
-      retreat.whatsIncluded = req.body.whatsIncluded.tags;
+      retreat.whatsIncluded = req.body.whatsIncluded;
+      retreat.bedRooms = req.body.bedRooms;
+      // retreat.retreatImages = req.body.retreatImages;
 
       retreat.save().then(function(retreat){
         res.status(200).json('Update successful')

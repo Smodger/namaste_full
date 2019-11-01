@@ -7,7 +7,8 @@ const lessonSchema = new Schema({
     startMinutes: {type: String, match :/^[0-9]*$/},
     location: {type: String},
     yogaStyle: {type: String},
-    linkToStudio : {type: String}
+    linkToStudio : {type: String},
+    additionalInfo : {type: String}
 });
 
 module.exports = mongoose.model('Lesson', lessonSchema);

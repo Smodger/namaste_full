@@ -25,6 +25,7 @@ exports.showLesson = function(req, res){
 const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
 exports.createLesson = function(req, res){
+
   let newLesson = new lessonModel(req.body);
 
   if(newLesson.linkToStudio.length <= 0 && newLesson.location !== "Tooting Bec Lido"){
@@ -59,6 +60,7 @@ exports.updateLesson = function(req,res){
       lesson.location = req.body.location;
       lesson.yogaStyle = req.body.yogaStyle;
       lesson.linkToStudio = req.body.linkToStudio;
+      lesson.additionalInfo = req.body.additionalInfo;
 
       // force all DOW to lower case so we can set a universal standard for checking user entry is day of the week.
       const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
