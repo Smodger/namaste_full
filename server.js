@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
+const path = require('path');
 
 const lessonRoutes = require('./routes/lessons.js');
 const lessonSchema = require('./models/Lesson.js')
@@ -14,6 +15,9 @@ const userRoutes = require('./routes/users.js')
 const userSchema = require('./models/User.js')
 
 app.use('/uploads', express.static('uploads'));
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(cors());
 app.use(bodyParser.json());
