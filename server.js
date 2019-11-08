@@ -16,8 +16,17 @@ const userSchema = require('./models/User.js')
 
 app.use('/uploads', express.static('uploads'));
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use('/lessons', lessonRoutes)
+app.use('/retreats', retreatRoutes)
+app.use('/user', userRoutes)
+
+// hide express (even though on github i state it's mern stack)
+app.disable('x-powered-by')
+app.use(express.static(path.resolve(__dirname, "client/build")));
+
+app.get('*', (req,res) => {
+  res.sendFile(path.resolve(__dirname, 'client', "build", "index.html"))
+});
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -30,10 +39,6 @@ connection.once('open', () => {
 });
 
 const port = 1234;
-
-app.use('/lessons', lessonRoutes)
-app.use('/retreats', retreatRoutes)
-app.use('/user', userRoutes)
 
 app.listen(port, () => {
   console.log('Server running on ' + port);
