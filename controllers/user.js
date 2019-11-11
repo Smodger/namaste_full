@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 exports.userSignUp = function(req, res, next){
-  // IF WE WANT ONLY ONE EMAIL SIGN UP, EG JUST emthomsonyoga@gmail.com THEN ADD STATEMENT REQ.BODY.EMAIL !== 'emthomsonyoga@gmail.com'
+  // IF WE WANT ONLY ONE EMAIL SIGN UP, EG JUST emthomsonyoga@gmail.com THEN ADD STATEMENT REQ.BODY.EMAIL !== 'em@gmail.com'
   userModel.find({ email : req.body.email}).exec()
   .then(function(user){
     if(user.length >= 1){
@@ -71,7 +71,7 @@ exports.userLogin = function(req,res, next){
           })
           return res.status(200).json({ message : "Auth successful" , token : token });
         }
-        // error msg below only shows if incorrect pwd. BUT the message says password or email so we do not specifically say email is correct. 
+        // error msg below only shows if incorrect pwd. BUT the message says password or email so we do not specifically say email is correct.
         return res.status(401).json({ message : "Auth failed - incorrect password or email"});
       });
     })

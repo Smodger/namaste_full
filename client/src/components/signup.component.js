@@ -37,7 +37,7 @@ export default class Signup extends Component {
       password : this.state.password
     }
 
-    axios.post('http://localhost:1234/user/signup', newUser)
+    axios.post(process.env.MONGODB_URI || 'http://localhost:1234/user/signup', newUser)
       .then(function(res){
 
         const token = res.data.token;

@@ -20,7 +20,7 @@ app.use('/lessons', lessonRoutes)
 app.use('/retreats', retreatRoutes)
 app.use('/user', userRoutes)
 
-// hide express (even though on github i state it's mern stack)
+// hide express (even though on github I state it's mern stack)
 app.disable('x-powered-by')
 app.use(express.static(path.resolve(__dirname, "client/build")));
 
@@ -31,7 +31,7 @@ app.get('*', (req,res) => {
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/namaste', {useNewUrlParser : true});
+let x = mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/namaste', {useNewUrlParser : true});
 const connection = mongoose.connection;
 
 connection.once('open', () => {
