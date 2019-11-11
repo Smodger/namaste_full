@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
+import { API_URL } from './../config.js'
+
 export default class Signup extends Component {
 
   constructor(props){
@@ -37,7 +39,7 @@ export default class Signup extends Component {
       password : this.state.password
     }
 
-    axios.post(process.env.MONGODB_URI || 'http://localhost:1234/user/signup', newUser)
+    axios.post(`${API_URL}/user/signup`, newUser)
       .then(function(res){
 
         const token = res.data.token;
