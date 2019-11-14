@@ -4,15 +4,18 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 exports.userSignUp = function(req, res, next){
-  // IF WE WANT ONLY ONE EMAIL SIGN UP, EG JUST emthomsonyoga@gmail.com THEN ADD STATEMENT REQ.BODY.EMAIL !== 'em@gmail.com'
+  console.log('BODY', req.body);
+  // IF WE WANT ONLY ONE EMAIL SIGN UP, EG JUST em@gmail.com THEN ADD STATEMENT REQ.BODY.EMAIL !== 'em@gmail.com'
   userModel.find({ email : req.body.email}).exec()
   .then(function(user){
+    console.log('user', user);
     if(user.length >= 1){
       //409 = conflict
       return res.status(409).json({ message : "Email address already exists" })
     }else {
       bcrypt.hash(req.body.password, 10, function(err, hash){
         if(err){
+          console.log('hashing error :', err);
           return res.status(500).json({
             error : err
           });
@@ -92,9 +95,23 @@ exports.deleteUser = function(req, res, next){
 }
 
 exports.getUser = function(req,res){
-  userModel.findById( req.userData.id )
-    .select('-password')
-    .then(function(user){
-      return res.json({ user : user})
-    })
+  let id = req.params.id;
+
+  userModel.findById(id, function(err, user){
+    if(err){
+      console.log("user not found :", err);
+    }else{
+      res.json(user);
+    }
+  });
+}
+
+exports.getAllUsers = function(req, res){
+  userModel.find(function(err, users){
+    if(err){
+      console.log("error : ", err);
+    }else{
+      res.json(users);
+    }
+  })
 }

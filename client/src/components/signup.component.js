@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
-import { API_URL } from './../config.js'
-
 export default class Signup extends Component {
 
   constructor(props){
@@ -39,7 +37,7 @@ export default class Signup extends Component {
       password : this.state.password
     }
 
-    axios.post(`${API_URL}/user/signup`, newUser)
+    axios.post("/user/signup", newUser)
       .then(function(res){
 
         const token = res.data.token;

@@ -3,7 +3,9 @@ const router = express.Router();
 const userController = require('../controllers/user.js')
 const checkAuth = require('../auth/check-auth.js')
 
-router.get('/user', checkAuth, userController.getUser)
+router.get('/users', userController.getAllUsers)
+
+router.get('/:id', userController.getUser)
 
 router.post('/signup', userController.userSignUp);
 

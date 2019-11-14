@@ -14,28 +14,29 @@ const retreatSchema = require('./models/Retreat.js')
 const userRoutes = require('./routes/users.js')
 const userSchema = require('./models/User.js')
 
-app.use('/uploads', express.static('uploads'));
-
-app.use('/lessons', lessonRoutes)
-app.use('/retreats', retreatRoutes)
-app.use('/user', userRoutes)
+app.use(cors());
 
 // hide express (even though on github I state it's mern stack)
 app.disable('x-powered-by')
-app.use(express.static(path.resolve(__dirname, "client/build")));
 
-app.get('*', (req,res) => {
-  res.sendFile(path.resolve(__dirname, 'client', "build", "index.html"))
-});
-
-app.use(cors());
 app.use(bodyParser.json());
 
-let x = mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/namaste', {useNewUrlParser : true});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/namaste', {useNewUrlParser : true});
 const connection = mongoose.connection;
 
 connection.once('open', () => {
   console.log('MongoDb running successfully')
+});
+
+app.use('/uploads', express.static('uploads'));
+app.use('/lessons', lessonRoutes)
+app.use('/retreats', retreatRoutes)
+app.use('/user', userRoutes)
+
+app.use(express.static(path.resolve("client/build")));
+
+app.get('*', (req,res) => {
+  res.sendFile(path.resolve(__dirname, 'client', "build", "index.html"))
 });
 
 const PORT = process.env.PORT || 1234;
