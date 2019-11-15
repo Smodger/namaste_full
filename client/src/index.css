@@ -189,6 +189,8 @@ body {
 .stock-image {
   margin: 0 15px;
   width: 400px;
+  height: 250px;
+  object-fit: cover;
 }
 
 .shavasana{
@@ -209,6 +211,7 @@ body {
   width: 33%;
   height: 300px;
   display: inline-block;
+  object-fit: cover;
 }
 
 .retreat-image-landscape{
