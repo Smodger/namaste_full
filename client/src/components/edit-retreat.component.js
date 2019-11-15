@@ -46,7 +46,7 @@ export default class EditRetreat extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:1234/retreats/'+this.props.match.params.id)
+    axios.get('/retreats/'+this.props.match.params.id)
       .then(res => {
         this.setState({
           name : res.data.name,
@@ -207,7 +207,7 @@ export default class EditRetreat extends Component {
       Authorization : "Bearer " + token
     }
 
-    axios.post('http://localhost:1234/retreats/update/' + this.props.match.params.id, retreat, { headers : headers })
+    axios.post('/retreats/update/' + this.props.match.params.id, retreat, { headers : headers })
       .then(res => console.log('data', res.data));
 
     this.props.history.push('/list-retreats')

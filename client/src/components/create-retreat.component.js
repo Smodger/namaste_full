@@ -197,7 +197,7 @@ export default class CreateRetreat extends Component {
       'Content-Type': 'multipart/form-data'
     }
 
-    axios.post('http://localhost:1234/retreats/addRetreat', formData, {
+    axios.post('/retreats/addRetreat', formData, {
       headers : headers
     })
       .then(res => console.log(res.data));

@@ -22,7 +22,7 @@ export default class ListRetreats extends Component {
   }
 
   getRetreats(){
-    axios.get('http://localhost:1234/retreats')
+    axios.get('/retreats')
       .then(res => {
         this.setState({ retreats : res.data});
       })

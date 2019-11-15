@@ -47,7 +47,7 @@ export default class showRetreat extends Component {
   handleDeleteRetreat(){
     const token = localStorage.getItem('jwtToken');
 
-    axios.delete('http://localhost:1234/retreats/delete/'+ this.props.retreat._id, { headers : { Authorization: `Bearer ${token}`}})
+    axios.delete('/retreats/delete/'+ this.props.retreat._id, { headers : { Authorization: `Bearer ${token}`}})
       .then(res =>{
         console.log('Lesson Deleted',this.props.retreat._id);
       })
