@@ -49,10 +49,10 @@ export default class Header extends Component {
           <nav className="navbar navbar-expand-lg">
             <div className="header-logo"></div>
             <Link to='/' className='navbar-brand'>Home</Link>
-            <Link to='/lessons' className='navbar-brand'>Class schedule</Link>
             <Link to='/about' className='navbar-brand'>About Me</Link>
-            <Link to='/contact' className='navbar-brand'>Contact</Link>
+            <Link to='/lessons' className='navbar-brand'>Class schedule</Link>
             <Link to='/list-retreats' className='navbar-brand'>Retreats</Link>
+            <Link to='/contact' className='navbar-brand'>Contact</Link>
             {this.isLoggedIn()}
           </nav>
         </div>
