@@ -27,7 +27,7 @@ export default class EditLesson extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:1234/lessons/'+this.props.match.params.id)
+    axios.get('/lessons/'+this.props.match.params.id)
       .then(res => {
         this.setState({
           dayOfTheWeek : res.data.dayOfTheWeek,
@@ -99,7 +99,7 @@ export default class EditLesson extends Component {
       additionalInfo : this.state.additionalInfo
     };
 
-    axios.post('http://localhost:1234/lessons/update/' + this.props.match.params.id, lessonObj, {
+    axios.post('/lessons/update/' + this.props.match.params.id, lessonObj, {
       headers :{ Authorization : "Bearer " + token}
     })
       .then(res => console.log('data', res.data));

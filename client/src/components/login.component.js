@@ -36,7 +36,7 @@ export default class Signup extends Component {
       password : this.state.password
     }
 
-    axios.post('http://localhost:1234/user/login', user)
+    axios.post('/user/login', user)
       .then(function(res){
         const token = res.data.token;
         localStorage.setItem('jwtToken', token)

@@ -17,7 +17,7 @@ export default class LessonList extends Component {
   }
 
   getLessons(){
-    axios.get('http://localhost:1234/lessons')
+    axios.get('/lessons')
       .then(res => {
         this.setState({ lessons : res.data});
       })
@@ -33,7 +33,7 @@ export default class LessonList extends Component {
   deleteLesson(id){
     const token = localStorage.getItem('jwtToken');
 
-    axios.delete('http://localhost:1234/lessons/delete/'+ id, { headers : { Authorization: `Bearer ${token}`}})
+    axios.delete('/lessons/delete/'+ id, { headers : { Authorization: `Bearer ${token}`}})
       .then(res =>{
         console.log('Lesson Deleted',id);
       })

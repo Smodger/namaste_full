@@ -87,7 +87,7 @@ export default class CreateLesson extends Component {
 
     const token = localStorage.getItem('jwtToken');
 
-    axios.post('http://localhost:1234/lessons/addLesson', newLesson,{
+    axios.post('/lessons/addLesson', newLesson,{
       headers :{ Authorization : "Bearer " + token}
     })
       .then(res => console.log(res.data));

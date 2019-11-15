@@ -11,7 +11,6 @@ import contactTwo from '../images/contactTwo.jpg';
 import contactThree from '../images/contactThree.jpg';
 
 export const Images = (props) => {
-  console.log("PROPS", props);
 
   if(props.page === "lessons"){
     return (

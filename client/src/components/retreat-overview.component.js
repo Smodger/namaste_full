@@ -4,7 +4,6 @@ export default class RetreatOverview extends Component {
 
   constructor(props){
     super(props)
-    console.log(props);
     this.state = {
       retreat : props.retreat
     }

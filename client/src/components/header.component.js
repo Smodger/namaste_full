@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, HashRouter } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import CreateLesson from './create-lesson.component';
@@ -44,7 +44,7 @@ export default class Header extends Component {
 
   render(){
     return (
-      <Router>
+      <HashRouter>
         <div>
           <nav className="navbar navbar-expand-lg">
             <div className="header-logo"></div>
@@ -69,7 +69,7 @@ export default class Header extends Component {
         <Route path="/signup" component={Signup}></Route>
         <Route path="/login" component={Login}></Route>
 
-      </Router>
+      </HashRouter>
     )
   }
 }

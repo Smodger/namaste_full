@@ -48,7 +48,6 @@ export default class EditRetreat extends Component {
   componentDidMount(){
     axios.get('http://localhost:1234/retreats/'+this.props.match.params.id)
       .then(res => {
-        console.log(res.data.dateStart, res.data.dateEnd);
         this.setState({
           name : res.data.name,
           dateStart : res.data.dateStart,

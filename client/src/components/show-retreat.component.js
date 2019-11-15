@@ -11,7 +11,6 @@ export default class showRetreat extends Component {
 
 
   listWhatsIncluded(){
-    console.log('props', this.props.retreat);
     return this.props.retreat.whatsIncluded.map((item, i) => {
       return <li key={i}>{item}</li>
     })
