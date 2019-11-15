@@ -29,6 +29,7 @@ connection.once('open', () => {
 });
 
 app.use('/uploads', express.static('uploads'));
+
 app.use('/lessons', lessonRoutes)
 app.use('/retreats', retreatRoutes)
 app.use('/user', userRoutes)
