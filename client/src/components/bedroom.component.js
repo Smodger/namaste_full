@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import SimpleMDE from 'react-simplemde-editor';
+import "simplemde/dist/simplemde.min.css";
 
 export default class Bedroom extends Component {
   constructor(props){
@@ -9,7 +11,7 @@ export default class Bedroom extends Component {
   }
 
   handleOnChangeDescription = (event) => {;
-    this.props.onChangeBedDescription(event.target.value)
+    this.props.onChangeBedDescription(event)
   }
 
   handleOnChangeCost = (event) => {
@@ -21,12 +23,17 @@ export default class Bedroom extends Component {
   }
 
   render(){
+
+    const mdConfig = {
+      hideIcons : ['image', 'link', 'table']
+    }
+
     return (
       <div>
         <div className="form-group">
           <h4>Bedroom {this.props.roomNum + 1}</h4>
           <label>Description</label>
-          <input type="text" className="form-control" value={this.props.room.description} onChange={this.handleOnChangeDescription} placeholder="description"></input>
+          <SimpleMDE options={mdConfig} value={this.props.room.description} onChange={this.handleOnChangeDescription} />
         </div>
 
         <div className="form-group">

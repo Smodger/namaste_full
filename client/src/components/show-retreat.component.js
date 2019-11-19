@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Markdown from 'react-markdown'
 
 export default class showRetreat extends Component {
   constructor(props){
@@ -8,7 +9,6 @@ export default class showRetreat extends Component {
 
     this.handleDeleteRetreat = this.handleDeleteRetreat.bind(this);
   }
-
 
   listWhatsIncluded(){
     return this.props.retreat.whatsIncluded.map((item, i) => {
@@ -21,13 +21,13 @@ export default class showRetreat extends Component {
       if(room.booked){
         return (
           <div key={i}>
-            <p>Bedroom {i + 1} - {room.description} - £{room.cost} - <strong>BOOKED</strong></p>
+            <p>Bedroom {i + 1} - <Markdown className="inline md" source={room.description} /> - £{room.cost} - <strong>BOOKED</strong></p>
           </div>
         )
       }else{
         return (
           <div key={i}>
-            <p>Bedroom {i + 1} - {room.description} - £{room.cost}</p>
+            <p>Bedroom {i + 1} - <Markdown className="inline md" source={room.description} /> - £{room.cost}</p>
           </div>
         )
       }
@@ -59,6 +59,7 @@ export default class showRetreat extends Component {
   }
 
   render(){
+
     return (
       <div className="page-container">
         <h3 className="page-heading">{this.props.retreat.name}</h3>
@@ -68,7 +69,8 @@ export default class showRetreat extends Component {
 
           <div className="shavasana">
             <h6 className="retreat-heading">Overview</h6>
-            <p>{this.props.retreat.retreatSummary}</p>
+            <Markdown source={this.props.retreat.retreatSummary}></Markdown>
+
           </div>
 
           <img className="retreat-image-landscape" src={this.props.retreat.retreatImages[6]} alt="retreat overview"></img>
@@ -83,20 +85,21 @@ export default class showRetreat extends Component {
           <div className="shavasana">
             <h6 className="retreat-heading">How to get there</h6>
             <p className="instruction-header">By car:</p>
-            <p style={{"marginLeft" : 15}}>{this.props.retreat.byCar}</p>
+            <p style={{"marginLeft" : 15}}><Markdown source={this.props.retreat.byCar} /></p>
             <p className="instruction-header">Public transport:</p>
-            <p style={{"marginLeft" : 15}}>{this.props.retreat.byTrain}</p>
+            <p style={{"marginLeft" : 15}}><Markdown source={this.props.retreat.byTrain} /></p>
           </div>
 
 
           <div className="shavasana">
             <h6 className="retreat-heading">Accommodation</h6>
+            <Markdown source={this.props.retreat.accomodationOverview} />
             {this.listBedrooms()}
           </div>
 
           <div className="shavasana">
             <h6 className="retreat-heading">Food Options</h6>
-            <p>{this.props.retreat.food}</p>
+            <Markdown source={this.props.retreat.food}></Markdown>
           </div>
 
           <div className="shavasana">
@@ -107,7 +110,7 @@ export default class showRetreat extends Component {
 
           <div className="shavasana">
             <h6 className="retreat-heading">Booking information</h6>
-            <p>{this.props.retreat.bookingDetails}</p>
+            <Markdown source={this.props.retreat.bookingDetails}></Markdown>
             {this.howToBook()}
           </div>
 

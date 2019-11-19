@@ -8,6 +8,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.md > p {
+  display: inline;
+}
+
 .no-margin{
   margin: 0!important;
 }

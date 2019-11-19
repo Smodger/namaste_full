@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import SimpleMDE from 'react-simplemde-editor';
+import "simplemde/dist/simplemde.min.css";
 
 import Bedroom from './bedroom.component';
 
@@ -28,10 +30,12 @@ export default class CreateRetreat extends Component {
     this.appendBedroom = this.appendBedroom.bind(this);
     this.renderBedroom = this.renderBedroom.bind(this);
 
+    this.onReady = this.onReady.bind(this);
+
     this.state= {
       name : "",
-      dateStart : "22/04/1989",
-      dateEnd : "14/09/1988",
+      dateStart : null,
+      dateEnd : null,
       retreatSummary : "",
       accomodationOverview : "",
       bedRooms : [],
@@ -60,29 +64,30 @@ export default class CreateRetreat extends Component {
       dateEnd : event.target.value
     })
   }
+
   onChangeRetreatSummary(event){
     this.setState({
-      retreatSummary : event.target.value
+      retreatSummary : event
     })
   }
   onChangeFood(event){
     this.setState({
-      food : event.target.value
+      food : event
     })
   }
   onChangeCar(event){
     this.setState({
-      byCar : event.target.value
+      byCar : event
     })
   }
   onChangeTrain(event){
     this.setState({
-      byTrain : event.target.value
+      byTrain : event
     })
   }
   onChangeBookingInfoDetails(event){
     this.setState({
-      bookingDetails : event.target.value
+      bookingDetails : event
     })
   }
   onChangeBookingInfoUrl(event){
@@ -98,7 +103,7 @@ export default class CreateRetreat extends Component {
 
   onChangeAccomodation(event){
     this.setState({
-      accomodationOverview : event.target.value
+      accomodationOverview : event
     })
   }
 
@@ -158,6 +163,10 @@ export default class CreateRetreat extends Component {
     }, this)
   }
 
+  onReady(instance){
+    console.log("MARKDOWN", instance.value());
+  }
+
   onSubmit(event){
     //prevent default form logic
     event.preventDefault();
@@ -205,8 +214,8 @@ export default class CreateRetreat extends Component {
     // reset state to blank once submitted
     this.setState({
       name : "",
-      dateStart : "22/04/1989",
-      dateEnd : "14/09/1988",
+      dateStart : null,
+      dateEnd : null,
       retreatSummary : "",
       accomodationOverview : "",
       bedRooms : [],
@@ -221,6 +230,11 @@ export default class CreateRetreat extends Component {
   }
 
   render(){
+    // if updating mdConfig, update the same config in bedroom.component.js
+    const mdConfig = {
+      hideIcons : ['image', 'link', 'table']
+    }
+
     return (
       <div>
         <div className="hero-info-img">
@@ -251,12 +265,12 @@ export default class CreateRetreat extends Component {
 
               <div className="form-group">
                 <label>Retreat summary</label>
-                <input type="text" className="form-control" value={this.state.retreatSummary} onChange={this.onChangeRetreatSummary}></input>
+                  <SimpleMDE options={mdConfig} onChange={this.onChangeRetreatSummary} value={this.state.retreatSummary} />
               </div>
 
               <div className="form-group">
                 <label>Accommodation Overview</label>
-                <input type="text" className="form-control" value={this.state.accomodationOverview} onChange={this.onChangeAccomodation}></input>
+                <SimpleMDE options={mdConfig} onChange={this.onChangeAccomodation} value={this.state.accomodationOverview} />
               </div>
 
               <div className="separator-long"></div>
@@ -271,22 +285,22 @@ export default class CreateRetreat extends Component {
 
               <div className="form-group">
                 <label>Food</label>
-                <input type="text" className="form-control" value={this.state.food} onChange={this.onChangeFood}></input>
+                <SimpleMDE options={mdConfig} value={this.state.food} onChange={this.onChangeFood} />
               </div>
 
               <div className="form-group">
                 <label>How to get there by Car</label>
-                <input type="text" className="form-control" value={this.state.byCar} onChange={this.onChangeCar}></input>
+                <SimpleMDE options={mdConfig} value={this.state.byCar} onChange={this.onChangeCar} />
               </div>
 
               <div className="form-group">
                 <label>How to get there by public transport</label>
-                <input type="text" className="form-control" value={this.state.byTrain} onChange={this.onChangeTrain}></input>
+                <SimpleMDE options={mdConfig} value={this.state.byTrain} onChange={this.onChangeTrain} />
               </div>
 
               <div className="form-group">
                 <label>Booking information details</label>
-                <input type="text" className="form-control" value={this.state.bookingDetails} onChange={this.onChangeBookingInfoDetails}></input>
+                <SimpleMDE options={mdConfig} value={this.state.bookingDetails} onChange={this.onChangeBookingInfoDetails} />
               </div>
 
               <div className="form-group">
