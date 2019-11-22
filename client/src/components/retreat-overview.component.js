@@ -22,9 +22,9 @@ export default class RetreatOverview extends Component {
         "width" : 300,
         "height" : 200,
         "backgroundImage" : 'url(' + thumbnailURL + ')',
-        "backgroundSize": "contain",
+        "backgroundSize": "cover",
         "backgroundPosition" : "center",
-        "backgroundRepeat" : "no-repeat",
+        "backgroundRepeat" : "no-repeat"
       }
 
       return (
@@ -38,8 +38,10 @@ export default class RetreatOverview extends Component {
       <div style={{ padding: 20, display: "inline-block"}} onClick={this.props.onClick}>
         {this.getRetreatThumbmail()}
         <div className="retreat-text">
-          <p>{this.state.retreat.name}</p>
-          <p>{this.state.retreat.dateStart} - {this.state.retreat.dateEnd}</p>
+          <div>
+            <p>{this.state.retreat.name}</p>
+            <p>{this.state.retreat.dateStart} - {this.state.retreat.dateEnd}</p>
+          </div>
         </div>
       </div>
     )
