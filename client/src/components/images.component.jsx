@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
 import lidoYoga from '../images/lidoYoga.jpg';
 import battersea from '../images/battersea.jpeg';
@@ -15,9 +16,10 @@ export const Images = (props) => {
   if(props.page === "lessons"){
     return (
       <div className="image-container">
-        <img className="stock-image" src={lidoYoga} alt="yoga studio"></img>
-        <img className="stock-image" src={battersea} alt="yoga studio"></img>
-        <img className="stock-image" src={revive} alt="yoga studio"></img>
+        <img className="stock-image" src={lidoYoga} alt="yoga studio" data-tip="Tooting Bec Lido"></img>
+        <img className="stock-image" src={battersea} alt="yoga studio" data-tip="Battersea Yoga"></img>
+        <img className="stock-image" src={revive} alt="yoga studio" data-tip="Revive Tooting Yoga"></img>
+        <ReactTooltip place="left" type="dark" effect="solid"></ReactTooltip>
       </div>
     )
   }
