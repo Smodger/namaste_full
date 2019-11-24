@@ -11,7 +11,7 @@ import {Contact} from './contact.component';
 import Home from './home.component';
 import CreateRetreat from './create-retreat.component';
 import ListRetreats from './retreat-list.component';
-import MobileMenu from './mobile-menu.component';
+import {ToggleButton} from './menu-toggle.component';
 import Signup from './signup.component';
 import Login from './login.component';
 
@@ -55,7 +55,9 @@ export default class Header extends Component {
             <Link to='/list-retreats' className='navbar-brand'>Retreats</Link>
             <Link to='/contact' className='navbar-brand'>Contact</Link>
             {this.isLoggedIn()}
-            <Link to='/mobile-menu' className='hamburger'>Mobile menu</Link>
+            <div className="hamburger">
+              <ToggleButton click={this.props.menuClickHandler}/>
+            </div>
           </nav>
         </div>
 
@@ -68,7 +70,6 @@ export default class Header extends Component {
         <Route path="/contact" component={Contact}></Route>
         <Route path="/create-retreat" component={CreateRetreat}></Route>
         <Route path="/list-retreats" component={ListRetreats}></Route>
-        <Route path="/mobile-menu" component={MobileMenu}></Route>
         <Route path="/signup" component={Signup}></Route>
         <Route path="/login" component={Login}></Route>
 
