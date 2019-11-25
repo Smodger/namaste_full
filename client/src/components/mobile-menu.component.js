@@ -14,7 +14,6 @@ export const MobileMenu = (props) => {
   return (
     <HashRouter>
       <nav className={sidebarClasses.join(" ")} >
-        <div className="mobile-nav-container">
           <ul>
             <div className="header-logo-mobile"></div>
             <li><Link to='/' className="">Home</Link></li>
@@ -23,7 +22,6 @@ export const MobileMenu = (props) => {
             <li><Link to='/list-retreats' className="">Retreats</Link></li>
             <li><Link to='/contact' className="">Contact</Link></li>
           </ul>
-        </div>
       </nav>
     </HashRouter>
   )

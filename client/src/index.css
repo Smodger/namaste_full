@@ -283,12 +283,21 @@ body {
 .sidebar li{
   font-size: 20px;
   color: #0e3782;
-  margin: 0.5rem 0;
+  margin: 1.5rem 0;
 }
 
 .sidebar li:hover,
 .sidebar li:active{
   color: #ed1a64;
+}
+
+.header-logo-mobile{
+  background-position: center;
+  background-size: contain;
+  height: 200px;
+  background-image: url('./images/em-thomson-logo.jpg');
+  width: 200px;
+  background-repeat: no-repeat;
 }
 
 .backdrop{
@@ -317,6 +326,14 @@ body {
 
   .hamburger{
     display: block;
+  }
+
+  .mobile-container{
+    width: 95%!important;
+  }
+
+  td{
+    padding: 10px!important;;
   }
 
 }

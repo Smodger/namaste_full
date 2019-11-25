@@ -162,15 +162,15 @@ export default class LessonList extends Component {
             </div>
           </div>
         </div>
-        <div className="page-container">
+        <div className="page-container mobile-container">
           <h3 className="page-heading">Class List</h3>
           <table className="table boarderless" style={{ marginTop : 20 }}>
             <thead>
               <tr>
-                <th>Day of the Week</th>
+                <th>Day</th>
                 <th>Time</th>
                 <th>Location</th>
-                <th>Yoga Style</th>
+                <th>Style</th>
                 <th></th>
               </tr>
             </thead>
