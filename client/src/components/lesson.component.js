@@ -69,11 +69,31 @@ export default class Lesson extends Component {
     }
   }
 
+  getStartAmPm(){
+    if(this.state.lesson.startHour > 11){
+      return "pm"
+    }
+    if(this.state.lesson.startHour <= 11){
+      return "am"
+    }
+  }
+
+  getEndAmPm(){
+    if(this.state.lesson.endHour > 11){
+      return "pm"
+    }
+    if(this.state.lesson.endHour <= 11){
+      return "am"
+    }
+  }
+
   render(){
     return (
       <tr>
         {this.dayHeader()}
-        <td>{this.state.lesson.startHour} : {this.state.lesson.startMinutes}</td>
+        <td>
+          {this.state.lesson.startHour}:{this.state.lesson.startMinutes}{this.getStartAmPm()} - {this.state.lesson.endHour}:{this.state.lesson.endMinutes}{this.getEndAmPm()}
+        </td>
         <td><a className="hover-pink" href={'//'+this.state.lesson.linkToStudio} target="_blank" rel="noopener noreferrer">{this.state.lesson.location}</a></td>
         <td>{this.state.lesson.yogaStyle}</td>
         {this.tootingInfo()}

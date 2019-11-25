@@ -5,6 +5,8 @@ const lessonSchema = new Schema({
     dayOfTheWeek: {type : String},
     startHour: {type: Number, max: 24},
     startMinutes: {type: String, match :/^[0-9]*$/},
+    endHour: {type: Number, max: 24},
+    endMinutes: {type: String, match :/^[0-9]*$/},
     location: {type: String},
     yogaStyle: {type: String},
     linkToStudio : {type: String},

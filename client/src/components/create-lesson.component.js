@@ -7,8 +7,10 @@ export default class CreateLesson extends Component {
     super(props);
 
     this.onChangeDOW = this.onChangeDOW.bind(this);
-    this.onChangeHour = this.onChangeHour.bind(this);
-    this.onChangeMinutes = this.onChangeMinutes.bind(this);
+    this.onChangeStartHour = this.onChangeStartHour.bind(this);
+    this.onChangeStartMinutes = this.onChangeStartMinutes.bind(this);
+    this.onChangeEndHour = this.onChangeEndHour.bind(this);
+    this.onChangeEndMinutes = this.onChangeEndMinutes.bind(this);
     this.onChangeLocation = this.onChangeLocation.bind(this);
     this.onChangeYogaStyle = this.onChangeYogaStyle.bind(this);
     this.onChangeStudio = this.onChangeStudio.bind(this);
@@ -17,8 +19,10 @@ export default class CreateLesson extends Component {
 
     this.state = {
       dayOfTheWeek : "",
-      startHour : 0,
-      startMinutes : "",
+      startHour : null,
+      startMinutes : null,
+      endHour : null,
+      endMinutes : null,
       location : "",
       yogaStyle : "",
       linkToStudio : "",
@@ -33,15 +37,27 @@ export default class CreateLesson extends Component {
     })
   }
 
-  onChangeHour(event){
+  onChangeStartHour(event){
     this.setState({
       startHour : event.target.value
     })
   }
 
-  onChangeMinutes(event){
+  onChangeStartMinutes(event){
     this.setState({
       startMinutes : event.target.value
+    })
+  }
+
+  onChangeEndHour(event){
+    this.setState({
+      endHour : event.target.value
+    })
+  }
+
+  onChangeEndMinutes(event){
+    this.setState({
+      endMinutes : event.target.value
     })
   }
 
@@ -79,6 +95,8 @@ export default class CreateLesson extends Component {
       dayOfTheWeek : this.state.dayOfTheWeek,
       startHour : this.state.startHour,
       startMinutes : this.state.startMinutes,
+      endHour : this.state.endHour,
+      endMinutes : this.state.endMinutes,
       location : this.state.location,
       yogaStyle : this.state.yogaStyle,
       linkToStudio : this.state.linkToStudio,
@@ -95,8 +113,10 @@ export default class CreateLesson extends Component {
     // reset state to blank once submitted
     this.setState({
       dayOfTheWeek : "",
-      startHour : 0,
-      startMinutes : "",
+      startHour : null,
+      startMinutes : null,
+      endhour : null,
+      endMinutes : null,
       location : "",
       yogaStyle : "",
       linkToStudio : "",
@@ -123,10 +143,17 @@ export default class CreateLesson extends Component {
             </div>
 
             <div className="form-group">
-              <label className="block">Time - 24 hours</label>
-              <input type="number" max="24" className="form-control col-sm-2 inline-block" placeholder="Hours" value={this.state.startHour} onChange={this.onChangeHour}></input>
+              <label className="block">Start Time - 24 hours</label>
+              <input type="number" max="24" className="form-control col-sm-2 inline-block" placeholder="Hours" value={this.state.startHour} onChange={this.onChangeStartHour}></input>
               <span style={{ marginLeft : 10, marginRight : 10}}>:</span>
-              <input type="number" max="60" className="form-control col-sm-2 inline-block" placeholder="Minutes" value={this.state.startMinutes} onChange={this.onChangeMinutes}></input>
+              <input type="number" max="60" className="form-control col-sm-2 inline-block" placeholder="Minutes" value={this.state.startMinutes} onChange={this.onChangeStartMinutes}></input>
+            </div>
+
+            <div className="form-group">
+              <label className="block">End Time - 24 hours</label>
+              <input type="number" max="24" className="form-control col-sm-2 inline-block" placeholder="Hours" value={this.state.endHour} onChange={this.onChangeEndHour}></input>
+              <span style={{ marginLeft : 10, marginRight : 10}}>:</span>
+              <input type="number" max="60" className="form-control col-sm-2 inline-block" placeholder="Minutes" value={this.state.endMinutes} onChange={this.onChangeEndMinutes}></input>
             </div>
 
             <div className="form-group">
