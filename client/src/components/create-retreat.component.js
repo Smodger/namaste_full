@@ -313,12 +313,16 @@ export default class CreateRetreat extends Component {
                 <input type="text" className="form-control" value={this.state.whatsIncluded} onChange={this.onChangeWhatIncluded}></input>
               </div>
 
+              <p><strong>First image is the image that will be shown on mobile phones</strong></p>
+
               <div className="form-group">
                 <label>Upload Footer Images:</label>
                  <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
                  <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
                  <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
               </div>
+
+              <p><strong>First image is the image that will be shown on mobile phones</strong></p>
 
               <div className="form-group">
                 <label>Upload Food Images:</label>

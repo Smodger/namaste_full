@@ -312,6 +312,11 @@ body {
 
 /* MOBILE ADJUSTMENTS */
 @media screen and (max-width: 640px){
+
+  .mobile-hide{
+    display: none;
+  }
+
   .stock-image{
     width: 300px;
   }
@@ -334,6 +339,21 @@ body {
 
   td{
     padding: 10px!important;;
+  }
+
+  .retreat-image{
+    width: 100%;
+  }
+
+  .retreat-text{
+    padding-left: 0;
+    float: none;
+    position: inherit;
+  }
+
+  .retreat-text p{
+    display: inline-block;
+    margin-right: 15px;
   }
 
 }

@@ -104,8 +104,8 @@ export default class showRetreat extends Component {
 
           <div className="shavasana">
             <img className="retreat-image" src={this.props.retreat.retreatImages[3]} alt="Images of food available at the retreat"></img>
-            <img className="retreat-image" src={this.props.retreat.retreatImages[4]} alt="Images of food available at the retreat"></img>
-            <img className="retreat-image" src={this.props.retreat.retreatImages[5]} alt="Images of food available at the retreat"></img>
+            <img className="retreat-image mobile-hide" src={this.props.retreat.retreatImages[4]} alt="Images of food available at the retreat"></img>
+            <img className="retreat-image mobile-hide" src={this.props.retreat.retreatImages[5]} alt="Images of food available at the retreat"></img>
           </div>
 
           <div className="shavasana">
@@ -116,8 +116,8 @@ export default class showRetreat extends Component {
 
           <div className="retreat-img-container">
             <img className="retreat-image" src={this.props.retreat.retreatImages[0]} alt="images of yoga retreat"></img>
-            <img className="retreat-image" src={this.props.retreat.retreatImages[1]} alt="images of yoga retreat"></img>
-            <img className="retreat-image" src={this.props.retreat.retreatImages[2]} alt="images of yoga retreat"></img>
+            <img className="retreat-image mobile-hide" src={this.props.retreat.retreatImages[1]} alt="images of yoga retreat"></img>
+            <img className="retreat-image mobile-hide" src={this.props.retreat.retreatImages[2]} alt="images of yoga retreat"></img>
           </div>
 
           <div>
