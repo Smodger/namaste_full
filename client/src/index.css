@@ -346,6 +346,7 @@ body {
   }
 
   .retreat-text{
+    height: 20px;
     padding-left: 0;
     float: none;
     position: inherit;
@@ -354,6 +355,10 @@ body {
   .retreat-text p{
     display: inline-block;
     margin-right: 15px;
+  }
+
+  .retreat-thumbnail{
+    width: 100%;
   }
 
 }
