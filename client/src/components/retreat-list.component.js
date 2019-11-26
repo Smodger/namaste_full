@@ -48,9 +48,13 @@ export default class ListRetreats extends Component {
   }
 
   retreatList(){
-    return this.state.retreats.map(function(currentRetreat, i){
-      return <Retreat retreat={currentRetreat} key={i} onClick={(() => this.toggleView(currentRetreat))}></Retreat>
-    }, this);
+    if(this.state.retreats.length > 0){
+      return this.state.retreats.map(function(currentRetreat, i){
+        return <Retreat retreat={currentRetreat} key={i} onClick={(() => this.toggleView(currentRetreat))}></Retreat>
+      }, this);
+    }else {
+      return <p style={{ 'marginTop' : 20, 'text-align' : 'center'}}>I currently don't have any retreats available for bookings, but check back again soon. I will be adding more in the near future.</p>
+    }
   }
 
   retreatDetails(){
