@@ -3,9 +3,17 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-exports.userSignUp = function(req, res, next){
-  // IF WE WANT ONLY ONE EMAIL SIGN UP, EG JUST em@gmail.com THEN ADD STATEMENT REQ.BODY.EMAIL !== 'em@gmail.com'
-  userModel.find({ email : req.body.email}).exec()
+const userSignUp = function(req, res, next){
+
+  userModel.find().exec()
+  .then(function(users){
+    if(users.length > 2){
+      throw new Error("Maximum number of users reached.");
+    }
+  })
+  .then(function(){
+    return userModel.find({ email : req.body.email}).exec()
+  })
   .then(function(user){
 
     if(user.length >= 1){
@@ -48,10 +56,14 @@ exports.userSignUp = function(req, res, next){
         }
       });
     }
-  });
+  })
+  .catch(function(err){
+    console.log('err', err);
+    res.status(401).json({ message : err.message})
+  })
 }
 
-exports.userLogin = function(req,res, next){
+const userLogin = function(req,res, next){
   userModel.find({ email : req.body.email }).exec()
     .then(function(user){
       if(user.length < 1){
@@ -83,7 +95,7 @@ exports.userLogin = function(req,res, next){
     })
 }
 
-exports.deleteUser = function(req, res, next){
+const deleteUser = function(req, res, next){
   userModel.findByIdAndDelete({_id : req.params.id}, function(err){
     if(err){
       res.status(404).send("User not found")
@@ -93,7 +105,7 @@ exports.deleteUser = function(req, res, next){
   });
 }
 
-exports.getUser = function(req,res){
+const getUser = function(req,res){
   let id = req.params.id;
 
   userModel.findById(id, function(err, user){
@@ -105,7 +117,7 @@ exports.getUser = function(req,res){
   });
 }
 
-exports.getAllUsers = function(req, res){
+const getAllUsers = function(req, res){
   userModel.find(function(err, users){
     if(err){
       console.log("error : ", err);
@@ -113,4 +125,12 @@ exports.getAllUsers = function(req, res){
       res.json(users);
     }
   })
+}
+
+module.exports = {
+  userSignUp : userSignUp,
+  userLogin : userLogin,
+  deleteUser : deleteUser,
+  getUser : getUser,
+  getAllUsers : getAllUsers
 }
