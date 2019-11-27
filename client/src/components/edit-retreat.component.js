@@ -30,8 +30,8 @@ export default class EditRetreat extends Component {
 
     this.state= {
       name : "",
-      dateStart : "",
-      dateEnd : "",
+      dateStart : null,
+      dateEnd : null,
       retreatSummary : "",
       accomodationOverview : "",
       bedRooms : [],
