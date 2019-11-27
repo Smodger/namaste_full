@@ -38,6 +38,16 @@ export default class Lesson extends Component {
     this.props.deleteLesson(this.state.lesson._id)
   }
 
+  getCorrectLink(){
+    if(this.state.lesson.linkToStudio.charAt(0,1,2) === "w"){
+      // for links starting with www
+      return '//'+this.state.lesson.linkToStudio;
+    }else {
+      // for links starting with http(s)
+      return this.state.lesson.linkToStudio;
+    }
+  }
+
   tootingInfo(){
     if(this.state.lesson.location === 'Tooting Bec Lido'){
       return (
@@ -94,7 +104,7 @@ export default class Lesson extends Component {
         <td>
           {this.state.lesson.startHour}:{this.state.lesson.startMinutes}{this.getStartAmPm()} - {this.state.lesson.endHour}:{this.state.lesson.endMinutes}{this.getEndAmPm()}
         </td>
-        <td><a className="hover-pink" href={'//'+this.state.lesson.linkToStudio} target="_blank" rel="noopener noreferrer">{this.state.lesson.location}</a></td>
+        <td><a className="hover-pink" href={this.getCorrectLink()} target="_blank" rel="noopener noreferrer">{this.state.lesson.location}</a></td>
         <td>{this.state.lesson.yogaStyle}</td>
         {this.tootingInfo()}
         {this.showAdditionalInfo()}
