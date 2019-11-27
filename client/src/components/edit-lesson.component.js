@@ -8,8 +8,10 @@ export default class EditLesson extends Component {
     super(props);
 
     this.updateDOW = this.updateDOW.bind(this);
-    this.updateHour = this.updateHour.bind(this);
-    this.updateMinutes = this.updateMinutes.bind(this);
+    this.updateStartHour = this.updateStartHour.bind(this);
+    this.updateStartMinutes = this.updateStartMinutes.bind(this);
+    this.updateEndHour = this.updateEndHour.bind(this);
+    this.updateEndMinutes = this.updateEndMinutes.bind(this);
     this.updateLocation = this.updateLocation.bind(this);
     this.updateYogaStyle = this.updateYogaStyle.bind(this);
     this.updateURL = this.updateURL.bind(this);
@@ -18,8 +20,10 @@ export default class EditLesson extends Component {
 
     this.state = {
       dayOfTheWeek : "",
-      startHour : 0,
-      startMinutes : 0,
+      startHour : null,
+      startMinutes : null,
+      endHour : null,
+      endMinutes : null,
       location : "",
       yogaStyle : "",
       linkToStudio : ""
@@ -33,6 +37,8 @@ export default class EditLesson extends Component {
           dayOfTheWeek : res.data.dayOfTheWeek,
           startHour : res.data.startHour,
           startMinutes : res.data.startMinutes,
+          endHour : res.data.endHour,
+          endMinutes : res.data.endMinutes,
           location : res.data.location,
           yogaStyle : res.data.yogaStyle,
           linkToStudio : res.data.linkToStudio,
@@ -50,15 +56,27 @@ export default class EditLesson extends Component {
     })
   }
 
-  updateHour(event){
+  updateStartHour(event){
     this.setState({
       startHour : event.target.value
     })
   }
 
-  updateMinutes(event){
+  updateStartMinutes(event){
     this.setState({
       startMinutes : event.target.value
+    })
+  }
+
+  updateEndHour(event){
+    this.setState({
+      endHour : event.target.value
+    })
+  }
+
+  updateEndMinutes(event){
+    this.setState({
+      endMinutes : event.target.value
     })
   }
 
@@ -93,6 +111,8 @@ export default class EditLesson extends Component {
       dayOfTheWeek : this.state.dayOfTheWeek,
       startHour : this.state.startHour,
       startMinutes : this.state.startMinutes,
+      endHour : this.state.endHour,
+      endMinutes : this.state.endMinutes,
       location : this.state.location,
       yogaStyle : this.state.yogaStyle,
       linkToStudio : this.state.linkToStudio,
@@ -126,10 +146,17 @@ export default class EditLesson extends Component {
             </div>
 
             <div className="form-group">
-              <label className="block">Time - 24 hours</label>
-              <input type="number" max="24" className="form-control col-sm-2 inline-block" placeholder="Hours" value={this.state.startHour} onChange={this.updateHour}></input>
+              <label className="block">Start Time - 24 hours</label>
+              <input type="number" max="24" className="form-control col-sm-2 inline-block" placeholder="Hours" value={this.state.startHour} onChange={this.updateStartHour}></input>
               <span style={{ marginLeft : 10, marginRight : 10}}>:</span>
-              <input type="number" max="60" className="form-control col-sm-2 inline-block" placeholder="Minutes" value={this.state.startMinutes} onChange={this.updateMinutes}></input>
+              <input type="number" max="60" className="form-control col-sm-2 inline-block" placeholder="Minutes" value={this.state.startMinutes} onChange={this.updateStartMinutes}></input>
+            </div>
+
+            <div className="form-group">
+              <label className="block">End Time - 24 hours</label>
+              <input type="number" max="24" className="form-control col-sm-2 inline-block" placeholder="Hours" value={this.state.endHour} onChange={this.updateEndHour}></input>
+              <span style={{ marginLeft : 10, marginRight : 10}}>:</span>
+              <input type="number" max="60" className="form-control col-sm-2 inline-block" placeholder="Minutes" value={this.state.endMinutes} onChange={this.updateEndMinutes}></input>
             </div>
 
             <div className="form-group">
