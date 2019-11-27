@@ -224,8 +224,10 @@ body {
 }
 
 .retreat-image-landscape{
+  max-height: 400px;
   width: 100%;
   display: inline-block;
+  object-fit: cover;
 }
 
 .hamburger {
