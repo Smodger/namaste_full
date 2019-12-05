@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Markdown from 'react-markdown'
+import Markdown from 'react-markdown';
+import AWS from 'aws-sdk';
 
 export default class showRetreat extends Component {
   constructor(props){
@@ -59,7 +60,6 @@ export default class showRetreat extends Component {
   }
 
   render(){
-
     return (
       <div className="page-container">
         <h3 className="page-heading">{this.props.retreat.name}</h3>
@@ -73,7 +73,7 @@ export default class showRetreat extends Component {
 
           </div>
 
-          <img className="retreat-image-landscape" src={this.props.retreat.retreatImages[6]} alt="retreat overview"></img>
+          <img className="retreat-image-landscape" src={this.props.s3url + this.props.retreat.retreatImages[6]} alt="retreat overview"></img>
 
           <div className="shavasana">
             <h6 className="retreat-heading">What's Included</h6>
@@ -103,9 +103,9 @@ export default class showRetreat extends Component {
           </div>
 
           <div className="shavasana">
-            <img className="retreat-image" src={this.props.retreat.retreatImages[3]} alt="Images of food available at the retreat"></img>
-            <img className="retreat-image mobile-hide" src={this.props.retreat.retreatImages[4]} alt="Images of food available at the retreat"></img>
-            <img className="retreat-image mobile-hide" src={this.props.retreat.retreatImages[5]} alt="Images of food available at the retreat"></img>
+            <img className="retreat-image" src={this.props.s3url + this.props.retreat.retreatImages[3]} alt="Images of food available at the retreat"></img>
+            <img className="retreat-image mobile-hide" src={this.props.s3url + this.props.retreat.retreatImages[4]} alt="Images of food available at the retreat"></img>
+            <img className="retreat-image mobile-hide" src={this.props.s3url + this.props.retreat.retreatImages[5]} alt="Images of food available at the retreat"></img>
           </div>
 
           <div className="shavasana">
@@ -115,9 +115,9 @@ export default class showRetreat extends Component {
           </div>
 
           <div className="retreat-img-container">
-            <img className="retreat-image" src={this.props.retreat.retreatImages[0]} alt="images of yoga retreat"></img>
-            <img className="retreat-image mobile-hide" src={this.props.retreat.retreatImages[1]} alt="images of yoga retreat"></img>
-            <img className="retreat-image mobile-hide" src={this.props.retreat.retreatImages[2]} alt="images of yoga retreat"></img>
+            <img className="retreat-image" src={this.props.s3url + this.props.retreat.retreatImages[0]} alt="images of yoga retreat"></img>
+            <img className="retreat-image mobile-hide" src={this.props.s3url + this.props.retreat.retreatImages[1]} alt="images of yoga retreat"></img>
+            <img className="retreat-image mobile-hide" src={this.props.s3url + this.props.retreat.retreatImages[2]} alt="images of yoga retreat"></img>
           </div>
 
           <div>
@@ -126,7 +126,6 @@ export default class showRetreat extends Component {
           </div>
           <button style={{"marginBottom" : 30}} onClick={this.props.onClick}>Back</button>
       </div>
-
     )
   }
 }

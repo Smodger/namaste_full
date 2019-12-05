@@ -1,6 +1,9 @@
 const retreatModel = require('../models/Retreat.js');
 const moment = require('moment');
 const mongoose = require('mongoose');
+const AWS = require('aws-sdk');
+const s3Config = require('../auth/s3.env.js');
+const fs = require('fs');
 
 exports.getAllRetreats = function(req, res){
   retreatModel.find(function(err, retreats){
@@ -43,7 +46,9 @@ exports.addRetreat = function(req, res, next){
 
   if(req.files && req.files.length >= 0){
     req.files.map((image) => {
-      return imgArray.push(image.path)
+      image._id = mongoose.Types.ObjectId();
+      uploadImage(image)
+      return imgArray.push(image.originalname)
     });
   }
 
@@ -86,6 +91,27 @@ exports.addRetreat = function(req, res, next){
       console.log('err', err);
       res.status(400).send('Unable to add new retreat')
     })
+}
+
+const uploadImage = (image) => {
+
+  const s3 = new AWS.S3();
+  const file = fs.readFileSync(image.path);
+
+  const params = {
+    Bucket: process.env.S3_BUCKET,
+    Key: image.filename,
+    Body: file
+  };
+
+  s3.putObject(params, function(err, data) {
+    if (err) {
+      console.log("S3 upload UNSUCCESSFUL :", err);
+      return
+    }
+    console.log(`File uploaded to s3 successfully. ${data}`);
+    return
+  });
 }
 
 exports.updateRetreat = function(req,res){
