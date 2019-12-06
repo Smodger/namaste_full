@@ -28,6 +28,9 @@ exports.createLesson = function(req, res){
 
   let newLesson = new lessonModel(req.body);
 
+  newLesson.startTimeOfDay = false;
+  newLesson.endTimeOfDay = false;
+
   if(newLesson.linkToStudio.length <= 0 && (newLesson.location !== "Tooting Bec Lido Pavillion Studio" || newLesson.location !== "tooting bec lido pavillion studio")){
     newLesson.linkToStudio = "email me at emthomsonyoga@gmail.com for booking information"
   }else if(newLesson.linkToStudio.length <= 0 && (newLesson.location === "Tooting Bec Lido Pavillion Studio" || newLesson.location === "tooting bec lido pavillion studio")){
@@ -37,6 +40,16 @@ exports.createLesson = function(req, res){
   let lowerCase = newLesson.dayOfTheWeek.toLowerCase()
   if(!days.includes(lowerCase)){
     return res.status(400).json({ message : "Invalid entry: Must be a day of the week"})
+  }
+
+  if(newLesson.startHour > 11){
+    newLesson.startTimeOfDay = true;
+    newLesson.startHour = newLesson.startHour - 12;
+  }
+
+  if(newLesson.endHour > 11){
+    newLesson.endTimeOfDay = true;
+    newLesson.endHour = newLesson.endHour - 12;
   }
 
   newLesson.save()

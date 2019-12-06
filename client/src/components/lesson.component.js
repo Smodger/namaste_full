@@ -80,19 +80,17 @@ export default class Lesson extends Component {
   }
 
   getStartAmPm(){
-    if(this.state.lesson.startHour > 11){
+    if(this.state.lesson.startTimeOfDay){
       return "pm"
-    }
-    if(this.state.lesson.startHour <= 11){
+    }else {
       return "am"
     }
   }
 
   getEndAmPm(){
-    if(this.state.lesson.endHour > 11){
+    if(this.state.lesson.endTimeOfDay){
       return "pm"
-    }
-    if(this.state.lesson.endHour <= 11){
+    }else {
       return "am"
     }
   }

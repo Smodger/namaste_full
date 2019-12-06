@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { firstBy } from 'thenby';
 
 import Lesson from './lesson.component'
 import {Images} from './images.component'
@@ -50,9 +51,14 @@ export default class LessonList extends Component {
       return data.dayOfTheWeek === 'Monday'
     })
     //sort by start hour to put earlier classes higher up the list
-    monday.sort(function(a,b){
-      return a.startHour - b.startHour
-    })
+    // monday.sort(function(a,b){
+    //   return a.startHour - b.startHour
+    // })
+
+    monday.sort(
+      firstBy(function(a,b){ return a.startTimeOfDay - b.startTimeOfDay })
+      .thenBy(function(x,y){ return x.startHour - y.startHour })
+    )
 
     return monday.map(function(data, i){
       let iteration = i;
@@ -65,9 +71,10 @@ export default class LessonList extends Component {
       return data.dayOfTheWeek === 'Tuesday'
     })
     //sort by start hour to put earlier classes higher up the list
-    tuesday.sort(function(a,b){
-      return a.startHour - b.startHour
-    })
+    tuesday.sort(
+      firstBy(function(a,b){ return a.startTimeOfDay - b.startTimeOfDay })
+      .thenBy(function(x,y){ return x.startHour - y.startHour })
+    )
 
     return tuesday.map(function(data, i){
       let iteration = i;
@@ -80,9 +87,10 @@ export default class LessonList extends Component {
       return data.dayOfTheWeek === 'Wednesday'
     })
     //sort by start hour to put earlier classes higher up the list
-    wednesday.sort(function(a,b){
-      return a.startHour - b.startHour
-    })
+    wednesday.sort(
+      firstBy(function(a,b){ return a.startTimeOfDay - b.startTimeOfDay })
+      .thenBy(function(x,y){ return x.startHour - y.startHour })
+    )
 
     return wednesday.map(function(data, i){
       let iteration = i;
@@ -95,9 +103,10 @@ export default class LessonList extends Component {
       return data.dayOfTheWeek === 'Thursday'
     })
     //sort by start hour to put earlier classes higher up the list
-    thursday.sort(function(a,b){
-      return a.startHour - b.startHour
-    })
+    thursday.sort(
+      firstBy(function(a,b){ return a.startTimeOfDay - b.startTimeOfDay })
+      .thenBy(function(x,y){ return x.startHour - y.startHour })
+    )
 
     return thursday.map(function(data, i){
       let iteration = i;
@@ -110,9 +119,10 @@ export default class LessonList extends Component {
       return data.dayOfTheWeek === 'Friday'
     })
     //sort by start hour to put earlier classes higher up the list
-    friday.sort(function(a,b){
-      return a.startHour - b.startHour
-    })
+    friday.sort(
+      firstBy(function(a,b){ return a.startTimeOfDay - b.startTimeOfDay })
+      .thenBy(function(x,y){ return x.startHour - y.startHour })
+    )
 
     return friday.map(function(data, i){
       let iteration = i;
@@ -125,9 +135,10 @@ export default class LessonList extends Component {
       return data.dayOfTheWeek === 'Saturday'
     })
     //sort by start hour to put earlier classes higher up the list
-    saturday.sort(function(a,b){
-      return a.startHour - b.startHour
-    })
+    saturday.sort(
+      firstBy(function(a,b){ return a.startTimeOfDay - b.startTimeOfDay })
+      .thenBy(function(x,y){ return x.startHour - y.startHour })
+    )
 
     return saturday.map(function(data, i){
       let iteration = i;
@@ -140,9 +151,10 @@ export default class LessonList extends Component {
       return data.dayOfTheWeek === 'Sunday'
     })
     //sort by start hour to put earlier classes higher up the list
-    sunday.sort(function(a,b){
-      return a.startHour - b.startHour
-    })
+    sunday.sort(
+      firstBy(function(a,b){ return a.startTimeOfDay - b.startTimeOfDay })
+      .thenBy(function(x,y){ return x.startHour - y.startHour })
+    )
 
     return sunday.map(function(data, i){
       let iteration = i;
