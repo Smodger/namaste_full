@@ -336,6 +336,15 @@ export default class CreateRetreat extends Component {
                 <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
               </div>
 
+              <p><strong>First image is the image that will be shown on mobile phones</strong></p>
+
+              <div className="form-group">
+                <label>Upload Accommodation Images:</label>
+                <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+              </div>
+
               <div className="form-group">
                 <input type="submit" value="Create retreat" className="btn btn-primary"></input>
               </div>

@@ -98,6 +98,12 @@ export default class showRetreat extends Component {
           </div>
 
           <div className="shavasana">
+            <img className="retreat-image" src={this.props.s3url + this.props.retreat.retreatImages[7]} alt="Images of accommodation"></img>
+            <img className="retreat-image mobile-hide" src={this.props.s3url + this.props.retreat.retreatImages[8]} alt="Images of accommodation"></img>
+            <img className="retreat-image mobile-hide" src={this.props.s3url + this.props.retreat.retreatImages[9]} alt="Images of accommodation"></img>
+          </div>
+
+          <div className="shavasana">
             <h6 className="retreat-heading">Food Options</h6>
             <Markdown source={this.props.retreat.food}></Markdown>
           </div>
