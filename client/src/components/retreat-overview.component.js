@@ -35,6 +35,7 @@ export default class RetreatOverview extends Component {
   }
 
   render(){
+    console.log('format', this.state.retreat.dateStart, this.state.retreat.dateEnd);
     return (
       <div style={{ padding: 20, display: "inline-block"}} onClick={this.props.onClick}>
         {this.getRetreatThumbmail()}

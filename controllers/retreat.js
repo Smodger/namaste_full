@@ -74,12 +74,12 @@ exports.addRetreat = function(req, res, next){
   }
 
   if(newRetreat.dateStart){
-    var x = moment( new Date(newRetreat.dateStart)).format("DD/MM/YYYY")
+    var x = moment( new Date(newRetreat.dateStart)).format("MMMM Do YYYY")
     newRetreat.dateStart = x;
   }
 
   if(newRetreat.dateEnd){
-    var x = moment( new Date(newRetreat.dateEnd)).format("DD/MM/YYYY")
+    var x = moment( new Date(newRetreat.dateEnd)).format("MMMM Do YYYY")
     newRetreat.dateEnd = x;
   }
 
