@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTooltip from 'react-tooltip';
 
 import lidoYoga from '../images/lidoYoga.jpg';
-import battersea from '../images/battersea.jpeg';
+import battersea from '../images/battersea.jpg';
 import revive from '../images/revive.jpg';
 import aboutOne from '../images/about-one.jpg';
 import aboutTwo from '../images/about-two.jpeg';
