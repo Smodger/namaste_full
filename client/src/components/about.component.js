@@ -5,7 +5,7 @@ import { Images } from './images.component'
 export const About = (props) => {
   return(
     <div>
-      <div className="hero-info-img-about">
+      <div className="animated fadeIn delay-1s hero-info-img-about">
         <div className="hero-landing-text-container">
           <p className="hero-img-text">Em Thomson</p>
           <p className="hero-img-subtext">Yoga teacher</p>

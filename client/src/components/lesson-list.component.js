@@ -166,7 +166,7 @@ export default class LessonList extends Component {
     return (
       <div>
         <div>
-          <div className="hero-info-img-classes">
+          <div className="animated fadeIn delay-1s hero-info-img-classes">
             <div className="hero-landing-text-container">
               <p className="hero-img-text">Em Thomson</p>
               <p className="hero-img-subtext">Yoga teacher</p>
