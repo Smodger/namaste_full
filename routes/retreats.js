@@ -20,14 +20,13 @@ const upload = multer({
   }
 });
 
-
 router.get('/', retreatController.getAllRetreats);
 
 router.get('/:id', retreatController.showRetreat);
 
 router.post('/addRetreat', upload.array('retreatImages', 10), checkAuth, retreatController.addRetreat);
 
-router.post('/update/:id', checkAuth, retreatController.updateRetreat);
+router.post('/update/:id', upload.array('retreatImages', 10), checkAuth, retreatController.updateRetreat);
 
 router.delete('/delete/:id', checkAuth, retreatController.deleteRetreat);
 

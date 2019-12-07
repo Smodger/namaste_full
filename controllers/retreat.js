@@ -41,7 +41,6 @@ exports.addRetreat = function(req, res, next){
     req.body.bedRooms.push(room)
   }
 
-
   let imgArray = [];
 
   if(req.files && req.files.length >= 0){
@@ -117,8 +116,31 @@ const uploadImage = (image) => {
 exports.updateRetreat = function(req,res){
   retreatModel.findById(req.params.id, function(err, retreat){
     if(!retreat){
+      console.log('data not found');
       res.status(404).json({ message : 'Data not found' })
     }else{
+      if(Array.isArray(req.body.bedRooms)){
+        if(req.body.bedRooms && req.body.bedRooms.length >= 0){
+          req.body.bedRooms = req.body.bedRooms.map((room) => {
+            return JSON.parse(room);
+          })
+        }
+      }else{
+        let room = JSON.parse(req.body.bedRooms);
+        req.body.bedRooms = [];
+        req.body.bedRooms.push(room)
+      }
+
+      let imgArray = [];
+
+      if(req.files && req.files.length >= 0){
+        req.files.map((image) => {
+          image._id = mongoose.Types.ObjectId();
+          uploadImage(image)
+          return imgArray.push(image.originalname)
+        });
+      }
+
       retreat.name = req.body.name;
       retreat.dateStart = req.body.dateStart;
       retreat.dateEnd = req.body.dateEnd;
@@ -131,7 +153,21 @@ exports.updateRetreat = function(req,res){
       retreat.bookingUrl = req.body.bookingUrl;
       retreat.whatsIncluded = req.body.whatsIncluded;
       retreat.bedRooms = req.body.bedRooms;
-      // retreat.retreatImages = req.body.retreatImages;
+      retreat.retreatImages = imgArray;
+
+      if(retreat.whatsIncluded.length > 0){
+        retreat.whatsIncluded = retreat.whatsIncluded[0].split(',')
+      }
+
+      if(retreat.dateStart){
+        var x = moment( new Date(retreat.dateStart)).format("MMMM Do YYYY")
+        retreat.dateStart = x;
+      }
+
+      if(retreat.dateEnd){
+        var x = moment( new Date(retreat.dateEnd)).format("MMMM Do YYYY")
+        retreat.dateEnd = x;
+      }
 
       retreat.save().then(function(retreat){
         res.status(200).json({ message : 'Update successful' })

@@ -21,7 +21,7 @@ export default class EditRetreat extends Component {
     this.updateBookingInfoDetails = this.updateBookingInfoDetails.bind(this);
     this.updateBookingInfoUrl = this.updateBookingInfoUrl.bind(this);
     this.updateWhatIncluded = this.updateWhatIncluded.bind(this);
-    // this.updateRetreatImage = this.updateRetreatImage.bind(this);
+    this.updateRetreatImage = this.updateRetreatImage.bind(this);
     this.onChangeBedDescription = this.onChangeBedDescription.bind(this);
     this.onChangeBedCost = this.onChangeBedCost.bind(this);
     this.onChangeBedBooking = this.onChangeBedBooking.bind(this);
@@ -45,12 +45,15 @@ export default class EditRetreat extends Component {
       bookingDetails : "",
       bookingUrl : "",
       whatsIncluded : [],
-      popUpMsg : null
-      // retreatImages : []
+      popUpMsg : null,
+      retreatImages : []
     }
   }
 
   componentDidMount(){
+    // SET RETREATIMAGES TO EMPTY ARRAY SO YOU CAN UPLOAD NEW IMAGES -
+    // WILL NEED TO FIGURE OUT HOW TO GET IMAGES AND REMOVE ONLY THE ONE YOU
+    // WANTED TO CHANGE AND KEEP THE OTHERS.
     axios.get('/retreats/'+this.props.match.params.id)
       .then(res => {
         this.setState({
@@ -65,8 +68,8 @@ export default class EditRetreat extends Component {
           byTrain : res.data.byTrain,
           bookingDetails : res.data.bookingDetails,
           bookingUrl : res.data.bookingUrl,
-          whatsIncluded : res.data.whatsIncluded
-          // retreatImages : res.data.retreatImages
+          whatsIncluded : res.data.whatsIncluded,
+          retreatImages : []
         })
       })
       .catch(function(err){
@@ -91,27 +94,27 @@ export default class EditRetreat extends Component {
   }
   updateRetreatSummary(event){
     this.setState({
-      retreatSummary : event.target.value
+      retreatSummary : event
     })
   }
   updateFood(event){
     this.setState({
-      food : event.target.value
+      food : event
     })
   }
   updateCar(event){
     this.setState({
-      byCar : event.target.value
+      byCar : event
     })
   }
   updateTrain(event){
     this.setState({
-      byTrain : event.target.value
+      byTrain : event
     })
   }
   updateBookingInfoDetails(event){
     this.setState({
-      bookingDetails : event.target.value
+      bookingDetails : event
     })
   }
   updateBookingInfoUrl(event){
@@ -127,18 +130,18 @@ export default class EditRetreat extends Component {
 
   updateAccomodation(event){
     this.setState({
-      accomodationOverview : event.target.value
+      accomodationOverview : event
     })
   }
 
-  // updateRetreatImage(event){
-  //   const newImage = [...this.state.retreatImages];
-  //   newImage.push(event.target.files[0]);
-  //
-  //   this.setState({
-  //     retreatImages : newImage
-  //   })
-  // }
+  updateRetreatImage(event){
+    const newImage = [...this.state.retreatImages];
+    newImage.push(event.target.files[0]);
+
+    this.setState({
+      retreatImages : newImage
+    })
+  }
 
   onChangeBedDescription(desc, i){
     const newBedroom = {...this.state.bedRooms[i], description : desc };
@@ -203,30 +206,46 @@ export default class EditRetreat extends Component {
 
   onSubmit(event){
     event.preventDefault();
-    const token = localStorage.getItem('jwtToken');
-
     // if we allow update of images then will need to switch to FormData.set
     // and add multipart/form-data to headers
-    const retreat = ({
-      name : this.state.name,
-      dateStart : this.state.dateStart,
-      dateEnd : this.state.dateEnd,
-      retreatSummary : this.state.retreatSummary,
-      accomodationOverview : this.state.accomodationOverview,
-      food : this.state.food,
-      byCar : this.state.byCar,
-      byTrain : this.state.byTrain,
-      bookingDetails : this.state.bookingDetails,
-      bookingUrl : this.state.bookingUrl,
-      whatsIncluded : this.state.whatsIncluded,
-      bedRooms : this.state.bedRooms
-    })
+    const formData = new FormData()
+    formData.append('name', this.state.name);
+    formData.append('dateStart', this.state.dateStart);
+    formData.append('dateEnd', this.state.dateEnd);
+    formData.append('retreatSummary', this.state.retreatSummary);
+    formData.append('accomodationOverview', this.state.accomodationOverview);
+    formData.append('food', this.state.food);
+    formData.append('byCar', this.state.byCar);
+    formData.append('byTrain', this.state.byTrain);
+    formData.append('bookingDetails', this.state.bookingDetails);
+    formData.append('bookingUrl', this.state.bookingUrl);
+    formData.append('whatsIncluded', this.state.whatsIncluded);
 
-    const headers = {
-      Authorization : "Bearer " + token
+    for(var i = 0; i < this.state.bedRooms.length; i++){
+      formData.append('bedRooms', JSON.stringify(this.state.bedRooms[i]))
     }
 
-    axios.post('/retreats/update/' + this.props.match.params.id, retreat, { headers : headers })
+    for(var j = 0; j < this.state.retreatImages.length; j++){
+      formData.append(
+        'retreatImages',
+        this.state.retreatImages[j],
+        this.state.retreatImages[j].name
+      )
+    }
+
+    console.log("Submit form : ", this.state)
+
+    const token = localStorage.getItem('jwtToken');
+
+    // set headers to pass as final argument in axios post
+    const headers = {
+      Authorization : "Bearer " + token,
+      'Content-Type': 'multipart/form-data'
+    }
+
+    axios.post('/retreats/update/' + this.props.match.params.id, formData, {
+      headers : headers
+    })
       .then(res => {
         console.log('data', res.data)
         const response = res.data
@@ -240,7 +259,7 @@ export default class EditRetreat extends Component {
   }
 
   render(){
-
+    console.log('t', this.state);
     const mdConfig = {
       hideIcons : ['image', 'link', 'table']
     }
@@ -322,10 +341,44 @@ export default class EditRetreat extends Component {
                 <input type="text" className="form-control" value={this.state.whatsIncluded} onChange={this.updateWhatIncluded}></input>
               </div>
 
+              <div className="separator-long"></div>
+              <p><strong>WHEN EDITING YOU MUST RE-ADD ALL IMAGES</strong></p>
+              <div className="separator-long"></div>
+
+              <p><strong>First image is the image that will be shown on mobile phones</strong></p>
+
               <div className="form-group">
-                <label>Cannot update images</label>
+                <label>Upload Footer Images:</label>
+                 <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                 <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                 <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
               </div>
+
+              <p><strong>First image is the image that will be shown on mobile phones</strong></p>
+
+              <div className="form-group">
+                <label>Upload Food Images:</label>
+                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+              </div>
+
+              <div className="form-group">
+                <label>Upload Landscape Images:</label>
+                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+              </div>
+
+              <p><strong>First image is the image that will be shown on mobile phones</strong></p>
+
+              <div className="form-group">
+                <label>Upload Accommodation Images:</label>
+                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+              </div>
+
               {this.showPopUp()}
+
               <div className="form-group">
                 <input type="submit" value="Update Retreat" className="btn btn-primary"></input>
               </div>
