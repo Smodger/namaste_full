@@ -255,8 +255,7 @@ export default class CreateRetreat extends Component {
 
     return (
       <div>
-        <div className="hero-info-img">
-          <div className="hero-info-overlay"></div>
+        <div className="animated fadeIn delay-1s hero-info-img-retreat">
           <div className="hero-landing-text-container">
             <p className="hero-img-text">Em Thomson</p>
             <p className="hero-img-subtext">Yoga teacher</p>
