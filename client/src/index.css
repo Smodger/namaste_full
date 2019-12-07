@@ -139,11 +139,10 @@ body {
 .hero-info-img-retreat{
   height: 80vh;
   background: url('./images/retreat-hero.png');
-  /* background-repeat: no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: 100% 54%;
-  position: relative; */
-  width: 100%;
+  position: relative;
 }
 
 .hero-info-overlay{
