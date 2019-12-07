@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import SimpleMDE from 'react-simplemde-editor';
+import "simplemde/dist/simplemde.min.css";
 
 import Bedroom from './bedroom.component';
 import PopUp from './popup.component';
@@ -185,6 +187,10 @@ export default class EditRetreat extends Component {
     }, this)
   }
 
+  onReady(instance){
+    console.log("MARKDOWN", instance.value());
+  }
+
   showPopUp(){
     if(this.state.popUpMsg){
       return (
@@ -234,6 +240,11 @@ export default class EditRetreat extends Component {
   }
 
   render(){
+
+    const mdConfig = {
+      hideIcons : ['image', 'link', 'table']
+    }
+
     return (
       <div>
         <div className="animated fadeIn delay-1s hero-info-img-retreat">
@@ -263,12 +274,12 @@ export default class EditRetreat extends Component {
 
               <div className="form-group">
                 <label>Retreat summary</label>
-                <input type="text" className="form-control" value={this.state.retreatSummary} onChange={this.updateRetreatSummary}></input>
+                <SimpleMDE options={mdConfig} onChange={this.updateRetreatSummary} value={this.state.retreatSummary} />
               </div>
 
               <div className="form-group">
                 <label>Accommodation Overview</label>
-                <input type="text" className="form-control" value={this.state.accomodationOverview} onChange={this.updateAccomodation}></input>
+                <SimpleMDE options={mdConfig} value={this.state.accomodationOverview} onChange={this.updateAccomodation}></SimpleMDE>
               </div>
 
               <div className="separator-long"></div>
@@ -283,22 +294,22 @@ export default class EditRetreat extends Component {
 
               <div className="form-group">
                 <label>Food</label>
-                <input type="text" className="form-control" value={this.state.food} onChange={this.updateFood}></input>
+                <SimpleMDE options={mdConfig} value={this.state.food} onChange={this.updateFood}></SimpleMDE>
               </div>
 
               <div className="form-group">
                 <label>How to get there by Car</label>
-                <input type="text" className="form-control" value={this.state.byCar} onChange={this.updateCar}></input>
+                <SimpleMDE options={mdConfig} value={this.state.byCar} onChange={this.updateCar}></SimpleMDE>
               </div>
 
               <div className="form-group">
                 <label>How to get there by public transport</label>
-                <input type="text" className="form-control" value={this.state.byTrain} onChange={this.updateTrain}></input>
+                <SimpleMDE options={mdConfig} value={this.state.byTrain} onChange={this.updateTrain}></SimpleMDE>
               </div>
 
               <div className="form-group">
                 <label>Booking information details</label>
-                <input type="text" className="form-control" value={this.state.bookingDetails} onChange={this.updateBookingInfoDetails}></input>
+                <SimpleMDE options={mdConfig} value={this.state.bookingDetails} onChange={this.updateBookingInfoDetails}></SimpleMDE>
               </div>
 
               <div className="form-group">
