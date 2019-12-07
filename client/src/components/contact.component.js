@@ -5,8 +5,7 @@ import { Images } from './images.component'
 export const Contact = (props) => {
   return (
     <div>
-      <div className="hero-info-img">
-        <div className="hero-info-overlay"></div>
+      <div className="hero-info-img-contact">
         <div className="hero-landing-text-container">
           <p className="hero-img-text">Em Thomson</p>
           <p className="hero-img-subtext">Yoga teacher</p>

@@ -109,6 +109,43 @@ body {
   position: relative;
 }
 
+.hero-info-img-about{
+  height: 80vh;
+  background: url('./images/about-hero.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 54%;
+  position: relative;
+}
+
+.hero-info-img-classes{
+  height: 80vh;
+  background: url('./images/classes-hero.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 54%;
+  position: relative;
+}
+
+.hero-info-img-contact{
+  height: 80vh;
+  background: url('./images/contact-hero.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 54%;
+  position: relative;
+}
+
+.hero-info-img-retreat{
+  height: 80vh;
+  background: url('./images/retreat-hero.png');
+  /* background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 54%;
+  position: relative; */
+  width: 100%;
+}
+
 .hero-info-overlay{
   height: 80vh;
   background-color: rgba(14, 55, 130,0.37)
