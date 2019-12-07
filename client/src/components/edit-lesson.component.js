@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import PopUp from './popup.component';
 
 export default class EditLesson extends Component {
 
@@ -26,7 +27,9 @@ export default class EditLesson extends Component {
       endMinutes : null,
       location : "",
       yogaStyle : "",
-      linkToStudio : ""
+      linkToStudio : "",
+      additionalInfo : "",
+      popUpMsg : null
     }
   }
 
@@ -104,6 +107,16 @@ export default class EditLesson extends Component {
     })
   }
 
+  showPopUp(){
+    if(this.state.popUpMsg){
+      return (
+        <PopUp text={this.state.popUpMsg}></PopUp>
+      )
+    }else{
+      return null
+    }
+  }
+
   onSubmit(event){
     event.preventDefault();
     const token = localStorage.getItem('jwtToken');
@@ -122,9 +135,16 @@ export default class EditLesson extends Component {
     axios.post('/lessons/update/' + this.props.match.params.id, lessonObj, {
       headers :{ Authorization : "Bearer " + token}
     })
-      .then(res => console.log('data', res.data));
-
-    this.props.history.push('/lessons')
+      .then(res => {
+        console.log('data', res.data)
+        const response = res.data
+        return response
+      })
+      .then((response) =>{
+        this.setState({
+          popUpMsg : response
+        })
+      })
   }
 
   render(){
@@ -179,7 +199,7 @@ export default class EditLesson extends Component {
               <label>Additional information</label>
               <input type="string" className="form-control" value={this.state.additionalInfo} onChange={this.updateInfo}></input>
             </div>
-
+            {this.showPopUp()}
             <div className="form-group">
               <input type="submit" value="Update Lesson" className="btn btn-primary"></input>
             </div>

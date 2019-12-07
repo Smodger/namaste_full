@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Bedroom from './bedroom.component';
 
+import Bedroom from './bedroom.component';
+import PopUp from './popup.component';
 
 export default class EditRetreat extends Component {
 
@@ -23,6 +24,7 @@ export default class EditRetreat extends Component {
     this.onChangeBedCost = this.onChangeBedCost.bind(this);
     this.onChangeBedBooking = this.onChangeBedBooking.bind(this);
     this.updateAccomodation = this.updateAccomodation.bind(this);
+    this.showPopUp = this.showPopUp.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.appendBedroom = this.appendBedroom.bind(this);
@@ -40,7 +42,8 @@ export default class EditRetreat extends Component {
       byTrain : "",
       bookingDetails : "",
       bookingUrl : "",
-      whatsIncluded : []
+      whatsIncluded : [],
+      popUpMsg : null
       // retreatImages : []
     }
   }
@@ -182,6 +185,16 @@ export default class EditRetreat extends Component {
     }, this)
   }
 
+  showPopUp(){
+    if(this.state.popUpMsg){
+      return (
+        <PopUp text={this.state.popUpMsg}></PopUp>
+      )
+    }else{
+      return null
+    }
+  }
+
   onSubmit(event){
     event.preventDefault();
     const token = localStorage.getItem('jwtToken');
@@ -208,9 +221,16 @@ export default class EditRetreat extends Component {
     }
 
     axios.post('/retreats/update/' + this.props.match.params.id, retreat, { headers : headers })
-      .then(res => console.log('data', res.data));
-
-    this.props.history.push('/list-retreats')
+      .then(res => {
+        console.log('data', res.data)
+        const response = res.data
+        return response
+      })
+      .then(response => {
+        this.setState({
+          popUpMsg : response
+        })
+      })
   }
 
   render(){
@@ -295,11 +315,10 @@ export default class EditRetreat extends Component {
               <div className="form-group">
                 <label>Cannot update images</label>
               </div>
-
+              {this.showPopUp()}
               <div className="form-group">
                 <input type="submit" value="Update Retreat" className="btn btn-primary"></input>
               </div>
-
             </form>
         </div>
       </div>

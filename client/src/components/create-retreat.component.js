@@ -4,6 +4,7 @@ import SimpleMDE from 'react-simplemde-editor';
 import "simplemde/dist/simplemde.min.css";
 
 import Bedroom from './bedroom.component';
+import PopUp from './popup.component';
 
 export default class CreateRetreat extends Component {
 
@@ -25,6 +26,7 @@ export default class CreateRetreat extends Component {
     this.onChangeBedCost = this.onChangeBedCost.bind(this);
     this.onChangeBedBooking = this.onChangeBedBooking.bind(this);
     this.onChangeAccomodation = this.onChangeAccomodation.bind(this);
+    this.showPopUp = this.showPopUp.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.appendBedroom = this.appendBedroom.bind(this);
@@ -45,7 +47,8 @@ export default class CreateRetreat extends Component {
       bookingDetails : "",
       bookingUrl : "",
       whatsIncluded : [],
-      retreatImages : []
+      retreatImages : [],
+      popUpMsg : null
     }
   }
 
@@ -167,6 +170,16 @@ export default class CreateRetreat extends Component {
     console.log("MARKDOWN", instance.value());
   }
 
+  showPopUp(){
+    if(this.state.popUpMsg){
+      return (
+        <PopUp text={this.state.popUpMsg}></PopUp>
+      )
+    }else{
+      return null
+    }
+  }
+
   onSubmit(event){
     //prevent default form logic
     event.preventDefault();
@@ -209,24 +222,29 @@ export default class CreateRetreat extends Component {
     axios.post('/retreats/addRetreat', formData, {
       headers : headers
     })
-      .then(res => console.log(res.data));
-
-    // reset state to blank once submitted
-    this.setState({
-      name : "",
-      dateStart : null,
-      dateEnd : null,
-      retreatSummary : "",
-      accomodationOverview : "",
-      bedRooms : [],
-      food : "",
-      byCar : "",
-      byTrain : "",
-      bookingDetails : "",
-      bookingUrl : "",
-      whatsIncluded : [],
-      retreatImages : []
-    })
+      .then(res => {
+        console.log(res.data)
+        const response = res.data
+        return response
+      })
+      .then(response => {
+        this.setState({
+          name : "",
+          dateStart : null,
+          dateEnd : null,
+          retreatSummary : "",
+          accomodationOverview : "",
+          bedRooms : [],
+          food : "",
+          byCar : "",
+          byTrain : "",
+          bookingDetails : "",
+          bookingUrl : "",
+          whatsIncluded : [],
+          retreatImages : [],
+          popUpMsg : response
+        })
+      })
   }
 
   render(){
@@ -344,7 +362,7 @@ export default class CreateRetreat extends Component {
                 <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
                 <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
               </div>
-
+              {this.showPopUp()}
               <div className="form-group">
                 <input type="submit" value="Create retreat" className="btn btn-primary"></input>
               </div>

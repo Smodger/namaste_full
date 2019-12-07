@@ -85,11 +85,11 @@ exports.addRetreat = function(req, res, next){
 
   newRetreat.save()
     .then(function(newRetreat){
-      res.status(201).json({'newRetreat' : 'Retreat added successfully'});
+      res.status(201).json({message : 'Retreat added successfully'});
     })
     .catch(function(err){
       console.log('err', err);
-      res.status(400).send('Unable to add new retreat')
+      res.status(400).json({message : 'Unable to add new retreat'})
     })
 }
 
@@ -117,7 +117,7 @@ const uploadImage = (image) => {
 exports.updateRetreat = function(req,res){
   retreatModel.findById(req.params.id, function(err, retreat){
     if(!retreat){
-      res.status(404).send('Data not found')
+      res.status(404).json({ message : 'Data not found' })
     }else{
       retreat.name = req.body.name;
       retreat.dateStart = req.body.dateStart;
@@ -134,10 +134,10 @@ exports.updateRetreat = function(req,res){
       // retreat.retreatImages = req.body.retreatImages;
 
       retreat.save().then(function(retreat){
-        res.status(200).json('Update successful')
+        res.status(200).json({ message : 'Update successful' })
       })
       .catch(function(err){
-        res.status(400).send('Update unsuccessful')
+        res.status(400).json({ message : 'Update unsuccessful' })
       });
     }
   });

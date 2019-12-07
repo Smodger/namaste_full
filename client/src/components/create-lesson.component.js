@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import PopUp from './popup.component';
+
 export default class CreateLesson extends Component {
 
   constructor(props){
@@ -15,6 +17,7 @@ export default class CreateLesson extends Component {
     this.onChangeYogaStyle = this.onChangeYogaStyle.bind(this);
     this.onChangeStudio = this.onChangeStudio.bind(this);
     this.onChangeInfo = this.onChangeInfo.bind(this);
+    this.showPopUp = this.showPopUp.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -27,7 +30,7 @@ export default class CreateLesson extends Component {
       yogaStyle : "",
       linkToStudio : "",
       additionalInfo : "",
-      token : ''
+      popUpMsg : null
     }
   }
 
@@ -85,6 +88,16 @@ export default class CreateLesson extends Component {
     })
   }
 
+  showPopUp(){
+    if(this.state.popUpMsg){
+      return (
+        <PopUp text={this.state.popUpMsg}></PopUp>
+      )
+    }else{
+      return null
+    }
+  }
+
   onSubmit(event){
     //prevent default form logic
     event.preventDefault();
@@ -108,19 +121,23 @@ export default class CreateLesson extends Component {
     axios.post('/lessons/addLesson', newLesson,{
       headers :{ Authorization : "Bearer " + token}
     })
-      .then(res => console.log(res.data));
-
-    // reset state to blank once submitted
-    this.setState({
-      dayOfTheWeek : "",
-      startHour : null,
-      startMinutes : null,
-      endhour : null,
-      endMinutes : null,
-      location : "",
-      yogaStyle : "",
-      linkToStudio : "",
-      additionalInfo : ""
+    .then(res => {
+      const response = res.data
+      return response
+    })
+    .then(response => {
+      this.setState({
+        dayOfTheWeek : "",
+        startHour : null,
+        startMinutes : null,
+        endhour : null,
+        endMinutes : null,
+        location : "",
+        yogaStyle : "",
+        linkToStudio : "",
+        additionalInfo : "",
+        popUpMsg : response
+      })
     })
   }
 
@@ -175,11 +192,10 @@ export default class CreateLesson extends Component {
               <label>Additional Information</label>
               <input type="text" className="form-control" value={this.state.additionalInfo} onChange={this.onChangeInfo}></input>
             </div>
-
+            {this.showPopUp()}
             <div className="form-group">
               <input type="submit" value="Create Lesson" className="btn btn-primary"></input>
             </div>
-
           </form>
         </div>
       </div>

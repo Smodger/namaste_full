@@ -54,18 +54,18 @@ exports.createLesson = function(req, res){
 
   newLesson.save()
     .then(function(newLesson){
-      res.status(200).json({'newLesson' : 'Lesson added successfully'});
+      res.status(200).json({ message : 'Lesson added successfully'});
     })
     .catch(function(err){
       console.log('err', err);
-      res.status(400).send('Unable to add new lesson')
+      res.status(400).json({ message : 'Unable to add new lesson'})
     })
 }
 
 exports.updateLesson = function(req,res){
   lessonModel.findById(req.params.id, function(err, lesson){
     if(!lesson){
-      res.status(404).send('Data not found')
+      res.status(404).json({message : 'Data not found'})
     }else{
       lesson.dayOfTheWeek = req.body.dayOfTheWeek;
       lesson.startHour = req.body.startHour;
@@ -96,10 +96,10 @@ exports.updateLesson = function(req,res){
 
 
       lesson.save().then(function(lesson){
-        res.status(200).json('Update successful')
+        res.status(200).json({message : 'Update successful'})
       })
       .catch(function(err){
-        res.status(400).send('Update unsuccessful')
+        res.status(400).json({message : 'Update unsuccessful'})
       });
     }
   });
@@ -108,9 +108,9 @@ exports.updateLesson = function(req,res){
 exports.deleteLesson = function(req, res){
   lessonModel.findByIdAndDelete({_id : req.params.id}, function(err){
     if(err){
-      res.status(404).send("Data not found")
+      res.status(404).send({message : "Data not found"})
     }else{
-      res.status(200).send('Lesson successfully removed')
+      res.status(200).json({message : 'Lesson successfully removed'})
     }
   });
 }
