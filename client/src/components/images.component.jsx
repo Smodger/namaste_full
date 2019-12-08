@@ -27,8 +27,8 @@ export const Images = (props) => {
   if(props.page === "about"){
     return (
       <div className="image-container">
-        <img className="stock-image" src={aboutOne} alt="Emily doing yoga"></img>
         <img className="stock-image" src={aboutTwo} alt="Emily doing yoga"></img>
+        <img className="stock-image" src={aboutOne} alt="Emily doing yoga"></img>
         <img className="stock-image" src={aboutThree} alt="Emily doing yoga"></img>
       </div>
     )
