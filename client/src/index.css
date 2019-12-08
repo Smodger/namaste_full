@@ -383,6 +383,21 @@ body {
     background-position: 50%;
   }
 
+  .hero-info-img-about{
+    background-size: cover;
+    background-position: 50%;
+  }
+
+  .hero-info-img-classes{
+    background-size: cover;
+    background-position: 30%;
+  }
+
+  .hero-info-img-contact{
+    background-size: cover;
+    background-position: 69%;
+  }
+
   .navbar-brand{
     display: none;
   }
