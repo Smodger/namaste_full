@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ee9216aa8e6fee2a0dab20bd08fdc2de",
+    "revision": "3dbd123015b5f08272ea8c7cbeb187e0",
     "url": "/index.html"
   },
   {
@@ -8,16 +8,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/2.3648d254.chunk.css"
   },
   {
-    "revision": "15866c61b4b75e1326f0",
-    "url": "/static/css/main.485dd6a0.chunk.css"
+    "revision": "aaf2ca3ddaf962b304fb",
+    "url": "/static/css/main.ed61c23f.chunk.css"
   },
   {
     "revision": "e1b51d6decfc442237d0",
     "url": "/static/js/2.a1a0ec89.chunk.js"
   },
   {
-    "revision": "15866c61b4b75e1326f0",
-    "url": "/static/js/main.96e7d6e7.chunk.js"
+    "revision": "aaf2ca3ddaf962b304fb",
+    "url": "/static/js/main.1493ba5d.chunk.js"
   },
   {
     "revision": "42ac5946195a7306e2a5",
@@ -76,8 +76,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/lidoYoga.344ebfb7.jpg"
   },
   {
-    "revision": "1635139dfed996958de4b39a0c0fdc4a",
-    "url": "/static/media/retreat-hero.1635139d.png"
+    "revision": "2c5ca6122dc8d66097f182bc51f894a2",
+    "url": "/static/media/retreat-hero.2c5ca612.png"
   },
   {
     "revision": "e0ff8c40ca1c889bc87f50ead49e98c8",

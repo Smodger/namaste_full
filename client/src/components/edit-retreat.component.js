@@ -259,7 +259,6 @@ export default class EditRetreat extends Component {
   }
 
   render(){
-    console.log('t', this.state);
     const mdConfig = {
       hideIcons : ['image', 'link', 'table']
     }
