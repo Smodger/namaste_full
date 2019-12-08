@@ -119,7 +119,7 @@ exports.updateRetreat = function(req,res){
       console.log('data not found');
       res.status(404).json({ message : 'Data not found' })
     }else{
-      
+
       if(Array.isArray(req.body.bedRooms)){
         if(req.body.bedRooms && req.body.bedRooms.length >= 0){
           req.body.bedRooms = req.body.bedRooms.map((room) => {
@@ -141,6 +141,9 @@ exports.updateRetreat = function(req,res){
           return imgArray.push(image.originalname)
         });
       }
+
+      console.log('retreat', retreat.retreatImages);
+      console.log('imgArray', imgArray);
 
       retreat.name = req.body.name;
       retreat.dateStart = req.body.dateStart;

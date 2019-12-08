@@ -21,12 +21,23 @@ app.disable('x-powered-by')
 
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/namaste', {useNewUrlParser : true});
-const connection = mongoose.connection;
+if(process.env.NODE_ENV === 'development'){
+  mongoose.connect('mongodb://127.0.0.1:27017/namaste', {useNewUrlParser : true});
+  const connection = mongoose.connection;
 
-connection.once('open', () => {
-  console.log('MongoDb running successfully')
-});
+  connection.once('open', () => {
+    console.log('MongoDb running successfully')
+  });
+}
+
+if(process.env.NODE_ENV === 'production'){
+  mongoose.connect(process.env.MONGODB_URI , {useNewUrlParser : true});
+  const connection = mongoose.connection;
+
+  connection.once('open', () => {
+    console.log('MongoDb running successfully')
+  });
+}
 
 app.use('/uploads', express.static('uploads'));
 
