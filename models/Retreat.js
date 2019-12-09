@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Do we need fully booked?
-// how do we set up room stuff etc?
-
 const retreatSchema = new Schema({
   name : { type : String },
   dateStart : { type: String },
