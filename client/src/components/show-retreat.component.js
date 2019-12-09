@@ -59,6 +59,21 @@ export default class showRetreat extends Component {
     window.location.reload();
   }
 
+  isLoggedIn(){
+    const token = localStorage.getItem('jwtToken');
+
+    if(token){
+      return (
+        <div>
+          <Link to={"/editRetreat/" + this.props.retreat._id}>Edit</Link>
+          <button className="btn btn-danger" onClick={this.handleDeleteRetreat}>Delete</button>
+        </div>
+      )
+    }else{
+      return null
+    }
+  }
+
   render(){
     return (
       <div className="page-container">
@@ -126,10 +141,7 @@ export default class showRetreat extends Component {
             <img className="retreat-image mobile-hide" src={this.props.s3url + this.props.retreat.retreatImages[2]} alt="images of yoga retreat"></img>
           </div>
 
-          <div>
-            <Link to={"/editRetreat/" + this.props.retreat._id}>Edit</Link>
-            <button className="btn btn-danger" onClick={this.handleDeleteRetreat}>Delete</button>
-          </div>
+          {this.isLoggedIn()}
           <button style={{"marginBottom" : 30}} onClick={this.props.onClick}>Back</button>
       </div>
     )
