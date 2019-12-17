@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Markdown from 'react-markdown';
 import AWS from 'aws-sdk';
+import moment from 'moment'
 
 export default class showRetreat extends Component {
   constructor(props){
@@ -74,11 +75,25 @@ export default class showRetreat extends Component {
     }
   }
 
+  formatRetreatDates(){
+    if(this.props.retreat.dateStart){
+      var formattedDateStart = moment(new Date(this.props.retreat.dateStart)).format("MMMM Do YYYY")
+    }
+
+    if(this.props.retreat.dateEnd){
+      var formattedDateEnd = moment(new Date(this.props.retreat.dateEnd)).format("MMMM Do YYYY")
+    }
+
+    return (
+      <p className="sub-heading">{formattedDateStart} - {formattedDateEnd}</p>
+    )
+  }
+
   render(){
     return (
       <div className="page-container">
         <h3 className="page-heading">{this.props.retreat.name}</h3>
-        <p className="sub-heading">{this.props.retreat.dateStart} - {this.props.retreat.dateEnd}</p>
+        {this.formatRetreatDates()}
 
         <div className="separator-2"></div>
 

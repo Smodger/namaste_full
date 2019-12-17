@@ -72,16 +72,6 @@ exports.addRetreat = function(req, res, next){
     newRetreat.whatsIncluded = newRetreat.whatsIncluded[0].split(',')
   }
 
-  if(newRetreat.dateStart){
-    var x = moment( new Date(newRetreat.dateStart)).format("MMMM Do YYYY")
-    newRetreat.dateStart = x;
-  }
-
-  if(newRetreat.dateEnd){
-    var x = moment( new Date(newRetreat.dateEnd)).format("MMMM Do YYYY")
-    newRetreat.dateEnd = x;
-  }
-
   newRetreat.save()
     .then(function(newRetreat){
       res.status(201).json({message : 'Retreat added successfully'});
@@ -142,9 +132,6 @@ exports.updateRetreat = function(req,res){
         });
       }
 
-      console.log('retreat', retreat.retreatImages);
-      console.log('imgArray', imgArray);
-
       retreat.name = req.body.name;
       retreat.dateStart = req.body.dateStart;
       retreat.dateEnd = req.body.dateEnd;
@@ -161,16 +148,6 @@ exports.updateRetreat = function(req,res){
 
       if(retreat.whatsIncluded.length > 0){
         retreat.whatsIncluded = retreat.whatsIncluded[0].split(',')
-      }
-
-      if(retreat.dateStart){
-        var x = moment( new Date(retreat.dateStart)).format("MMMM Do YYYY")
-        retreat.dateStart = x;
-      }
-
-      if(retreat.dateEnd){
-        var x = moment( new Date(retreat.dateEnd)).format("MMMM Do YYYY")
-        retreat.dateEnd = x;
       }
 
       retreat.save().then(function(retreat){

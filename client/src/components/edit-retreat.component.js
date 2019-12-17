@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import SimpleMDE from 'react-simplemde-editor';
 import "simplemde/dist/simplemde.min.css";
+import moment from 'moment'
 
 import Bedroom from './bedroom.component';
 import PopUp from './popup.component';
@@ -34,8 +35,8 @@ export default class EditRetreat extends Component {
 
     this.state= {
       name : "",
-      dateStart : null,
-      dateEnd : null,
+      dateStart : "",
+      dateEnd : "",
       retreatSummary : "",
       accomodationOverview : "",
       bedRooms : [],
@@ -51,14 +52,11 @@ export default class EditRetreat extends Component {
   }
 
   componentDidMount(){
-    // SET RETREATIMAGES TO EMPTY ARRAY SO YOU CAN UPLOAD NEW IMAGES -
-    // WILL NEED TO FIGURE OUT HOW TO GET IMAGES AND REMOVE ONLY THE ONE YOU
-    // WANTED TO CHANGE AND KEEP THE OTHERS.
     axios.get('/retreats/'+this.props.match.params.id)
       .then(res => {
         this.setState({
           name : res.data.name,
-          dateStart : res.data.dateStart,
+          dateStart : moment( new Date(res.data.dateEnd)),
           dateEnd : res.data.dateEnd,
           retreatSummary : res.data.retreatSummary,
           accomodationOverview : res.data.accomodationOverview,
@@ -262,6 +260,7 @@ export default class EditRetreat extends Component {
     const mdConfig = {
       hideIcons : ['image', 'link', 'table']
     }
+    console.log("DOG", Date.parse(this.state.dateStart), typeof(this.state.dateStart), this.state.dateStart);
 
     return (
       <div>

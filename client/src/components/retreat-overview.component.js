@@ -1,4 +1,5 @@
 import React , { Component } from 'react';
+import moment from 'moment';
 
 export default class RetreatOverview extends Component {
 
@@ -34,6 +35,20 @@ export default class RetreatOverview extends Component {
     }
   }
 
+  formatRetreatDates(){
+    if(this.state.retreat.dateStart){
+      var formattedDateStart = moment(new Date(this.state.retreat.dateStart)).format("MMMM Do YYYY")
+    }
+
+    if(this.state.retreat.dateEnd){
+      var formattedDateEnd = moment(new Date(this.state.retreat.dateEnd)).format("MMMM Do YYYY")
+    }
+
+    return (
+      <p>{formattedDateStart} - {formattedDateEnd}</p>
+    )
+  }
+
   render(){
     return (
       <div style={{ padding: 20, display: "inline-block"}} onClick={this.props.onClick}>
@@ -41,7 +56,7 @@ export default class RetreatOverview extends Component {
         <div className="retreat-text">
           <div>
             <p>{this.state.retreat.name}</p>
-            <p>{this.state.retreat.dateStart} - {this.state.retreat.dateEnd}</p>
+            {this.formatRetreatDates()}
           </div>
         </div>
       </div>
