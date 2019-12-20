@@ -11,7 +11,6 @@ export default class EditRetreat extends Component {
 
   constructor(props){
     super(props)
-
     this.updateName = this.updateName.bind(this);
     this.updateStartDate = this.updateStartDate.bind(this);
     this.updateEndDate = this.updateEndDate.bind(this);
@@ -54,9 +53,10 @@ export default class EditRetreat extends Component {
   componentDidMount(){
     axios.get('/retreats/'+this.props.match.params.id)
       .then(res => {
+        console.log('res', res.data.retreatImages);
         this.setState({
           name : res.data.name,
-          dateStart : moment( new Date(res.data.dateEnd)),
+          dateStart : res.data.dateStart,
           dateEnd : res.data.dateEnd,
           retreatSummary : res.data.retreatSummary,
           accomodationOverview : res.data.accomodationOverview,
@@ -67,7 +67,7 @@ export default class EditRetreat extends Component {
           bookingDetails : res.data.bookingDetails,
           bookingUrl : res.data.bookingUrl,
           whatsIncluded : res.data.whatsIncluded,
-          retreatImages : []
+          retreatImages : res.data.retreatImages
         })
       })
       .catch(function(err){
@@ -202,6 +202,8 @@ export default class EditRetreat extends Component {
     }
   }
 
+  //image update - compare res.data.retreatImages and the 
+
   onSubmit(event){
     event.preventDefault();
     // if we allow update of images then will need to switch to FormData.set
@@ -260,7 +262,6 @@ export default class EditRetreat extends Component {
     const mdConfig = {
       hideIcons : ['image', 'link', 'table']
     }
-    console.log("DOG", Date.parse(this.state.dateStart), typeof(this.state.dateStart), this.state.dateStart);
 
     return (
       <div>

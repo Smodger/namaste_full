@@ -44,10 +44,13 @@ exports.addRetreat = function(req, res, next){
   let imgArray = [];
 
   if(req.files && req.files.length >= 0){
-    req.files.map((image) => {
+    req.files.map((image, i) => {
       image._id = mongoose.Types.ObjectId();
       uploadImage(image)
-      return imgArray.push(image.originalname)
+      return imgArray.push({
+        name : image.originalname,
+        key : i
+      })
     });
   }
 

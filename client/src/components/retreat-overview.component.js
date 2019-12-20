@@ -14,7 +14,7 @@ export default class RetreatOverview extends Component {
   getRetreatThumbmail(){
     if(this.props.retreat.retreatImages[6]){
       return (
-        <img className="retreat-thumbnail" src={this.props.s3url + this.props.retreat.retreatImages[6]} alt="retreat overview"></img>
+        <img className="retreat-thumbnail" src={this.props.s3url + this.props.retreat.retreatImages[6].name} alt="retreat overview"></img>
       )
     }else{
       const thumbnailURL = require("../images/yoga-retreat-stock.jpg");
