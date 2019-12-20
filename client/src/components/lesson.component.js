@@ -75,7 +75,7 @@ export default class Lesson extends Component {
 
   showAdditionalInfo(){
     if(this.state.lesson.additionalInfo){
-      return <td>{this.state.lesson.additionalInfo}</td>
+      return <td className="lesson-info">{this.state.lesson.additionalInfo}</td>
     }
   }
 

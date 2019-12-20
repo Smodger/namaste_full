@@ -368,6 +368,10 @@ body {
   z-index: 150;
 }
 
+.lesson-info{
+  color: #ed1a64;
+}
+
 /* MOBILE ADJUSTMENTS */
 @media screen and (max-width: 640px){
 
