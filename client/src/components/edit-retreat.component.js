@@ -56,7 +56,7 @@ export default class EditRetreat extends Component {
       .then(res => {
         this.setState({
           name : res.data.name,
-          dateStart : moment( new Date(res.data.dateEnd)),
+          dateStart : res.data.dateStart,
           dateEnd : res.data.dateEnd,
           retreatSummary : res.data.retreatSummary,
           accomodationOverview : res.data.accomodationOverview,
