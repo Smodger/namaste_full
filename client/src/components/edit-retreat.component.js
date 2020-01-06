@@ -260,7 +260,6 @@ export default class EditRetreat extends Component {
     const mdConfig = {
       hideIcons : ['image', 'link', 'table']
     }
-    console.log("DOG", Date.parse(this.state.dateStart), typeof(this.state.dateStart), this.state.dateStart);
 
     return (
       <div>
