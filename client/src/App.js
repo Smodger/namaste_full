@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from './components/header.component';
 import {MobileMenu} from './components/mobile-menu.component';
 import {Backdrop} from './components/backdrop.component';
+import { Helmet } from 'react-helmet';
 
 class App extends Component {
   constructor(props){
@@ -39,6 +40,10 @@ class App extends Component {
 
     return (
       <div>
+        <Helmet>
+          <title>Emily Yoga</title>
+          <meta name="description" content="yoga battersea" />
+        </Helmet>
         <Header menuClickHandler={this.menuClickHandler} />
         <MobileMenu className="sidebar" show={this.state.sideBarOpen}/>
         {backdrop}
