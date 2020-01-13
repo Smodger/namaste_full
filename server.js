@@ -4,6 +4,8 @@ const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
+const { Helmet } = require('react-helmet');
+const App = require('./client/src/App');
 
 const lessonRoutes = require('./routes/lessons.js');
 const lessonSchema = require('./models/Lesson.js')
@@ -50,6 +52,31 @@ app.use(express.static(path.resolve("client/build")));
 app.get('*', (req,res) => {
   res.sendFile(path.resolve(__dirname, 'client', "build", "index.html"))
 });
+
+app.get('/*', (req,res) => {
+  const app = renderToString(App);
+  const helmet = Helmet.renderStatic();
+
+  res.send(formatHTML(app, helmet));
+});
+
+function formatHTML(appStr, helmet) {
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        ${helmet.title.toString()}
+        ${helmet.meta.toString()}
+      </head>
+      <body>
+        <div id="root">
+          ${ appStr }
+        </div>
+        <script src="./bundle.js"></script>
+      </body>
+    </html>
+  `
+}
 
 const PORT = process.env.PORT || 1234;
 

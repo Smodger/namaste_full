@@ -42,7 +42,7 @@ class App extends Component {
       <div>
         <Helmet>
           <title>Emily Yoga</title>
-          <meta name="description" content="yoga battersea" />
+          <meta name="description" content="Yoga teacher based in South London available for private hire. Also teaches classes in Battersea and Tooting" />
         </Helmet>
         <Header menuClickHandler={this.menuClickHandler} />
         <MobileMenu className="sidebar" show={this.state.sideBarOpen}/>
