@@ -5,7 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
 const { Helmet } = require('react-helmet');
-const App = require('./client/src/App');
+const clientApp = require('./client/src/App');
 
 const lessonRoutes = require('./routes/lessons.js');
 const lessonSchema = require('./models/Lesson.js')
@@ -54,10 +54,10 @@ app.get('*', (req,res) => {
 });
 
 app.get('/*', (req,res) => {
-  const app = renderToString(App);
+  const appStr = renderToString(clientApp);
   const helmet = Helmet.renderStatic();
 
-  res.send(formatHTML(app, helmet));
+  res.send(formatHTML(appStr, helmet));
 });
 
 function formatHTML(appStr, helmet) {
