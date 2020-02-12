@@ -4,7 +4,7 @@ const checkAuth = require('../auth/check-auth.js');
 const workshopController = require('../controllers/workshop.js')
 
 
-router.get('/', workshopController.getAllLessons);
+router.get('/', workshopController.getAllWorkshops);
 
 router.get('/:id', workshopController.showWorkshop);
 

@@ -31,11 +31,11 @@ exports.createWorkshop = function(req, res){
 
   newWorkshop.save()
     .then(function(newWorkshop){
-      res.status(200).json({ message : 'Workshop added successfully'});
+      res.status(201).json({ message : 'Workshop added successfully'});
     })
     .catch(function(err){
       console.log('err', err);
-      res.status(400).json({ message : 'Unable to add new workshop'})
+      res.status(400).json({ message : 'Unable to add new workshop'});
     })
 }
 

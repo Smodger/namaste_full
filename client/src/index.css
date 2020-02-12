@@ -145,6 +145,15 @@ body {
   position: relative;
 }
 
+.hero-info-img-workshop{
+  height: 80vh;
+  background: url('./images/workshopHeader.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 40%;
+  position: relative;
+}
+
 .hero-info-overlay{
   height: 80vh;
   background-color: rgba(14, 55, 130,0.37)
@@ -231,6 +240,12 @@ body {
   margin-bottom: 20px;
 }
 
+.workshop-footer{
+  width: 300px;
+  display: block;
+  margin: auto;
+  margin-bottom: 50px;
+}
 .stock-image {
   margin: 0 15px;
   width: 350px;

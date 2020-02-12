@@ -20,6 +20,7 @@ export const MobileMenu = (props) => {
             <li><Link to='/about' className="">About Me</Link></li>
             <li><Link to='/lessons' className="">Class schedule</Link></li>
             <li><Link to='/list-retreats' className="">Retreats</Link></li>
+            <li><Link to='/list-workshohps' className="">Workshops</Link></li>
             <li><Link to='/contact' className="">Contact</Link></li>
           </ul>
       </nav>

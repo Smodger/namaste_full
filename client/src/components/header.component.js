@@ -10,7 +10,9 @@ import {About} from './about.component';
 import {Contact} from './contact.component';
 import Home from './home.component';
 import CreateRetreat from './create-retreat.component';
+import CreateWorkshop from './create-workshop.component';
 import ListRetreats from './retreat-list.component';
+import ListWorkshops from './workshop-list.component';
 import {ToggleButton} from './menu-toggle.component';
 import Signup from './signup.component';
 import Login from './login.component';
@@ -38,6 +40,7 @@ export default class Header extends Component {
         <div>
           <Link to='/create-retreat' className='navbar-brand'>Create Retreat</Link>
           <Link to='/create-lesson' className='navbar-brand'>Create Lesson</Link>
+          <Link to='/create-workshop' className='navbar-brand'>Create Workshop</Link>
         </div>
       )
     }
@@ -53,6 +56,7 @@ export default class Header extends Component {
             <Link to='/about' className='navbar-brand'>About Me</Link>
             <Link to='/lessons' className='navbar-brand'>Class schedule</Link>
             <Link to='/list-retreats' className='navbar-brand'>Retreats</Link>
+            <Link to='/list-workshops' className='navbar-brand'>Workshops</Link>
             <Link to='/contact' className='navbar-brand'>Contact</Link>
             {this.isLoggedIn()}
             <div className="hamburger">
@@ -69,7 +73,9 @@ export default class Header extends Component {
         <Route path="/about" component={About}></Route>
         <Route path="/contact" component={Contact}></Route>
         <Route path="/create-retreat" component={CreateRetreat}></Route>
+        <Route path="/create-workshop" component={CreateWorkshop}></Route>
         <Route path="/list-retreats" component={ListRetreats}></Route>
+        <Route path="/list-workshops" component={ListWorkshops}></Route>
         <Route path="/signup" component={Signup}></Route>
         <Route path="/login" component={Login}></Route>
 
