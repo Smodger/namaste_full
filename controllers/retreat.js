@@ -44,12 +44,20 @@ exports.addRetreat = function(req, res, next){
   let imgArray = [];
 
   if(req.files && req.files.length >= 0){
-    req.files.map((image) => {
-      image._id = mongoose.Types.ObjectId();
+    req.files.map((image, i) => {
       uploadImage(image)
-      return imgArray.push(image.originalname)
+      image._id = mongoose.Types.ObjectId();
+      image.index = i;
+      return imgArray.push({
+        name : image.originalname,
+        index : image.index,
+        id : image._id
+      })
+      //LOG INTO S3 AND SEE IF INDEX AND ID ARE IN S3 BUCKETS
     });
   }
+
+  console.log(imgArray);
 
   let newRetreat = new retreatModel({
     _id: new mongoose.Types.ObjectId(),

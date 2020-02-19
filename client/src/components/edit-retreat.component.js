@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import SimpleMDE from 'react-simplemde-editor';
 import "simplemde/dist/simplemde.min.css";
-import moment from 'moment'
+import moment from 'moment';
 
 import Bedroom from './bedroom.component';
 import PopUp from './popup.component';
+import EditImages from './edit-images.component'
 
 export default class EditRetreat extends Component {
 
@@ -51,9 +52,10 @@ export default class EditRetreat extends Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     axios.get('/retreats/'+this.props.match.params.id)
       .then(res => {
+        console.log('res', res);
         this.setState({
           name : res.data.name,
           dateStart : res.data.dateStart,
@@ -67,7 +69,7 @@ export default class EditRetreat extends Component {
           bookingDetails : res.data.bookingDetails,
           bookingUrl : res.data.bookingUrl,
           whatsIncluded : res.data.whatsIncluded,
-          retreatImages : []
+          retreatImages : res.data.retreatImages
         })
       })
       .catch(function(err){
@@ -260,128 +262,135 @@ export default class EditRetreat extends Component {
     const mdConfig = {
       hideIcons : ['image', 'link', 'table']
     }
+    console.log('retreat', this.state);
 
-    return (
-      <div>
-        <div className="animated fadeIn delay-1s hero-info-img-retreat">
-          <div className="hero-landing-text-container">
-            <p className="hero-img-text">Em Thomson</p>
-            <p className="hero-img-subtext">Yoga teacher</p>
+    if(this.state.retreatImages.length <= 0 ){
+      return <h4>Loading...</h4>
+    }else{
+      return (
+        <div>
+          <div className="animated fadeIn delay-1s hero-info-img-retreat">
+            <div className="hero-landing-text-container">
+              <p className="hero-img-text">Em Thomson</p>
+              <p className="hero-img-subtext">Yoga teacher</p>
+            </div>
+          </div>
+          <div className="page-container">
+            <h3>Edit a retreat</h3>
+              <form onSubmit={this.onSubmit} encType="multipart/form-data">
+
+                <div className="form-group">
+                  <label>Retreat Name</label>
+                  <input type="text" className="form-control" value={this.state.name} onChange={this.updateName}></input>
+                </div>
+
+                <div className="form-group">
+                  <label>Start Date eg(14/09/1988)</label>
+                  <input type="date" className="form-control" value={this.state.dateStart} onChange={this.updateStartDate}></input>
+                </div>
+
+                <div className="form-group">
+                  <label>End Date eg(22/04/1990)</label>
+                  <input type="date" className="form-control" value={this.state.dateEnd} onChange={this.updateEndDate}></input>
+                </div>
+
+                <div className="form-group">
+                  <label>Retreat summary</label>
+                  <SimpleMDE options={mdConfig} onChange={this.updateRetreatSummary} value={this.state.retreatSummary} />
+                </div>
+
+                <div className="form-group">
+                  <label>Accommodation Overview</label>
+                  <SimpleMDE options={mdConfig} value={this.state.accomodationOverview} onChange={this.updateAccomodation}></SimpleMDE>
+                </div>
+
+                <div className="separator-long"></div>
+
+                <div className="bedroom-container">
+                  {  this.renderBedroom() }
+                </div>
+
+                <div className="text-center">
+                  <button className="btn-primary" onClick={this.appendBedroom}>Add bedroom</button>
+                </div>
+
+                <div className="form-group">
+                  <label>Food</label>
+                  <SimpleMDE options={mdConfig} value={this.state.food} onChange={this.updateFood}></SimpleMDE>
+                </div>
+
+                <div className="form-group">
+                  <label>How to get there by Car</label>
+                  <SimpleMDE options={mdConfig} value={this.state.byCar} onChange={this.updateCar}></SimpleMDE>
+                </div>
+
+                <div className="form-group">
+                  <label>How to get there by public transport</label>
+                  <SimpleMDE options={mdConfig} value={this.state.byTrain} onChange={this.updateTrain}></SimpleMDE>
+                </div>
+
+                <div className="form-group">
+                  <label>Booking information details</label>
+                  <SimpleMDE options={mdConfig} value={this.state.bookingDetails} onChange={this.updateBookingInfoDetails}></SimpleMDE>
+                </div>
+
+                <div className="form-group">
+                  <label>Booking information link (must be full url). Leave blank if you want them to email you</label>
+                  <input type="text" className="form-control" value={this.state.bookingUrl} onChange={this.updateBookingInfoUrl}></input>
+                </div>
+
+                <div className="form-group">
+                  <label>What's included in the cost. <strong>Separate all values by commas.</strong> Eg food, wine, car parking, pringles</label>
+                  <input type="text" className="form-control" value={this.state.whatsIncluded} onChange={this.updateWhatIncluded}></input>
+                </div>
+
+                <div className="separator-long"></div>
+                <p><strong>WHEN EDITING YOU MUST RE-ADD ALL IMAGES</strong></p>
+                <div className="separator-long"></div>
+
+                <p><strong>First image is the image that will be shown on mobile phones</strong></p>
+
+                <div className="form-group">
+                  <label>Upload Footer Images:</label>
+                   <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                   <input type="file" position="1" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                   <input type="file" position="2" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                </div>
+
+                <p><strong>First image is the image that will be shown on mobile phones</strong></p>
+
+                <div className="form-group">
+                  <label>Upload Food Images:</label>
+                  <input type="file" position="3" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                  <input type="file" position="4" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                  <input type="file" position="5" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                </div>
+
+                <div className="form-group">
+                  <label>Upload Landscape Images:</label>
+                  <input type="file" position="6" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                </div>
+
+                <p><strong>First image is the image that will be shown on mobile phones</strong></p>
+
+                <div className="form-group">
+                  <label>Upload Accommodation Images:</label>
+                  <input type="file" position="7" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                  <input type="file" position="8" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                  <input type="file" position="9" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
+                </div>
+
+                <EditImages images={this.state.retreatImages}></EditImages>
+
+                {this.showPopUp()}
+
+                <div className="form-group">
+                  <input type="submit" value="Update Retreat" className="btn btn-primary"></input>
+                </div>
+              </form>
           </div>
         </div>
-        <div className="page-container">
-          <h3>Edit a retreat</h3>
-            <form onSubmit={this.onSubmit} encType="multipart/form-data">
-
-              <div className="form-group">
-                <label>Retreat Name</label>
-                <input type="text" className="form-control" value={this.state.name} onChange={this.updateName}></input>
-              </div>
-
-              <div className="form-group">
-                <label>Start Date eg(14/09/1988)</label>
-                <input type="date" className="form-control" value={this.state.dateStart} onChange={this.updateStartDate}></input>
-              </div>
-
-              <div className="form-group">
-                <label>End Date eg(22/04/1990)</label>
-                <input type="date" className="form-control" value={this.state.dateEnd} onChange={this.updateEndDate}></input>
-              </div>
-
-              <div className="form-group">
-                <label>Retreat summary</label>
-                <SimpleMDE options={mdConfig} onChange={this.updateRetreatSummary} value={this.state.retreatSummary} />
-              </div>
-
-              <div className="form-group">
-                <label>Accommodation Overview</label>
-                <SimpleMDE options={mdConfig} value={this.state.accomodationOverview} onChange={this.updateAccomodation}></SimpleMDE>
-              </div>
-
-              <div className="separator-long"></div>
-
-              <div className="bedroom-container">
-                {  this.renderBedroom() }
-              </div>
-
-              <div className="text-center">
-                <button className="btn-primary" onClick={this.appendBedroom}>Add bedroom</button>
-              </div>
-
-              <div className="form-group">
-                <label>Food</label>
-                <SimpleMDE options={mdConfig} value={this.state.food} onChange={this.updateFood}></SimpleMDE>
-              </div>
-
-              <div className="form-group">
-                <label>How to get there by Car</label>
-                <SimpleMDE options={mdConfig} value={this.state.byCar} onChange={this.updateCar}></SimpleMDE>
-              </div>
-
-              <div className="form-group">
-                <label>How to get there by public transport</label>
-                <SimpleMDE options={mdConfig} value={this.state.byTrain} onChange={this.updateTrain}></SimpleMDE>
-              </div>
-
-              <div className="form-group">
-                <label>Booking information details</label>
-                <SimpleMDE options={mdConfig} value={this.state.bookingDetails} onChange={this.updateBookingInfoDetails}></SimpleMDE>
-              </div>
-
-              <div className="form-group">
-                <label>Booking information link (must be full url). Leave blank if you want them to email you</label>
-                <input type="text" className="form-control" value={this.state.bookingUrl} onChange={this.updateBookingInfoUrl}></input>
-              </div>
-
-              <div className="form-group">
-                <label>What's included in the cost. <strong>Separate all values by commas.</strong> Eg food, wine, car parking, pringles</label>
-                <input type="text" className="form-control" value={this.state.whatsIncluded} onChange={this.updateWhatIncluded}></input>
-              </div>
-
-              <div className="separator-long"></div>
-              <p><strong>WHEN EDITING YOU MUST RE-ADD ALL IMAGES</strong></p>
-              <div className="separator-long"></div>
-
-              <p><strong>First image is the image that will be shown on mobile phones</strong></p>
-
-              <div className="form-group">
-                <label>Upload Footer Images:</label>
-                 <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                 <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                 <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-              </div>
-
-              <p><strong>First image is the image that will be shown on mobile phones</strong></p>
-
-              <div className="form-group">
-                <label>Upload Food Images:</label>
-                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-              </div>
-
-              <div className="form-group">
-                <label>Upload Landscape Images:</label>
-                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-              </div>
-
-              <p><strong>First image is the image that will be shown on mobile phones</strong></p>
-
-              <div className="form-group">
-                <label>Upload Accommodation Images:</label>
-                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-              </div>
-
-              {this.showPopUp()}
-
-              <div className="form-group">
-                <input type="submit" value="Update Retreat" className="btn btn-primary"></input>
-              </div>
-            </form>
-        </div>
-      </div>
-    )
+      )
+    }
   }
 }

@@ -334,32 +334,32 @@ export default class CreateRetreat extends Component {
 
               <div className="form-group">
                 <label>Upload Footer Images:</label>
-                 <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
-                 <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
-                 <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                 <input type="file" position="0" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                 <input type="file" position="1" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                 <input type="file" position="2" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
               </div>
 
               <p><strong>First image is the image that will be shown on mobile phones</strong></p>
 
               <div className="form-group">
                 <label>Upload Food Images:</label>
-                <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
-                <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
-                <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                <input type="file" position="3" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                <input type="file" position="4" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                <input type="file" position="5" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
               </div>
 
               <div className="form-group">
                 <label>Upload Landscape Images:</label>
-                <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                <input type="file" position="6" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
               </div>
 
               <p><strong>First image is the image that will be shown on mobile phones</strong></p>
 
               <div className="form-group">
                 <label>Upload Accommodation Images:</label>
-                <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
-                <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
-                <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                <input type="file" position="7" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                <input type="file" position="8" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                <input type="file" position="9" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
               </div>
               {this.showPopUp()}
               <div className="form-group">

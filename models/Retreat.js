@@ -18,7 +18,11 @@ const retreatSchema = new Schema({
   bookingDetails : { type : String },
   bookingUrl : { type : String },
   whatsIncluded : [ String ],
-  retreatImages : [ String ]
+  retreatImages : [{
+    name : String,
+    index : Number,
+    _id : mongoose.Schema.Types.ObjectId
+  }]
 });
 
 module.exports = mongoose.model('Retreat', retreatSchema);
