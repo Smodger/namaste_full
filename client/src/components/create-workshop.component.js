@@ -18,6 +18,7 @@ export default class CreateWorkshop extends Component {
       endMins : 0,
       description : "",
       booking : "",
+      location : "",
       popUpMsg : null
     }
   }
@@ -70,6 +71,12 @@ export default class CreateWorkshop extends Component {
     })
   }
 
+  onChangeLocation = (event) => {
+    this.setState({
+      location : event.target.value
+    })
+  }
+
   showPopUp = () => {
     if(this.state.popUpMsg){
       return (
@@ -116,6 +123,7 @@ export default class CreateWorkshop extends Component {
         endMins : 0,
         description : "",
         booking : "",
+        location : "",
         popUpMsg : response
       })
     })
@@ -144,6 +152,11 @@ export default class CreateWorkshop extends Component {
             </div>
 
             <div className="form-group">
+              <label>Image upload</label>
+              <input type='file' className="form-control" onChange={this.onChangeImage}></input>
+            </div>
+
+            <div className="form-group">
               <label>Date</label>
               <input className="form-control" value={this.state.date} onChange={this.onChangeDate}></input>
             </div>
@@ -163,6 +176,11 @@ export default class CreateWorkshop extends Component {
             <div className="form-group">
               <label>Workshop description</label>
               <SimpleMDE options={mdConfig} value={this.state.description} onChange={this.onChangeDescription} />
+            </div>
+
+            <div className="form-group">
+              <label>Location</label>
+              <input className="form-control" value={this.state.location} onChange={this.onChangeLocation}></input>
             </div>
 
             <div className="form-group">

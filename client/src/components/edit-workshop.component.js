@@ -18,12 +18,12 @@ export default class EditWorkshop extends Component {
       endMins : 0,
       description : "",
       booking : "",
+      location : "",
       popUpMsg : null
     }
   }
 
   componentDidMount(){
-
     axios.get('/workshops/'+this.props.match.params.id)
     .then(res => {
       this.setState({
@@ -33,12 +33,12 @@ export default class EditWorkshop extends Component {
         startMins : res.data.startMins,
         endHour : res.data.endHour,
         endMins : res.data.endMins,
-        description : res.data.endMins,
+        description : res.data.description,
         booking : res.data.booking
       })
     })
     .catch(function(err){
-      console.log('error getting lesson : ', err);
+      console.log('error getting workshop : ', err);
     })
   }
 
@@ -90,6 +90,12 @@ export default class EditWorkshop extends Component {
     })
   }
 
+  updateLocation = (event) => {
+    this.setState({
+      location : event.target.value
+    })
+  }
+
   showPopUp(){
     if(this.state.popUpMsg){
       return (
@@ -100,7 +106,8 @@ export default class EditWorkshop extends Component {
     }
   }
 
-  onSubmit(event){
+  onSubmit = (event) => {
+    console.log('state', this.state);
     event.preventDefault();
 
     const token = localStorage.getItem('jwtToken');
@@ -113,7 +120,8 @@ export default class EditWorkshop extends Component {
       endHour : this.state.endHour,
       endMins : this.state.endMins,
       description : this.state.description,
-      booked : this.state.booked
+      booked : this.state.booked,
+      location : this.state.location
     };
 
     axios.post('/workshops/update/' + this.props.match.params.id, editedWorkshop, {
@@ -135,7 +143,6 @@ export default class EditWorkshop extends Component {
     const mdConfig = {
       hideIcons : ['image', 'link', 'table']
     }
-
     return(
       <div>
         <div className="animated fadeIn delay-1s hero-info-img-retreat">
@@ -145,7 +152,7 @@ export default class EditWorkshop extends Component {
           </div>
         </div>
         <div className="page-container">
-          <h3>Edit a retreat</h3>
+          <h3>Edit a workshop</h3>
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
               <label>Title</label>
@@ -175,6 +182,11 @@ export default class EditWorkshop extends Component {
             </div>
 
             <div className="form-group">
+              <label>Location</label>
+              <input className="form-control" value={this.state.location} onChange={this.updateLocation}></input>
+            </div>
+
+            <div className="form-group">
               <label>Booking Link (Leave blank if you want them to email you)</label>
               <input className="form-control" value={this.state.booking} onChange={this.updateBooking}></input>
             </div>
@@ -187,6 +199,7 @@ export default class EditWorkshop extends Component {
 
           </form>
         </div>
+      </div>
     )
   }
 }

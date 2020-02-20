@@ -1,6 +1,8 @@
 import React , { Component } from 'react';
 import moment from 'moment';
 
+import { s3env } from '../config';
+
 
 export default class WorkshopOverview extends Component {
   constructor(props){
@@ -21,6 +23,7 @@ export default class WorkshopOverview extends Component {
             <p>{this.state.workshop.title}</p>
             <p>{this.state.workshop.date}</p>
             <p>{this.state.workshop.startHour}:{this.state.workshop.startMins} - {this.state.workshop.endHour}:{this.state.workshop.endMins}</p>
+            <p>{this.state.workshop.location}</p>
           </div>
         </div>
       </div>

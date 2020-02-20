@@ -11,6 +11,21 @@ export default class ShowWorkshop extends Component {
     super(props)
   }
 
+  isLoggedIn = () => {
+    const token = localStorage.getItem('jwtToken');
+
+    if(token){
+      return (
+        <div>
+          <Link to={"/editWorkshop/" + this.props.workshop._id}>Edit</Link>
+          <button className="btn btn-danger" onClick={this.handleDeleteRetreat}>Delete</button>
+        </div>
+      )
+    }else{
+      return null
+    }
+  }
+
   render(){
     return (
       <div className="page-container">
@@ -18,10 +33,13 @@ export default class ShowWorkshop extends Component {
         <p className="sub-heading">{this.props.workshop.date}</p>
         <p className="sub-heading">{this.props.workshop.startHour}:{this.props.workshop.startMins} - {this.props.workshop.endHour}:{this.props.workshop.endMins}</p>
 
-        <p style={{"marginTop" : 25}}>{this.props.workshop.description}</p>
-        <p style={{"marginTop" : 12}}>{this.props.workshop.booking}</p>
+        <p style={{"marginTop" : 25}}>{this.props.workshop.location}</p>
+        <p style={{"marginTop" : 15}}>{this.props.workshop.description}</p>
+        <p style={{"marginTop" : 15}}>{this.props.workshop.booking}</p>
 
         <img className="workshop-footer" src={workshopFooter} alt="Emily teaching yoga"></img>
+
+        {this.isLoggedIn()}
 
         <button style={{"marginBottom" : 30}} onClick={this.props.onClick}>Back</button>
       </div>

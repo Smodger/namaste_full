@@ -11,7 +11,7 @@ exports.getAllWorkshops = function(req,res){
 }
 
 exports.showWorkshop = function(req,res){
-  const id = req.params._id;
+  const id = req.params.id;
 
   workshopModel.findById(id, (err, workshop) => {
     if(err){
@@ -52,6 +52,7 @@ exports.updateWorkshop = function(req, res){
       workshop.endMins = req.body.endMins;
       workshop.description = req.body.description;
       workshop.booking = req.body.booking;
+      workshop.location = req.body.location;
 
       if(!workshop.booking || workshop.booking === ""){
         workshop.booking = "email me at emthomsonyoga@gmail.com for booking information";
