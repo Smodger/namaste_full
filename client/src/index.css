@@ -463,4 +463,21 @@ body {
     left: 0;
   }
 
+  .all-workshop-container{
+    width: 50%;
+    margin: 20px auto auto;
+    text-align: center;
+  }
+
+  .workshop-footer{
+    width: 50%!important;
+    display: block;
+    margin: auto;
+    margin-bottom: 50px;
+  }
+
+  .navbar{
+    height: 11vh;
+  }
+
 }
