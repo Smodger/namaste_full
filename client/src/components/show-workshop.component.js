@@ -9,16 +9,44 @@ import workshopFooter from "../images/workshopFooter.jpg";
 export default class ShowWorkshop extends Component {
   constructor(props){
     super(props)
+
+    this.state = {
+      token : ""
+    }
+  }
+
+  componentWillMount = () =>{
+    this.getToken()
+  }
+
+  getToken = () => {
+    this.setState({
+      token : localStorage.getItem('jwtToken')
+    })
+  }
+
+  deleteWorkshop = () => {
+    const token = this.state.token;
+
+    axios.delete('/workshops/delete/'+ this.props.workshop._id, { headers : { Authorization: `Bearer ${token}`}})
+      .then(res =>{
+        console.log('Workshop Deleted',this.props.retreat._id);
+      })
+      .catch(function(err){
+        console.log('errror deleting lesson', err);
+      })
+
+    window.location.reload();
   }
 
   isLoggedIn = () => {
-    const token = localStorage.getItem('jwtToken');
+    const token = this.state.token;
 
     if(token){
       return (
         <div>
           <Link to={"/editWorkshop/" + this.props.workshop._id}>Edit</Link>
-          <button className="btn btn-danger" onClick={this.handleDeleteRetreat}>Delete</button>
+          <button className="btn btn-danger" onClick={this.deleteWorkshop}>Delete</button>
         </div>
       )
     }else{
