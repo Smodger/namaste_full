@@ -19,6 +19,7 @@ export default class CreateWorkshop extends Component {
       description : "",
       booking : "",
       location : "",
+      image : [],
       popUpMsg : null
     }
   }
@@ -77,6 +78,15 @@ export default class CreateWorkshop extends Component {
     })
   }
 
+  onChangeImage = (event) => {
+    const newImage = [...this.state.image];
+    newImage.push(event.target.files[0]);
+
+    this.setState({
+      image : newImage
+    })
+  }
+
   showPopUp = () => {
     if(this.state.popUpMsg){
       return (
@@ -93,24 +103,31 @@ export default class CreateWorkshop extends Component {
 
     console.log("Submit form : ", this.state)
 
-    const newWorkshop = {
-      title : this.state.title,
-      date : this.state.date,
-      startHour : this.state.startHour,
-      startMins : this.state.startMins,
-      endHour : this.state.endHour,
-      endMins : this.state.endMins,
-      description : this.state.description,
-      booking : this.state.booking
-    }
+    const formData = new FormData()
+    formData.append('title', this.state.title);
+    formData.append('date', this.state.date);
+    formData.append('startHour', this.state.startHour);
+    formData.append('startMins', this.state.startMins);
+    formData.append('endHour', this.state.endHour);
+    formData.append('endMins', this.state.endMins);
+    formData.append('description', this.state.description);
+    formData.append('booking', this.state.booking);
+    formData.append('location', this.state.Location);
+    formData.append('image', this.state.image[0], this.state.image[0].name);
 
     const token = localStorage.getItem('jwtToken');
 
-    axios.post('/workshops/addWorkshop', newWorkshop , {
-      headers : { Authorization : "Bearer " + token }
+    const headers = {
+      Authorization : "Bearer " + token,
+      'Content-Type': 'multipart/form-data'
+    }
+
+    axios.post('/workshops/addWorkshop', formData, {
+      headers : headers
     })
     .then(res => {
-      const response = res;
+      console.log('data', res.data);
+      const response = res.data;
       return response
     })
     .then(response => {
@@ -145,7 +162,7 @@ export default class CreateWorkshop extends Component {
         </div>
         <div className="page-container">
           <h3>Create a workshop</h3>
-          <form onSubmit={this.onSubmit}>
+          <form onSubmit={this.onSubmit} encType="multipart/form-data">
             <div className="form-group">
               <label>Title</label>
               <input className="form-control" value={this.state.title} onChange={this.onChangeTitle}></input>
@@ -153,7 +170,7 @@ export default class CreateWorkshop extends Component {
 
             <div className="form-group">
               <label>Image upload</label>
-              <input type='file' className="form-control" onChange={this.onChangeImage}></input>
+              <input type='file' name="image" onChange={this.onChangeImage}></input>
             </div>
 
             <div className="form-group">

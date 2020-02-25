@@ -17,7 +17,7 @@ export default class WorkshopOverview extends Component {
   render(){
     return (
       <div style={{ padding: 20, display: "inline-block"}} onClick={this.props.onClick}>
-        <img alt="workshop thumbnail"></img>
+        <img alt="workshop thumbnail" src={this.props.s3url + this.props.workshop.image[0]} style={{ "width" : 200}}></img>
         <div className="retreat-text">
           <div>
             <p>{this.state.workshop.title}</p>

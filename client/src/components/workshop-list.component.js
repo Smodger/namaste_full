@@ -4,6 +4,8 @@ import axios from 'axios';
 import Workshop from './workshop-overview.component';
 import ShowWorkshop from './show-workshop.component';
 
+import { s3env } from '../config';
+
 export default class ListWorkshops extends Component {
   constructor(props){
     super(props)
@@ -48,10 +50,14 @@ export default class ListWorkshops extends Component {
     }
   }
 
+  getS3Url = () => {
+    return 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
+  }
+
   listWorkshops(){
     if(this.state.workshops.length > 0){
       return this.state.workshops.map((workshop, i) => {
-        return <Workshop workshop={workshop} key={i} onClick={(() => this.toggleView(workshop))}></Workshop>
+        return <Workshop workshop={workshop} s3url={this.getS3Url()} key={i} onClick={(() => this.toggleView(workshop))}></Workshop>
       })
     }else{
       return <p style={{ 'marginTop' : 20, 'text-align' : 'center'}}>I currently don't have any workshops available for bookings, but check back again soon. I will be adding more in the near future.</p>
@@ -59,7 +65,7 @@ export default class ListWorkshops extends Component {
   }
 
   workshopDetails(){
-    return <ShowWorkshop workshop={this.state.workshop} onClick={this.toggleView}></ShowWorkshop>
+    return <ShowWorkshop workshop={this.state.workshop} s3url={this.getS3Url()} onClick={this.toggleView}></ShowWorkshop>
   }
 
   render(){

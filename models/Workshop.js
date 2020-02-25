@@ -10,7 +10,8 @@ const workshopSchema = new Schema({
   endMins : { type : Number, max : 60 },
   description : { type : String },
   booking : { type :  String },
-  location : { type :  String }
+  location : { type :  String },
+  image : [ String ]
 });
 
 module.exports = mongoose.model('Workshop', workshopSchema);

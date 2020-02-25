@@ -1,4 +1,8 @@
-const workshopModel = require('../models/Workshop')
+const workshopModel = require('../models/Workshop');
+const mongoose = require('mongoose')
+const AWS = require('aws-sdk');
+const s3Config = require('../auth/s3.env.js');
+const fs = require('fs');
 
 exports.getAllWorkshops = function(req,res){
   workshopModel.find((err, workshops) => {
@@ -23,11 +27,34 @@ exports.showWorkshop = function(req,res){
 }
 
 exports.createWorkshop = function(req, res){
-  let newWorkshop = new workshopModel(req.body);
 
-  if(!newWorkshop.booking || newWorkshop.booking === ""){
-    newWorkshop.booking = "email me at emthomsonyoga@gmail.com for booking information";
+  if(!req.body.booking || req.body.booking === ""){
+    req.body.booking = "email me at emthomsonyoga@gmail.com for booking information";
   }
+
+  let imgArray = [];
+
+  if(req.files && req.files.length >= 0){
+    req.files.map((image) => {
+      image._id = mongoose.Types.ObjectId();
+      uploadImage(image)
+      return imgArray.push(image.originalname)
+    });
+  }
+
+  let newWorkshop = new workshopModel({
+    _id: new mongoose.Types.ObjectId(),
+    title: req.body.title,
+    date : req.body.date,
+    startHour : req.body.startHour,
+    startMins : req.body.startMins,
+    endHour : req.body.endHour,
+    endMins : req.body.endMins,
+    description : req.body.description,
+    booking : req.body.booking,
+    location : req.body.location,
+    image : imgArray
+  });
 
   newWorkshop.save()
     .then(function(newWorkshop){
@@ -75,5 +102,26 @@ exports.deleteWorkshop = function(req, res){
     }else{
       res.status(200).json({message : 'Workshop successfully removed'})
     }
+  });
+}
+
+const uploadImage = (image) => {
+
+  const s3 = new AWS.S3();
+  const file = fs.readFileSync(image.path);
+
+  const params = {
+    Bucket: process.env.S3_BUCKET,
+    Key: image.filename,
+    Body: file
+  };
+
+  s3.putObject(params, function(err, data) {
+    if (err) {
+      console.log("S3 upload UNSUCCESSFUL :", err);
+      return
+    }
+    console.log(`File uploaded to s3 successfully. ${data}`);
+    return
   });
 }
