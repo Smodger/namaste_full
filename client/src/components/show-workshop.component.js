@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Markdown from 'react-markdown';
 
-import workshopFooter from "../images/workshopFooter.jpg";
+import { s3env } from '../config';
+
+import workshopFooter from '../images/workshopFooter.jpg'
 
 export default class ShowWorkshop extends Component {
   constructor(props){
@@ -14,7 +16,7 @@ export default class ShowWorkshop extends Component {
     }
   }
 
-  componentWillMount = () =>{
+  componentWillMount = () => {
     this.getToken()
   }
 
@@ -53,6 +55,19 @@ export default class ShowWorkshop extends Component {
     }
   }
 
+  getWorkshopImage = () => {
+    console.log('prop', this.props.workshop);
+    if(this.props.workshop.image.length > 0){
+      return (
+        <img className="workshop-footer" alt="workshop thumbnail" src={this.props.s3url + this.props.workshop.image[0]} style={{ "width" : 300 }}></img>
+      )
+    }else{
+      return (
+        <img className="workshop-footer" alt="workshop thumbnail" src={workshopFooter} style={{ "width" : 300 }}></img>
+      )
+    }
+  }
+
   render(){
     return (
       <div className="page-container">
@@ -64,7 +79,7 @@ export default class ShowWorkshop extends Component {
         <p style={{"marginTop" : 15}}>{this.props.workshop.description}</p>
         <p style={{"marginTop" : 15}}>{this.props.workshop.booking}</p>
 
-        <img className="workshop-footer" src={workshopFooter} alt="Emily teaching yoga"></img>
+        {this.getWorkshopImage()}
 
         {this.isLoggedIn()}
 

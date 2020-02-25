@@ -172,6 +172,11 @@ body {
   margin-top: 20px;
 }
 
+.all-workshop-container{
+  width: 30%;
+  margin: 20px auto auto;
+}
+
 .social-media-icons > a{
   height: 30px!important;
   width: 30px!important;

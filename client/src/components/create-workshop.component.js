@@ -112,8 +112,14 @@ export default class CreateWorkshop extends Component {
     formData.append('endMins', this.state.endMins);
     formData.append('description', this.state.description);
     formData.append('booking', this.state.booking);
-    formData.append('location', this.state.Location);
-    formData.append('image', this.state.image[0], this.state.image[0].name);
+    formData.append('location', this.state.location);
+
+    if(this.state.image.length > 0){
+      formData.append('image', this.state.image[0], this.state.image[0].name);
+    }else {
+      formData.append('image', null)
+    }
+
 
     const token = localStorage.getItem('jwtToken');
 

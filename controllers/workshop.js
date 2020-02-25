@@ -67,7 +67,7 @@ exports.createWorkshop = function(req, res){
 }
 
 exports.updateWorkshop = function(req, res){
-  workshopModel.findById(id, (err, workshop) => {
+  workshopModel.findById(req.params.id, (err, workshop) => {
     if (!workshop){
       console.log('workshop cannot be found on db');
     }else{
