@@ -145,6 +145,15 @@ body {
   position: relative;
 }
 
+.hero-info-img-workshop{
+  height: 80vh;
+  background: url('./images/workshopHeader.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 40%;
+  position: relative;
+}
+
 .hero-info-overlay{
   height: 80vh;
   background-color: rgba(14, 55, 130,0.37)
@@ -161,6 +170,11 @@ body {
   width: 70%;
   margin: auto;
   margin-top: 20px;
+}
+
+.all-workshop-container{
+  width: 30%;
+  margin: 20px auto auto;
 }
 
 .social-media-icons > a{
@@ -231,6 +245,12 @@ body {
   margin-bottom: 20px;
 }
 
+.workshop-footer{
+  width: 300px;
+  display: block;
+  margin: auto;
+  margin-bottom: 50px;
+}
 .stock-image {
   margin: 0 15px;
   width: 350px;
@@ -441,6 +461,23 @@ body {
   .hero-landing-text-container{
     right: 0;
     left: 0;
+  }
+
+  .all-workshop-container{
+    width: 50%;
+    margin: 20px auto auto;
+    text-align: center;
+  }
+
+  .workshop-footer{
+    width: 50%!important;
+    display: block;
+    margin: auto;
+    margin-bottom: 50px;
+  }
+
+  .navbar{
+    height: 11vh;
   }
 
 }

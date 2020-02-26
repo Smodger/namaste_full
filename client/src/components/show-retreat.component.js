@@ -51,7 +51,7 @@ export default class showRetreat extends Component {
 
     axios.delete('/retreats/delete/'+ this.props.retreat._id, { headers : { Authorization: `Bearer ${token}`}})
       .then(res =>{
-        console.log('Lesson Deleted',this.props.retreat._id);
+        console.log('Retreat Deleted',this.props.retreat._id);
       })
       .catch(function(err){
         console.log('errror deleting lesson', err);

@@ -8,13 +8,16 @@ const { Helmet } = require('react-helmet');
 const clientApp = require('./client/src/App');
 
 const lessonRoutes = require('./routes/lessons.js');
-const lessonSchema = require('./models/Lesson.js')
+const lessonSchema = require('./models/Lesson.js');
 
-const retreatRoutes = require('./routes/retreats.js')
-const retreatSchema = require('./models/Retreat.js')
+const retreatRoutes = require('./routes/retreats.js');
+const retreatSchema = require('./models/Retreat.js');
 
-const userRoutes = require('./routes/users.js')
-const userSchema = require('./models/User.js')
+const workshopRoutes = require('./routes/workshops.js');
+const workshopSchema = require('./models/Workshop.js');
+
+const userRoutes = require('./routes/users.js');
+const userSchema = require('./models/User.js');
 
 app.use(cors());
 
@@ -45,6 +48,7 @@ app.use('/uploads', express.static('uploads'));
 
 app.use('/lessons', lessonRoutes)
 app.use('/retreats', retreatRoutes)
+app.use('/workshops', workshopRoutes)
 app.use('/user', userRoutes)
 
 app.use(express.static(path.resolve("client/build")));

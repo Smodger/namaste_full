@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.dea3307d.chunk.css",
-    "main.js": "/static/js/main.d4225bcc.chunk.js",
-    "main.js.map": "/static/js/main.d4225bcc.chunk.js.map",
+    "main.css": "/static/css/main.879d5d80.chunk.css",
+    "main.js": "/static/js/main.e6431a7d.chunk.js",
+    "main.js.map": "/static/js/main.e6431a7d.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
     "static/css/2.3648d254.chunk.css": "/static/css/2.3648d254.chunk.css",
-    "static/js/2.713dbd90.chunk.js": "/static/js/2.713dbd90.chunk.js",
-    "static/js/2.713dbd90.chunk.js.map": "/static/js/2.713dbd90.chunk.js.map",
+    "static/js/2.6ad14714.chunk.js": "/static/js/2.6ad14714.chunk.js",
+    "static/js/2.6ad14714.chunk.js.map": "/static/js/2.6ad14714.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.1b44533ca12ab016618e8e0ac657b784.js": "/precache-manifest.1b44533ca12ab016618e8e0ac657b784.js",
+    "precache-manifest.413ff264abd596bf2c2f805c0259aaec.js": "/precache-manifest.413ff264abd596bf2c2f805c0259aaec.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.3648d254.chunk.css.map": "/static/css/2.3648d254.chunk.css.map",
-    "static/css/main.dea3307d.chunk.css.map": "/static/css/main.dea3307d.chunk.css.map",
-    "static/media/index.css": "/static/media/retreat-hero.2c5ca612.png",
+    "static/css/main.879d5d80.chunk.css.map": "/static/css/main.879d5d80.chunk.css.map",
+    "static/media/index.css": "/static/media/workshopHeader.2cfd5a3e.jpg",
     "static/media/about-one.jpg": "/static/media/about-one.2c906189.jpg",
     "static/media/about-three.jpeg": "/static/media/about-three.7988aeeb.jpeg",
     "static/media/about-two.jpeg": "/static/media/about-two.433be276.jpeg",
@@ -23,6 +23,7 @@
     "static/media/contactTwo.jpg": "/static/media/contactTwo.a6e94bfc.jpg",
     "static/media/lidoYoga.jpg": "/static/media/lidoYoga.344ebfb7.jpg",
     "static/media/revive.jpg": "/static/media/revive.e0ff8c40.jpg",
+    "static/media/workshopFooter.jpg": "/static/media/workshopFooter.d94f34ea.jpg",
     "static/media/yoga-retreat-stock.jpg": "/static/media/yoga-retreat-stock.916855ea.jpg"
   }
 }

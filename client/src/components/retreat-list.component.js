@@ -4,7 +4,7 @@ import axios from 'axios';
 import ShowRetreat from './show-retreat.component';
 import Retreat from './retreat-overview.component';
 
-import { s3env } from '../config'
+import { s3env } from '../config';
 
 export default class ListRetreats extends Component {
   constructor(props){
