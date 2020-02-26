@@ -34,6 +34,7 @@ export default class EditWorkshop extends Component {
         endHour : res.data.endHour,
         endMins : res.data.endMins,
         description : res.data.description,
+        location : res.data.location,
         booking : res.data.booking
       })
     })
