@@ -149,7 +149,7 @@ export default class EditWorkshop extends Component {
         <div className="animated fadeIn delay-1s hero-info-img-retreat">
           <div className="hero-landing-text-container">
             <p className="hero-img-text">Em Thomson</p>
-            <p className="hero-img-subtext">Yoga teacher!!</p>
+            <p className="hero-img-subtext">Yoga teacher!</p>
           </div>
         </div>
         <div className="page-container">
