@@ -28,10 +28,6 @@ exports.showWorkshop = function(req,res){
 
 exports.createWorkshop = function(req, res){
 
-  if(!req.body.booking || req.body.booking === ""){
-    req.body.booking = "email me at emthomsonyoga@gmail.com for booking information";
-  }
-
   let imgArray = [];
 
   if(req.files && req.files.length >= 0){

@@ -56,7 +56,6 @@ export default class ShowWorkshop extends Component {
   }
 
   getWorkshopImage = () => {
-    console.log('prop', this.props.workshop);
     if(this.props.workshop.image.length > 0){
       return (
         <img className="workshop-footer" alt="workshop thumbnail" src={this.props.s3url + this.props.workshop.image[0]} style={{ "width" : 300 }}></img>
@@ -68,6 +67,16 @@ export default class ShowWorkshop extends Component {
     }
   }
 
+  bookingLink = () => {
+    if(this.props.workshop.booking){
+      return <a href={this.props.workshop.booking}>Book here</a>
+    }
+
+    if(!this.props.workshop.booking){
+      return <p>Contact me to book at <a href="mailto:emthomsonyoga@gmail.com">emthomsonyoga@gmail.com</a></p>
+    }
+  }
+
   render(){
     return (
       <div className="page-container">
@@ -76,8 +85,8 @@ export default class ShowWorkshop extends Component {
         <p className="sub-heading">{this.props.workshop.startHour}:{this.props.workshop.startMins} - {this.props.workshop.endHour}:{this.props.workshop.endMins}</p>
 
         <p style={{"marginTop" : 25}}>{this.props.workshop.location}</p>
-        <p style={{"marginTop" : 15}}>{this.props.workshop.description}</p>
-        <p style={{"marginTop" : 15}}>{this.props.workshop.booking}</p>
+        <p style={{"marginTop" : 15, "marginBottom" : 15}}>{this.props.workshop.description}</p>
+        {this.bookingLink()}
 
         {this.getWorkshopImage()}
 

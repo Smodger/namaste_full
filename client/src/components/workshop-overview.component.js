@@ -27,15 +27,13 @@ export default class WorkshopOverview extends Component {
 
   render(){
     return (
-      <div style={{ padding: 20, display: "inline-block"}} onClick={this.props.onClick}>
+      <div style={{ padding: 20, display: "inline-block", width : "max-content"}} onClick={this.props.onClick}>
         {this.getWorkshopThumbnail()}
         <div className="retreat-text">
-          <div>
-            <p>{this.state.workshop.title}</p>
-            <p>{this.state.workshop.date}</p>
-            <p>{this.state.workshop.startHour}:{this.state.workshop.startMins} - {this.state.workshop.endHour}:{this.state.workshop.endMins}</p>
-            <p>{this.state.workshop.location}</p>
-          </div>
+          <p>{this.state.workshop.title}</p>
+          <p>{this.state.workshop.date}</p>
+          <p>{this.state.workshop.startHour}:{this.state.workshop.startMins} - {this.state.workshop.endHour}:{this.state.workshop.endMins}</p>
+          <p>{this.state.workshop.location}</p>
         </div>
       </div>
     )
