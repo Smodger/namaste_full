@@ -23,7 +23,8 @@ export default class EditRetreat extends Component {
     this.updateBookingInfoDetails = this.updateBookingInfoDetails.bind(this);
     this.updateBookingInfoUrl = this.updateBookingInfoUrl.bind(this);
     this.updateWhatIncluded = this.updateWhatIncluded.bind(this);
-    this.updateRetreatImage = this.updateRetreatImage.bind(this);
+    this.onChangeImg = this.onChangeImg.bind(this);
+    this.storeImageIndex = this.storeImageIndex.bind(this)
     this.onChangeBedDescription = this.onChangeBedDescription.bind(this);
     this.onChangeBedCost = this.onChangeBedCost.bind(this);
     this.onChangeBedBooking = this.onChangeBedBooking.bind(this);
@@ -48,14 +49,15 @@ export default class EditRetreat extends Component {
       bookingUrl : "",
       whatsIncluded : [],
       popUpMsg : null,
-      retreatImages : []
+      retreatImages : [],
+      newImage: null,
+      imageIndex : null
     }
   }
 
   componentWillMount(){
     axios.get('/retreats/'+this.props.match.params.id)
       .then(res => {
-        console.log('res', res);
         this.setState({
           name : res.data.name,
           dateStart : res.data.dateStart,
@@ -134,13 +136,26 @@ export default class EditRetreat extends Component {
     })
   }
 
-  updateRetreatImage(event){
-    const newImage = [...this.state.retreatImages];
-    newImage.push(event.target.files[0]);
+  // updateRetreatImage(event){
+  //   console.log('event', event.target.files[0]);
+  //   const newImage = [...this.state.retreatImages];
+  //   newImage.push(event.target.files[0]);
+  //
+  //   this.setState({
+  //     retreatImages : newImage
+  //   })
+  // }
 
+  // function to store image in state
+  storeImageIndex(image){
     this.setState({
-      retreatImages : newImage
+      imageIndex : image.index
     })
+  }
+
+  onChangeImg(event){
+    console.log('e', event.target.files[0]);
+    this.setState({newImage : event.target.files[0]});
   }
 
   onChangeBedDescription(desc, i){
@@ -208,7 +223,9 @@ export default class EditRetreat extends Component {
     event.preventDefault();
     // if we allow update of images then will need to switch to FormData.set
     // and add multipart/form-data to headers
+
     const formData = new FormData()
+    formData.append('imageIndex', this.state.imageIndex);
     formData.append('name', this.state.name);
     formData.append('dateStart', this.state.dateStart);
     formData.append('dateEnd', this.state.dateEnd);
@@ -223,17 +240,15 @@ export default class EditRetreat extends Component {
 
     for(var i = 0; i < this.state.bedRooms.length; i++){
       formData.append('bedRooms', JSON.stringify(this.state.bedRooms[i]))
-    }
+    };
 
-    for(var j = 0; j < this.state.retreatImages.length; j++){
-      formData.append(
-        'retreatImages',
-        this.state.retreatImages[j],
-        this.state.retreatImages[j].name
-      )
-    }
-
-    console.log("Submit form : ", this.state)
+    // for (var j = 0; j < this.state.retreatImages.length; j++) {
+    //   formData.append(
+    //     'retreatImages',
+    //     this.state.retreatImages[j],
+    //     this.state.retreatImages[j].name
+    //   )
+    // };
 
     const token = localStorage.getItem('jwtToken');
 
@@ -242,12 +257,12 @@ export default class EditRetreat extends Component {
       Authorization : "Bearer " + token,
       'Content-Type': 'multipart/form-data'
     }
+    formData.append('newImage', this.state.newImage);
 
     axios.post('/retreats/update/' + this.props.match.params.id, formData, {
       headers : headers
     })
       .then(res => {
-        console.log('data', res.data)
         const response = res.data
         return response
       })
@@ -380,7 +395,7 @@ export default class EditRetreat extends Component {
                   <input type="file" position="9" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
                 </div>
 
-                <EditImages images={this.state.retreatImages}></EditImages>
+                <EditImages storeImageIndex={(img) => this.storeImageIndex(img)} onChangeImg={(e) => this.onChangeImg(e)} images={this.state.retreatImages}></EditImages>
 
                 {this.showPopUp()}
 

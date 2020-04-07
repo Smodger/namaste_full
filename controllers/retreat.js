@@ -117,7 +117,6 @@ exports.updateRetreat = function(req,res){
       console.log('data not found');
       res.status(404).json({ message : 'Data not found' })
     }else{
-
       if(Array.isArray(req.body.bedRooms)){
         if(req.body.bedRooms && req.body.bedRooms.length >= 0){
           req.body.bedRooms = req.body.bedRooms.map((room) => {
@@ -130,15 +129,18 @@ exports.updateRetreat = function(req,res){
         req.body.bedRooms.push(room)
       }
 
-      let imgArray = [];
-
-      if(req.files && req.files.length >= 0){
-        req.files.map((image) => {
-          image._id = mongoose.Types.ObjectId();
-          uploadImage(image)
-          return imgArray.push(image.originalname)
+      // get newImage, place it into retreats.retreatimages at
+      // correct position and remove image from that position
+      if(req.file){
+        var image = req.file;
+        image._id = mongoose.Types.ObjectId();
+        uploadImage(image)
+        retreat.retreatImages.splice(req.body.imageIndex, 1, {
+          name : image.originalname,
+          index : req.body.imageIndex,
+          _id : image.id
         });
-      }
+      };
 
       retreat.name = req.body.name;
       retreat.dateStart = req.body.dateStart;
@@ -152,7 +154,6 @@ exports.updateRetreat = function(req,res){
       retreat.bookingUrl = req.body.bookingUrl;
       retreat.whatsIncluded = req.body.whatsIncluded;
       retreat.bedRooms = req.body.bedRooms;
-      retreat.retreatImages = imgArray;
 
       if(retreat.whatsIncluded.length > 0){
         retreat.whatsIncluded = retreat.whatsIncluded[0].split(',')
@@ -162,6 +163,7 @@ exports.updateRetreat = function(req,res){
         res.status(200).json({ message : 'Update successful' })
       })
       .catch(function(err){
+        console.log("ERROR", err);
         res.status(400).json({ message : 'Update unsuccessful' })
       });
     }

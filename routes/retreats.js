@@ -6,6 +6,8 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
+    // console.log('REQ : ', req.body);
+    // console.log('FILE : ', file);
     cb(null, './uploads/');
   },
   filename: function(req, file, cb) {
@@ -26,7 +28,7 @@ router.get('/:id', retreatController.showRetreat);
 
 router.post('/addRetreat', upload.array('retreatImages', 10), checkAuth, retreatController.addRetreat);
 
-router.post('/update/:id', upload.array('retreatImages', 10), checkAuth, retreatController.updateRetreat);
+router.post('/update/:id', upload.single('newImage'), checkAuth, retreatController.updateRetreat);
 
 router.delete('/delete/:id', checkAuth, retreatController.deleteRetreat);
 
