@@ -13,7 +13,7 @@ export const Contact = (props) => {
       </div>
       <div className="page-container" style={{ 'textAlign': 'center' }}>
         <h3 className="page-heading">Contact</h3>
-        <p>For any enquiries please contact me at: <a href="mailto:emthomsonyoga@gmail.com">emthomsonyoga@gmail.com</a>.</p>
+        <p>For any enquiries or to join my mailing list email me at: <a href="mailto:emthomsonyoga@gmail.com">emthomsonyoga@gmail.com</a>.</p>
         <p>Or check out my social media!</p>
         <div>
           <span className="social-media-icons"><SocialIcon url="http://facebook.com/emthomsonyoga"></SocialIcon></span>
