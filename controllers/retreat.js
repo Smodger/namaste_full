@@ -131,7 +131,7 @@ exports.updateRetreat = function(req,res){
 
       // get newImage, place it into retreats.retreatimages at
       // correct position and remove image from that position
-      if(req.file){
+      if(req.file && req.body.imageIndex){
         var image = req.file;
         image._id = mongoose.Types.ObjectId();
         uploadImage(image)

@@ -15,6 +15,15 @@ export default class EditRetreat extends Component {
   }
 
   handleStoreImageIndex = (image) => {
+    let index = null;
+
+    if(!image || Object.entries(image).length <= 0){
+      //find empty object in array
+      index = this.props.images.findIndex((i) => !Object.keys(i).length);
+      image.index = index;
+      image.name = "default"+index;
+    }
+
     this.props.storeImageIndex(image);
     this.setState({
       showInput : true

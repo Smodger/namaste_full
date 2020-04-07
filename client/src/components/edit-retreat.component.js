@@ -242,14 +242,6 @@ export default class EditRetreat extends Component {
       formData.append('bedRooms', JSON.stringify(this.state.bedRooms[i]))
     };
 
-    // for (var j = 0; j < this.state.retreatImages.length; j++) {
-    //   formData.append(
-    //     'retreatImages',
-    //     this.state.retreatImages[j],
-    //     this.state.retreatImages[j].name
-    //   )
-    // };
-
     const token = localStorage.getItem('jwtToken');
 
     // set headers to pass as final argument in axios post
@@ -360,40 +352,8 @@ export default class EditRetreat extends Component {
                 </div>
 
                 <div className="separator-long"></div>
-                <p><strong>WHEN EDITING YOU MUST RE-ADD ALL IMAGES</strong></p>
+                <p><strong>CLICK IMAGE YOU WANT TO REPLACE, SCROLL TO BOTTOM OF SCREEN AND THERE IS A FILE UPLOAD BUTTON. UPLOAD FILE AND CLICK UPDATE RETREAT</strong></p>
                 <div className="separator-long"></div>
-
-                <p><strong>First image is the image that will be shown on mobile phones</strong></p>
-
-                <div className="form-group">
-                  <label>Upload Footer Images:</label>
-                   <input type="file" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                   <input type="file" position="1" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                   <input type="file" position="2" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                </div>
-
-                <p><strong>First image is the image that will be shown on mobile phones</strong></p>
-
-                <div className="form-group">
-                  <label>Upload Food Images:</label>
-                  <input type="file" position="3" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                  <input type="file" position="4" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                  <input type="file" position="5" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                </div>
-
-                <div className="form-group">
-                  <label>Upload Landscape Images:</label>
-                  <input type="file" position="6" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                </div>
-
-                <p><strong>First image is the image that will be shown on mobile phones</strong></p>
-
-                <div className="form-group">
-                  <label>Upload Accommodation Images:</label>
-                  <input type="file" position="7" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                  <input type="file" position="8" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                  <input type="file" position="9" name="retreatImages" className="block" onChange={this.updateRetreatImage}/>
-                </div>
 
                 <EditImages storeImageIndex={(img) => this.storeImageIndex(img)} onChangeImg={(e) => this.onChangeImg(e)} images={this.state.retreatImages}></EditImages>
 
