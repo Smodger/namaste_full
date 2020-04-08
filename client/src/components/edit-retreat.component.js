@@ -136,16 +136,6 @@ export default class EditRetreat extends Component {
     })
   }
 
-  // updateRetreatImage(event){
-  //   console.log('event', event.target.files[0]);
-  //   const newImage = [...this.state.retreatImages];
-  //   newImage.push(event.target.files[0]);
-  //
-  //   this.setState({
-  //     retreatImages : newImage
-  //   })
-  // }
-
   // function to store image in state
   storeImageIndex(image){
     this.setState({
@@ -154,7 +144,6 @@ export default class EditRetreat extends Component {
   }
 
   onChangeImg(event){
-    console.log('e', event.target.files[0]);
     this.setState({newImage : event.target.files[0]});
   }
 
@@ -269,7 +258,6 @@ export default class EditRetreat extends Component {
     const mdConfig = {
       hideIcons : ['image', 'link', 'table']
     }
-    console.log('retreat', this.state);
 
     if(this.state.retreatImages.length <= 0 ){
       return <h4>Loading...</h4>
