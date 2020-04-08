@@ -178,11 +178,11 @@ export default class LessonList extends Component {
           <table className="table boarderless" style={{ marginTop : 20 }}>
             <thead>
               <tr>
-                <th>Day</th>
-                <th>Time</th>
-                <th>Location</th>
-                <th>Style</th>
-                <th></th>
+                <th className="border-bottom-0">Day</th>
+                <th className="border-bottom-0">Time</th>
+                <th className="border-bottom-0">Location</th>
+                <th className="border-bottom-0">Style</th>
+                <th className="border-bottom-0"></th>
               </tr>
             </thead>
             <tbody>

@@ -21,18 +21,18 @@ export default class EditRetreat extends Component {
       //find empty object in array
       index = this.props.images.findIndex((i) => !Object.keys(i).length);
       image.index = index;
-      image.name = "default"+index;
-    }
+      image.name = "default-"+index;
+    };
 
     this.props.storeImageIndex(image);
     this.setState({
       showInput : true
     })
-  }
+  };
 
   handleOnChangeImg = (event) => {
     this.props.onChangeImg(event)
-  }
+  };
 
   render(){
     return (
