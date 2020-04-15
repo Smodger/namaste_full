@@ -36,6 +36,7 @@ export default class RetreatOverview extends Component {
   }
 
   formatRetreatDates(){
+    console.log('retreat', this.state.retreat);
     if(this.state.retreat.dateStart){
       var formattedDateStart = moment(new Date(this.state.retreat.dateStart)).format("MMMM Do YYYY")
     }
