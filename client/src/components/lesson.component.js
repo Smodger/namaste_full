@@ -24,7 +24,7 @@ export default class Lesson extends Component {
     if(this.state.token){
       return(
         <td>
-          <Link to={"/editLesson/" + this.state.lesson._id}>Edit</Link>
+          <Link className="mr-1" to={"/editLesson/" + this.state.lesson._id}>Edit</Link>
           <button className="btn btn-danger" onClick={this.handleDeleteLesson}>Delete</button>
         </td>
       )
@@ -82,6 +82,8 @@ export default class Lesson extends Component {
   getStartTime() {
     if(this.state.lesson.startHour > 12) {
       return this.state.lesson.startHour - 12 + ":" + this.state.lesson.startMinutes + "pm"
+    }else if(this.state.lesson.startHour === 12) {
+      return this.state.lesson.startHour + ":" + this.state.lesson.startMinutes + "pm"
     }else {
       return this.state.lesson.startHour + ":" + this.state.lesson.startMinutes + "am"
     }
@@ -90,6 +92,8 @@ export default class Lesson extends Component {
   getEndTime() {
     if(this.state.lesson.endHour > 12) {
       return this.state.lesson.endHour - 12 + ":" + this.state.lesson.endMinutes + "pm"
+    }else if(this.state.lesson.endHour === 12) {
+      return this.state.lesson.endHour + ":" + this.state.lesson.endMinutes + "pm"
     }else {
       return this.state.lesson.endHour + ":" + this.state.lesson.endMinutes + "am"
     }
