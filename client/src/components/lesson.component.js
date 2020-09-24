@@ -79,19 +79,19 @@ export default class Lesson extends Component {
     }
   }
 
-  getStartAmPm(){
-    if(this.state.lesson.startTimeOfDay){
-      return "pm"
+  getStartTime() {
+    if(this.state.lesson.startHour > 12) {
+      return this.state.lesson.startHour - 12 + ":" + this.state.lesson.startMinutes + "pm"
     }else {
-      return "am"
+      return this.state.lesson.startHour + ":" + this.state.lesson.startMinutes + "am"
     }
   }
 
-  getEndAmPm(){
-    if(this.state.lesson.endTimeOfDay){
-      return "pm"
+  getEndTime() {
+    if(this.state.lesson.endHour > 12) {
+      return this.state.lesson.endHour - 12 + ":" + this.state.lesson.endMinutes + "pm"
     }else {
-      return "am"
+      return this.state.lesson.endHour + ":" + this.state.lesson.endMinutes + "am"
     }
   }
 
@@ -100,7 +100,7 @@ export default class Lesson extends Component {
       <tr>
         {this.dayHeader()}
         <td>
-          {this.state.lesson.startHour}:{this.state.lesson.startMinutes}{this.getStartAmPm()} - {this.state.lesson.endHour}:{this.state.lesson.endMinutes}{this.getEndAmPm()}
+          {this.getStartTime()} - {this.getEndTime()}
         </td>
         <td><a className="hover-pink" href={this.getCorrectLink()} target="_blank" rel="noopener noreferrer">{this.state.lesson.location}</a></td>
         <td>{this.state.lesson.yogaStyle}</td>

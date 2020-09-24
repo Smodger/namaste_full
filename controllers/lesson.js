@@ -42,24 +42,6 @@ exports.createLesson = function(req, res){
     return res.status(400).json({ message : "Invalid entry: Must be a day of the week"})
   }
 
-  if(newLesson.startHour > 12){
-    newLesson.startTimeOfDay = true;
-    newLesson.startHour = newLesson.startHour - 12;
-  }else if(newLesson.startHour === 12){
-    newLesson.startTimeOfDay = true;
-  }else{
-    newLesson.startTimeOfDay = false;
-  }
-
-  if(newLesson.endHour > 12){
-    newLesson.endTimeOfDay = true;
-    newLesson.endHour = newLesson.endHour - 12;
-  }else if(newLesson.startHour === 12){
-    newLesson.endTimeOfDay = true;
-  }else{
-    newLesson.endTimeOfDay = false;
-  }
-
   newLesson.save()
     .then(function(newLesson){
       res.status(200).json({ message : 'Lesson added successfully'});

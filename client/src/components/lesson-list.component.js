@@ -47,18 +47,14 @@ export default class LessonList extends Component {
 
 
   mondayClasses(){
+    console.log('state', this.state);
     var monday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Monday'
     })
-    //sort by start hour to put earlier classes higher up the list
-    // monday.sort(function(a,b){
-    //   return a.startHour - b.startHour
-    // })
 
-    monday.sort(
-      firstBy(function(a,b){ return a.startTimeOfDay - b.startTimeOfDay })
-      .thenBy(function(x,y){ return x.startHour - y.startHour })
-    )
+    monday.sort((a,b) => {
+      return a.startHour - b.startHour
+    })
 
     return monday.map(function(data, i){
       let iteration = i;
