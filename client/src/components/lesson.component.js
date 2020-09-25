@@ -103,7 +103,7 @@ export default class Lesson extends Component {
     return (
       <tr>
         {this.dayHeader()}
-        <td>
+        <td style={{whitespace: "nowrap"}}>
           {this.getStartTime()} - {this.getEndTime()}
         </td>
         <td><a className="hover-pink" href={this.getCorrectLink()} target="_blank" rel="noopener noreferrer">{this.state.lesson.location}</a></td>
