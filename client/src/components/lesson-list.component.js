@@ -191,6 +191,9 @@ export default class LessonList extends Component {
               { this.sundayClasses() }
             </tbody>
           </table>
+          <div className="row mt-5">
+              <p className="mx-auto">Recorded zoom sessions available for viewing at your own leisure, priced at £5. Please email me to request one.</p>
+          </div>
         </div>
         <Images page="lessons"></Images>
 
