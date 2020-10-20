@@ -113,13 +113,10 @@ export default class showRetreat extends Component {
           </div>
 
           <div className="shavasana">
-            <h6 className="retreat-heading">How to get there</h6>
-            <p className="instruction-header">By car:</p>
-            <p style={{"marginLeft" : 15}}><Markdown source={this.props.retreat.byCar} /></p>
-            <p className="instruction-header">Public transport:</p>
-            <p style={{"marginLeft" : 15}}><Markdown source={this.props.retreat.byTrain} /></p>
+            <img className="retreat-image" src={this.props.s3url + this.props.retreat.retreatImages[10].name} alt="Images of accommodation"></img>
+            <img className="retreat-image mobile-hide" src={this.props.s3url + this.props.retreat.retreatImages[11].name} alt="Images of accommodation"></img>
+            <img className="retreat-image mobile-hide" src={this.props.s3url + this.props.retreat.retreatImages[12].name} alt="Images of accommodation"></img>
           </div>
-
 
           <div className="shavasana">
             <h6 className="retreat-heading">Accommodation</h6>
@@ -132,6 +129,15 @@ export default class showRetreat extends Component {
             <img className="retreat-image mobile-hide" src={this.props.s3url + this.props.retreat.retreatImages[8].name} alt="Images of accommodation"></img>
             <img className="retreat-image mobile-hide" src={this.props.s3url + this.props.retreat.retreatImages[9].name} alt="Images of accommodation"></img>
           </div>
+
+          <div className="shavasana">
+            <h6 className="retreat-heading">How to get there</h6>
+            <p className="instruction-header">By car:</p>
+            <p style={{"marginLeft" : 15}}><Markdown source={this.props.retreat.byCar} /></p>
+            <p className="instruction-header">Public transport:</p>
+            <p style={{"marginLeft" : 15}}><Markdown source={this.props.retreat.byTrain} /></p>
+          </div>
+
 
           <div className="shavasana">
             <h6 className="retreat-heading">Food Options</h6>

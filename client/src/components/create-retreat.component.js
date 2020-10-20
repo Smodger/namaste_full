@@ -223,7 +223,6 @@ export default class CreateRetreat extends Component {
       headers : headers
     })
       .then(res => {
-        console.log(res.data)
         const response = res.data
         return response
       })
@@ -360,6 +359,15 @@ export default class CreateRetreat extends Component {
                 <input type="file" position="7" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
                 <input type="file" position="8" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
                 <input type="file" position="9" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+              </div>
+
+              <p><strong>First image is the image that will be shown on mobile phones</strong></p>
+
+              <div className="form-group">
+                <label>Upload Retreat Images:</label>
+                <input type="file" position="10" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                <input type="file" position="11" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                <input type="file" position="12" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
               </div>
               {this.showPopUp()}
               <div className="form-group">

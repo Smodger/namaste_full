@@ -79,7 +79,6 @@ exports.addRetreat = function(req, res, next){
   if(newRetreat.whatsIncluded.length > 0){
     newRetreat.whatsIncluded = newRetreat.whatsIncluded[0].split(',')
   }
-  console.log("DATES", newRetreat.dateStart, newRetreat.dateEnd);
 
   newRetreat.save()
     .then(function(newRetreat){
