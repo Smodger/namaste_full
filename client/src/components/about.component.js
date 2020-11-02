@@ -20,7 +20,7 @@ export const About = (props) => {
 
         <p style={{"marignTop":25, "textAlign" : 'center'}}>Em initially trained at Sampoorna Yoga in South Goa, India, and has since returned for internships to further her training and practice, as well as teaching on the YTT course itself. She has also attended many workshops in anatomy, has completed specific trainings in yoga for beginners and yoga for seniors, and completed her 500 hour advanced teacher training with Jason Crandell in London.</p>
 
-        <p style={{"marginTop":25, "textAlign" : 'center'}}>In terms of style, Em is primarily trained in vinyasa and ashtanga, with a precise physical and functional approach to yoga. She pays close attention to detailed alignment and muscular engagement, whilst still maintaining creativity within her sequences. Her classes usually feature strong flows, with a fun energetic vibe and encouraging atmosphere. Don&#39;t be surprised to end up facing different directions on the mat, and expect a fair amount of sweat.</p>
+        <p style={{"marginTop":25, "textAlign" : 'center'}}>In terms of style, Em is primarily trained in vinyasa and ashtanga, with a precise physical and functional approach to yoga. She pays close attention to detailed alignment and muscular engagement, whilst still maintaining creativity within her sequences. Her classes usually feature strong flows, with a fun energetic vibe and encouraging atmosphere.</p>
 
         <p style={{"marginTop":25, "textAlign" : 'center'}}>On rare occasions there&#39;s a potential shoulder massage up for grabs whilst gentle trumpets serenade you in svasana. And if you hear folk music coming from the studio it&#39;s probably her class. </p>
 
