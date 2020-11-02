@@ -40,9 +40,9 @@ class App extends Component {
 
     return (
       <div>
-        
+
         <Helmet>
-          <title>Emily Yoga</title>
+          <title>Em Thomson Yoga</title>
           <meta name="description" content="Yoga teacher based in South London available for private hire. Also teaches classes in Battersea and Tooting" />
         </Helmet>
 
