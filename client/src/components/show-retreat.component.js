@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Markdown from 'react-markdown';
-import AWS from 'aws-sdk';
 import moment from 'moment'
 
 export default class showRetreat extends Component {

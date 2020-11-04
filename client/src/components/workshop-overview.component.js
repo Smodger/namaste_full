@@ -1,7 +1,5 @@
 import React , { Component } from 'react';
-import moment from 'moment';
 
-import { s3env } from '../config';
 import workshopFooter from '../images/workshopFooter.jpg'
 
 export default class WorkshopOverview extends Component {

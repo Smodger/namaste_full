@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import SimpleMDE from 'react-simplemde-editor';
 import "simplemde/dist/simplemde.min.css";
-import moment from 'moment';
 
 import Bedroom from './bedroom.component';
 import PopUp from './popup.component';

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, HashRouter } from 'react-router-dom';
+import React from 'react';
+import { Link, HashRouter } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const MobileMenu = (props) => {

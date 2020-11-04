@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, HashRouter } from 'react-router-dom';
+import { Route, Link, HashRouter } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import CreateLesson from './create-lesson.component';
