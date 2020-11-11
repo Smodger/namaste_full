@@ -42,8 +42,9 @@ class App extends Component {
       <div>
 
         <Helmet>
-          <title>Em Thomson Yoga</title>
+          <title>Em Thomson Yoga - Tooting & Battersea</title>
           <meta name="description" content="Yoga teacher based in South London available for private hire. Also teaches classes in Battersea and Tooting" />
+          <meta name="keywords" content="yoga at tooting lido, yoga tooting bec, yoga tooting broadway, yoga tooting bec lido, yoga classes tooting broadway, yoga studio tooting bec, yoga classes tooting bec, yoga tooting common, yoga classes tooting, yoga classes tooting bec, yoga classes tooting leisure centre, yoga centre tooting, yoga tooting leisure centre, cheap yoga tooting, tooting gym yoga"></meta>
         </Helmet>
 
         <Header menuClickHandler={this.menuClickHandler} />
