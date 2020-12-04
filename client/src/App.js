@@ -42,8 +42,8 @@ class App extends Component {
       <div>
 
         <Helmet>
-          <title>Best yoga class Tooting, Balham, Battersea: Em Thomson Yoga : London teacher </title>
-          <meta name="description" content="Looking for a top yoga class, at affordable rates? Great classes overlooking Tooting Bec Lido. South London teacher - Beginners to Advanced" />
+          <title>Em Thomson: South London Yoga Teacher, Best Tooting Classes</title>
+          <meta name="description" content="Experienced teacher, weekly classes at Tooting Lido, Battersea and Balham, also available for private/corporate hire." />
           <meta name="keywords" content="yoga at tooting lido, yoga tooting bec, yoga tooting broadway, yoga tooting bec lido, yoga classes tooting broadway, yoga studio tooting bec, yoga classes tooting bec, yoga tooting common, yoga classes tooting, yoga classes tooting bec, yoga classes tooting leisure centre, yoga centre tooting, yoga tooting leisure centre, cheap yoga tooting, tooting gym yoga"></meta>
         </Helmet>
 
