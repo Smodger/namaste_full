@@ -2,8 +2,6 @@ import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { Images } from './images.component';
 
-import { s3env } from '../config';
-
 export const About = (props) => {
   return(
     <div>

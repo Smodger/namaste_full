@@ -47,7 +47,6 @@ export default class LessonList extends Component {
 
 
   mondayClasses(){
-    console.log('state', this.state);
     var monday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Monday'
     })

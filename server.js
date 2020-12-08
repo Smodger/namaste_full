@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
 const { Helmet } = require('react-helmet');
+const ReactDOMServer = require('react-dom/server');
 const clientApp = require('./client/src/App');
 
 const lessonRoutes = require('./routes/lessons.js');
@@ -21,7 +22,7 @@ const userSchema = require('./models/User.js');
 
 app.use(cors());
 
-// hide express (even though on github I state it's mern stack)
+// hide express (even though on github I state it's mern stack!)
 app.disable('x-powered-by')
 
 app.use(bodyParser.json());
@@ -54,15 +55,22 @@ app.use('/user', userRoutes)
 app.use(express.static(path.resolve("client/build")));
 
 app.get('*', (req,res) => {
-  res.sendFile(path.resolve(__dirname, 'client', "build", "index.html"))
-});
-
-app.get('/*', (req,res) => {
-  const appStr = renderToString(clientApp);
+  const appStr = ReactDOMServer.renderToStaticNodeStream(JSON.stringify(clientApp));
   const helmet = Helmet.renderStatic();
 
   res.send(formatHTML(appStr, helmet));
+  res.sendFile(path.resolve(__dirname, 'client', "build", "index.html"))
 });
+
+// app.get('/*', (req,res) => {
+//   console.log('in');
+//   // const appStr = renderToString(clientApp);
+//   const appStr = ReactDOMServer.renderToStaticNodeStream(clientApp);
+//
+//   const helmet = Helmet.renderStatic();
+//
+//   res.send(formatHTML(appStr, helmet));
+// });
 
 function formatHTML(appStr, helmet) {
   return `
