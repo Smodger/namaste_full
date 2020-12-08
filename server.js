@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
+const compression = require('compression');
 const { Helmet } = require('react-helmet');
 const ReactDOMServer = require('react-dom/server');
 const clientApp = require('./client/src/App');
@@ -45,6 +46,9 @@ if(process.env.NODE_ENV === 'production'){
   });
 }
 
+// Compress all HTTP responses
+app.use(compression());
+
 app.use('/uploads', express.static('uploads'));
 
 app.use('/lessons', lessonRoutes)
@@ -55,22 +59,18 @@ app.use('/user', userRoutes)
 app.use(express.static(path.resolve("client/build")));
 
 app.get('*', (req,res) => {
+  // const appStr = renderToString(clientApp);
   const appStr = ReactDOMServer.renderToStaticNodeStream(JSON.stringify(clientApp));
   const helmet = Helmet.renderStatic();
 
   res.send(formatHTML(appStr, helmet));
+});
+
+app.get('*', (req,res) => {
   res.sendFile(path.resolve(__dirname, 'client', "build", "index.html"))
 });
 
-// app.get('/*', (req,res) => {
-//   console.log('in');
-//   // const appStr = renderToString(clientApp);
-//   const appStr = ReactDOMServer.renderToStaticNodeStream(clientApp);
-//
-//   const helmet = Helmet.renderStatic();
-//
-//   res.send(formatHTML(appStr, helmet));
-// });
+
 
 function formatHTML(appStr, helmet) {
   return `
