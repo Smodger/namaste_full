@@ -46,6 +46,34 @@ if(process.env.NODE_ENV === 'production'){
   });
 }
 
+// Compress all HTTP responses
+app.use(compression());
+
+app.use('/uploads', express.static('uploads'));
+
+app.use('/lessons', lessonRoutes)
+app.use('/retreats', retreatRoutes)
+app.use('/workshops', workshopRoutes)
+app.use('/user', userRoutes)
+
+app.use(express.static(path.resolve("client/build")));
+
+// app.get('*', (req,res) => {
+//   // const appStr = renderToString(clientApp);
+//   const appStr = ReactDOMServer.renderToStaticNodeStream(JSON.stringify(clientApp));
+//   const helmet = Helmet.renderStatic();
+//
+//   res.send(formatHTML(appStr, helmet));
+// });
+
+app.get('*', (req,res) => {
+  const appStr = ReactDOMServer.renderToStaticNodeStream(JSON.stringify(clientApp));
+  const helmet = Helmet.renderStatic();
+
+  res.send(formatHTML(appStr, helmet));
+  res.sendFile(path.resolve(__dirname, 'client', "build", "index.html"))
+});
+
 function formatHTML(appStr, helmet) {
   return `
     <!DOCTYPE html>
@@ -63,32 +91,6 @@ function formatHTML(appStr, helmet) {
     </html>
   `
 }
-
-// Compress all HTTP responses
-app.use(compression());
-
-app.use('/uploads', express.static('uploads'));
-
-app.use('/lessons', lessonRoutes)
-app.use('/retreats', retreatRoutes)
-app.use('/workshops', workshopRoutes)
-app.use('/user', userRoutes)
-
-app.use(express.static(path.resolve("client/build")));
-
-app.get('*', (req,res) => {
-  // const appStr = renderToString(clientApp);
-  const appStr = ReactDOMServer.renderToStaticNodeStream(JSON.stringify(clientApp));
-  const helmet = Helmet.renderStatic();
-
-  res.send(formatHTML(appStr, helmet));
-});
-
-app.get('*', (req,res) => {
-  res.sendFile(path.resolve(__dirname, 'client', "build", "index.html"))
-});
-
-
 
 const PORT = process.env.PORT || 1234;
 
