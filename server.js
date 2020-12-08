@@ -46,6 +46,24 @@ if(process.env.NODE_ENV === 'production'){
   });
 }
 
+function formatHTML(appStr, helmet) {
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        ${helmet.title.toString()}
+        ${helmet.meta.toString()}
+      </head>
+      <body>
+        <div id="root">
+          ${ appStr }
+        </div>
+        <script src="./bundle.js"></script>
+      </body>
+    </html>
+  `
+}
+
 // Compress all HTTP responses
 app.use(compression());
 
@@ -71,24 +89,6 @@ app.get('*', (req,res) => {
 });
 
 
-
-function formatHTML(appStr, helmet) {
-  return `
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        ${helmet.title.toString()}
-        ${helmet.meta.toString()}
-      </head>
-      <body>
-        <div id="root">
-          ${ appStr }
-        </div>
-        <script src="./bundle.js"></script>
-      </body>
-    </html>
-  `
-}
 
 const PORT = process.env.PORT || 1234;
 
