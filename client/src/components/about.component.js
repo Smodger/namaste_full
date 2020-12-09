@@ -1,11 +1,16 @@
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { Images } from './images.component';
+import { s3env } from '../config';
+
 
 export const About = (props) => {
+  const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
+  const heroImg = urlPrefix + "about-hero.jpg";
+
   return(
     <div>
-      <div className="animated fadeIn delay-1s hero-info-img-about">
+      <div className="animated fadeIn delay-1s hero-info-img-about" style={{"backgroundImage": `url(${heroImg})`}}>
         <div className="hero-landing-text-container">
           <p className="hero-img-text">Em Thomson</p>
           <p className="hero-img-subtext">Yoga teacher</p>

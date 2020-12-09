@@ -74,10 +74,13 @@ export default class ListWorkshops extends Component {
       return <h2>Loading...</h2>
     }
 
+    const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
+    const heroImg = urlPrefix + "workshopHeader.jpg";
+
     if(!this.state.showWorkshopDetails && !this.state.loading){
       return (
         <div>
-          <div className="animated fadeIn delay-1s hero-info-img-workshop">
+          <div className="animated fadeIn delay-1s hero-info-img-workshop" style={{"backgroundImage": `url(${heroImg})`}}>
             <div className="hero-landing-text-container">
               <p className="hero-img-text">Em Thomson</p>
               <p className="hero-img-subtext">Yoga teacher</p>

@@ -88,7 +88,6 @@ body {
 
 .hero-landing-img{
   height: 90vh;
-  background: url('./images/landing.jpeg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -102,7 +101,6 @@ body {
 
 .hero-info-img{
   height: 80vh;
-  background: url('./images/landing.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 100% 54%;
@@ -111,7 +109,6 @@ body {
 
 .hero-info-img-about{
   height: 80vh;
-  background: url('./images/about-hero.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 100% 54%;
@@ -120,7 +117,6 @@ body {
 
 .hero-info-img-classes{
   height: 80vh;
-  background: url('./images/classes-hero.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 100% 25%;
@@ -129,7 +125,6 @@ body {
 
 .hero-info-img-contact{
   height: 80vh;
-  background: url('./images/contact-hero.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 100% 54%;
@@ -138,7 +133,6 @@ body {
 
 .hero-info-img-retreat{
   height: 80vh;
-  background: url('./images/retreat-hero.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 100% 40%;
@@ -147,7 +141,6 @@ body {
 
 .hero-info-img-workshop{
   height: 80vh;
-  background: url('./images/workshopHeader.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 100% 40%;

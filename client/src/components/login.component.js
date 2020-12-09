@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import { s3env } from '../config';
 
 export default class Signup extends Component {
   constructor(props){
@@ -45,9 +46,13 @@ export default class Signup extends Component {
   }
 
   render(){
+
+    const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
+    const heroImg = urlPrefix + "landing.jpeg";
+
     return (
       <div>
-        <div className="hero-info-img">
+        <div className="hero-info-img" style={{"backgroundImage": `url(${heroImg})`}}>
           <div className="hero-info-overlay"></div>
           <div className="hero-landing-text-container">
             <p className="hero-img-text">Em Thomson</p>

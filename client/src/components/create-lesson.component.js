@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { s3env } from '../config';
 
 import PopUp from './popup.component';
 
@@ -142,9 +143,11 @@ export default class CreateLesson extends Component {
   }
 
   render(){
+    const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
+    const heroImg = urlPrefix + "classes-hero.jpg";
     return (
       <div>
-        <div className="animated fadeIn delay-1s hero-info-img-classes">
+        <div className="animated fadeIn delay-1s hero-info-img-classes" style={{"backgroundImage": `url(${heroImg})`}}>
           <div className="hero-landing-text-container">
             <p className="hero-img-text">Em Thomson</p>
             <p className="hero-img-subtext">Yoga teacher</p>

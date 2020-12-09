@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
-
-import lidoYoga from '../images/lidoYoga.jpg';
-import battersea from '../images/battersea.jpg';
-import revive from '../images/revive.jpg';
-import aboutOne from '../images/about-one.jpg';
-import aboutTwo from '../images/about-two.jpeg';
-import aboutThree from '../images/about-three.jpeg';
-import contactOne from '../images/contactOne.jpeg';
-import contactTwo from '../images/contactTwo.jpg';
-import contactThree from '../images/contactThree.jpg';
+import { s3env } from '../config';
 
 export const Images = (props) => {
+
+  const lidoYoga = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/lidoYoga.jpg';
+  const battersea = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/battersea.jpg';
+  const revive = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/revive.jpg';
+  const aboutOne = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/about-one.jpg';
+  const aboutTwo = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/about-two.jpeg';
+  const aboutThree = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/about-three.jpeg';
+  const contactOne = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/contactOne.jpeg';
+  const contactTwo = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/contactTwo.jpg';
+  const contactThree = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/contactThree.jpg';
 
   if(props.page === "lessons"){
     return (

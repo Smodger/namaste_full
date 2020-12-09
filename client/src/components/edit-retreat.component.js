@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import SimpleMDE from 'react-simplemde-editor';
 import "simplemde/dist/simplemde.min.css";
+import { s3env } from '../config';
 
 import Bedroom from './bedroom.component';
 import PopUp from './popup.component';
@@ -258,12 +259,15 @@ export default class EditRetreat extends Component {
       hideIcons : ['image', 'link', 'table']
     }
 
+    const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
+    const heroImg = urlPrefix + "retreat-hero.png";
+
     if(this.state.retreatImages.length <= 0 ){
       return <h4>Loading...</h4>
     }else{
       return (
         <div>
-          <div className="animated fadeIn delay-1s hero-info-img-retreat">
+          <div className="animated fadeIn delay-1s hero-info-img-retreat" style={{"backgroundImage": `url(${heroImg})`}}>
             <div className="hero-landing-text-container">
               <p className="hero-img-text">Em Thomson</p>
               <p className="hero-img-subtext">Yoga teacher</p>

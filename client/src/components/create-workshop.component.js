@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import SimpleMDE from 'react-simplemde-editor';
 import "simplemde/dist/simplemde.min.css";
+import { s3env } from '../config';
 
 import PopUp from './popup.component';
 
@@ -132,7 +133,6 @@ export default class CreateWorkshop extends Component {
       headers : headers
     })
     .then(res => {
-      console.log('data', res.data);
       const response = res.data;
       return response
     })
@@ -158,9 +158,12 @@ export default class CreateWorkshop extends Component {
       hideIcons : ['image', 'link', 'table']
     }
 
+    const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
+    const heroImg = urlPrefix + "workshopHeader.jpg";
+
     return(
       <div>
-        <div className="animated fadeIn delay-1s hero-info-img-retreat">
+        <div className="animated fadeIn delay-1s hero-info-img-retreat" style={{"backgroundImage": `url(${heroImg})`}}>
           <div className="hero-landing-text-container">
             <p className="hero-img-text">Em Thomson</p>
             <p className="hero-img-subtext">Yoga teacher</p>

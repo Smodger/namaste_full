@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { firstBy } from 'thenby';
+import { s3env } from '../config';
 
 import Lesson from './lesson.component'
 import {Images} from './images.component'
@@ -158,10 +159,13 @@ export default class LessonList extends Component {
   }
 
   render(){
+    const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
+    const heroImg = urlPrefix + "classes-hero.jpg";
+
     return (
       <div>
         <div>
-          <div className="animated fadeIn delay-1s hero-info-img-classes">
+          <div className="animated fadeIn delay-1s hero-info-img-classes" style={{"backgroundImage": `url(${heroImg})`}}>
             <div className="hero-landing-text-container">
               <p className="hero-img-text">Em Thomson</p>
               <p className="hero-img-subtext">Yoga teacher</p>

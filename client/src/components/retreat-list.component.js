@@ -75,6 +75,9 @@ export default class ListRetreats extends Component {
 
   render(){
 
+    const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
+    const heroImg = urlPrefix + "retreat-hero.png";
+
     if(this.state.loading){
       return <h2>Loading...</h2>
     }
@@ -82,7 +85,7 @@ export default class ListRetreats extends Component {
     if(!this.state.showRetreatDetails && !this.state.loading){
       return (
         <div>
-          <div className="animated fadeIn delay-1s hero-info-img-retreat">
+          <div className="animated fadeIn delay-1s hero-info-img-retreat" style={{"backgroundImage": `url(${heroImg})`}}>
             <div className="hero-landing-text-container">
               <p className="hero-img-text">Em Thomson</p>
               <p className="hero-img-subtext">Yoga teacher</p>
@@ -99,7 +102,7 @@ export default class ListRetreats extends Component {
     if(this.state.showRetreatDetails && !this.state.loading){
       return (
         <div>
-          <div className="animated fadeIn delay-1s hero-info-img-retreat">
+          <div className="animated fadeIn delay-1s hero-info-img-retreat" style={{"backgroundImage": `url(${heroImg})`}}>
             <div className="hero-landing-text-container">
               <p className="hero-img-text">Emily Thomson</p>
               <p className="hero-img-subtext">Yoga teacher</p>
