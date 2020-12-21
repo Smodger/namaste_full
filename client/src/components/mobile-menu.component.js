@@ -3,7 +3,7 @@ import { Link, HashRouter } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const MobileMenu = (props) => {
-
+  console.log('mobilemenu component');
   let sidebarClasses = ['sidebar'];
 
   if(props.show){

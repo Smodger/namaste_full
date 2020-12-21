@@ -86,11 +86,9 @@ export default class ListWorkshops extends Component {
               <p className="hero-img-subtext">Yoga teacher</p>
             </div>
           </div>
-          <div className="all-workshop-container">
+          <div>
             <h3 className="page-heading">Yoga workshops</h3>
-            <div style={{ "display" : "block" }}>
-              { this.listWorkshops() }
-            </div>
+            { this.listWorkshops() }
           </div>
         </div>
       )

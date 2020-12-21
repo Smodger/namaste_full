@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.35c1fc80.chunk.css",
-    "main.js": "/static/js/main.52fb638e.chunk.js",
-    "main.js.map": "/static/js/main.52fb638e.chunk.js.map",
+    "main.css": "/static/css/main.ec31aa3c.chunk.css",
+    "main.js": "/static/js/main.e5ce346a.chunk.js",
+    "main.js.map": "/static/js/main.e5ce346a.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
     "static/css/2.a7e90457.chunk.css": "/static/css/2.a7e90457.chunk.css",
     "static/js/2.d1f99649.chunk.js": "/static/js/2.d1f99649.chunk.js",
     "static/js/2.d1f99649.chunk.js.map": "/static/js/2.d1f99649.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.4b2fbc2b3bc588b48b4b5777b4551424.js": "/precache-manifest.4b2fbc2b3bc588b48b4b5777b4551424.js",
+    "precache-manifest.ceae68df7af3f650a95b0b968560ed2a.js": "/precache-manifest.ceae68df7af3f650a95b0b968560ed2a.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.a7e90457.chunk.css.map": "/static/css/2.a7e90457.chunk.css.map",
-    "static/css/main.35c1fc80.chunk.css.map": "/static/css/main.35c1fc80.chunk.css.map",
+    "static/css/main.ec31aa3c.chunk.css.map": "/static/css/main.ec31aa3c.chunk.css.map",
     "static/media/index.css": "/static/media/em-thomson-logo.d0644399.jpg",
     "static/media/workshopFooter.jpg": "/static/media/workshopFooter.d94f34ea.jpg",
     "static/media/yoga-retreat-stock.jpg": "/static/media/yoga-retreat-stock.916855ea.jpg"

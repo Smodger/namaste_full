@@ -66,7 +66,14 @@ export default class Lesson extends Component {
 
   dayHeader(){
     if(this.state.count === 0){
-      return <td>{this.state.lesson.dayOfTheWeek}</td>
+      let subStringDOW = this.state.lesson.dayOfTheWeek.slice(0,3);
+
+      return (
+        <td>
+          <p className="d-none d-md-block">{this.state.lesson.dayOfTheWeek}</p>
+          <p className="d-md-none d-xs-block">{subStringDOW}</p>
+        </td>
+      )
     }
     else {
       return <td></td>
@@ -75,7 +82,7 @@ export default class Lesson extends Component {
 
   showAdditionalInfo(){
     if(this.state.lesson.additionalInfo){
-      return <td className="lesson-info">{this.state.lesson.additionalInfo}</td>
+      return <td className="lesson-info d-none d-md-block">{this.state.lesson.additionalInfo}</td>
     }
   }
 

@@ -164,36 +164,36 @@ export default class LessonList extends Component {
 
     return (
       <div>
-        <div>
-          <div className="animated fadeIn delay-1s hero-info-img-classes" style={{"backgroundImage": `url(${heroImg})`}}>
-            <div className="hero-landing-text-container">
-              <p className="hero-img-text">Em Thomson</p>
-              <p className="hero-img-subtext">Yoga teacher</p>
-            </div>
+        <div className="animated fadeIn delay-1s hero-info-img-about" style={{"backgroundImage": `url(${heroImg})`}}>
+          <div className="hero-landing-text-container">
+            <p className="hero-img-text">Em Thomson</p>
+            <p className="hero-img-subtext">Yoga teacher</p>
           </div>
         </div>
-        <div className="page-container mobile-container">
+        <div className="page-container">
           <h3 className="page-heading">Class List</h3>
-          <table className="table boarderless" style={{ marginTop : 20 }}>
-            <thead>
-              <tr>
-                <th className="border-bottom-0 border-top-0">Day</th>
-                <th className="border-bottom-0 border-top-0">Time</th>
-                <th className="border-bottom-0 border-top-0">Location</th>
-                <th className="border-bottom-0 border-top-0">Style</th>
-                <th className="border-bottom-0 border-top-0"></th>
-              </tr>
-            </thead>
-            <tbody>
-              { this.mondayClasses() }
-              { this.tuesdayClasses() }
-              { this.wednesdayClasses() }
-              { this.thursdayClasses() }
-              { this.fridayClasses() }
-              { this.saturdayClasses() }
-              { this.sundayClasses() }
-            </tbody>
-          </table>
+          <div className="table-responsive-md">
+            <table className="table boarderless" style={{ marginTop : 20 }}>
+              <thead>
+                <tr>
+                  <th className="border-bottom-0 border-top-0">Day</th>
+                  <th className="border-bottom-0 border-top-0">Time</th>
+                  <th className="border-bottom-0 border-top-0">Location</th>
+                  <th className="border-bottom-0 border-top-0">Style</th>
+                  <th className="border-bottom-0 border-top-0"></th>
+                </tr>
+              </thead>
+              <tbody>
+                { this.mondayClasses() }
+                { this.tuesdayClasses() }
+                { this.wednesdayClasses() }
+                { this.thursdayClasses() }
+                { this.fridayClasses() }
+                { this.saturdayClasses() }
+                { this.sundayClasses() }
+              </tbody>
+            </table>
+          </div>
           <div className="row mt-5">
               <p className="mx-auto">Recorded zoom sessions available for viewing at your own leisure, priced at £5. Please email me to request one.</p>
           </div>
