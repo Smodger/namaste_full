@@ -19,14 +19,12 @@ class App extends Component {
   }
 
   menuClickHandler(){
-    console.log('menuClickHandlers');
     this.setState((prevState) => {
       return { sideBarOpen : !prevState.sideBarOpen }
     })
   }
 
   backdropClickHandler(){
-    console.log('backdropClickHandler');
     this.setState({
       sideBarOpen : false
     })
