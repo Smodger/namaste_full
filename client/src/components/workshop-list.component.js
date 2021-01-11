@@ -57,7 +57,11 @@ export default class ListWorkshops extends Component {
   listWorkshops(){
     if(this.state.workshops.length > 0){
       return this.state.workshops.map((workshop, i) => {
-        return <Workshop workshop={workshop} s3url={this.getS3Url()} key={i} onClick={(() => this.toggleView(workshop))}></Workshop>
+        return (
+          <div onClick={() => this.toggleView(workshop)}>
+            <Workshop workshop={workshop} s3url={this.getS3Url()} key={i}></Workshop>
+          </div>
+        )
       })
     }else{
       return <p style={{ 'marginTop' : 20, 'text-align' : 'center'}}>I currently don't have any workshops available for bookings, but check back again soon. I will be adding more in the near future.</p>
@@ -97,15 +101,13 @@ export default class ListWorkshops extends Component {
     if(this.state.showWorkshopDetails && !this.state.loading){
       return (
         <div>
-          <div className="animated fadeIn delay-1s hero-info-img-retreat">
+          <div className="animated fadeIn delay-1s hero-info-img-retreat" style={{"backgroundImage": `url(${heroImg})`}}>
             <div className="hero-landing-text-container">
               <p className="hero-img-text">Emily Thomson</p>
               <p className="hero-img-subtext">Yoga teacher</p>
             </div>
           </div>
-          <div>
             { this.workshopDetails() }
-          </div>
         </div>
       )
     }

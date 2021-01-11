@@ -5,7 +5,6 @@ import workshopFooter from '../images/workshopFooter.jpg'
 export default class WorkshopOverview extends Component {
   constructor(props){
     super(props)
-
     this.state = {
       workshop : props.workshop
     }
