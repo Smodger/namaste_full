@@ -82,7 +82,7 @@ export default class EditWorkshop extends Component {
 
   updateDescription = (event) => {
     this.setState({
-      description : event.target.value
+      description : event
     })
   }
 

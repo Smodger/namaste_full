@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Markdown from 'react-markdown';
 
 import workshopFooter from '../images/workshopFooter.jpg'
 
@@ -82,7 +83,7 @@ export default class ShowWorkshop extends Component {
         <p className="sub-heading">{this.props.workshop.startHour}:{this.props.workshop.startMins} - {this.props.workshop.endHour}:{this.props.workshop.endMins}</p>
 
         <p style={{"marginTop" : 25}}>{this.props.workshop.location}</p>
-        <p style={{"marginTop" : 15, "marginBottom" : 15}}>{this.props.workshop.description}</p>
+        <Markdown style={{"marginTop" : 15, "marginBottom" : 15}} source={this.props.workshop.description}></Markdown>
         {this.bookingLink()}
 
         {this.getWorkshopImage()}

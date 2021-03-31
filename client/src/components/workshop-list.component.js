@@ -58,7 +58,7 @@ export default class ListWorkshops extends Component {
     if(this.state.workshops.length > 0){
       return this.state.workshops.map((workshop, i) => {
         return (
-          <div onClick={() => this.toggleView(workshop)}>
+          <div onClick={() => this.toggleView(workshop)} key={i}>
             <Workshop workshop={workshop} s3url={this.getS3Url()} key={i}></Workshop>
           </div>
         )
