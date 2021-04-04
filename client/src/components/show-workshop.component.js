@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Markdown from 'react-markdown';
+import moment from 'moment';
 
 import workshopFooter from '../images/workshopFooter.jpg'
 
@@ -75,12 +76,21 @@ export default class ShowWorkshop extends Component {
     }
   }
 
+  getTime = () => {
+    const startTime = this.props.workshop.startHour + ":" + this.props.workshop.startMins;
+    const endTime = this.props.workshop.endHour + ":" + this.props.workshop.endHour;
+    console.log('s', moment(startTime, 'HH:mm').format('h:mm a'));
+    console.log('e', endTime);
+
+    return moment(startTime, 'HH:mm').format('h:mma') + " - " + moment(endTime, 'HH:mm').format('h:mma');
+  }
+
   render(){
     return (
       <div className="page-container">
         <h3 className="page-heading">{this.props.workshop.title}</h3>
         <p className="sub-heading">{this.props.workshop.date}</p>
-        <p className="sub-heading">{this.props.workshop.startHour}:{this.props.workshop.startMins} - {this.props.workshop.endHour}:{this.props.workshop.endMins}</p>
+        <p className="sub-heading">{this.getTime()}</p>
 
         <p style={{"marginTop" : 25}}>{this.props.workshop.location}</p>
         <Markdown style={{"marginTop" : 15, "marginBottom" : 15}} source={this.props.workshop.description}></Markdown>

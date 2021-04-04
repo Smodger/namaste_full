@@ -1,4 +1,5 @@
 import React , { Component } from 'react';
+import moment from 'moment';
 
 import workshopFooter from '../images/workshopFooter.jpg'
 
@@ -21,6 +22,13 @@ export default class WorkshopOverview extends Component {
       )
     }
   }
+  
+  getTime = () => {
+    const startTime = this.props.workshop.startHour + ":" + this.props.workshop.startMins;
+    const endTime = this.props.workshop.endHour + ":" + this.props.workshop.endHour;
+
+    return moment(startTime, 'HH:mm').format('h:mma') + " - " + moment(endTime, 'HH:mm').format('h:mma');
+  }
 
   render(){
     return (
@@ -35,7 +43,7 @@ export default class WorkshopOverview extends Component {
               <div className="col-md-6 col-xs-12 mt-1 mt-md-0" style={{ "paddingBottom" : 10 }}>
                 <p>{this.state.workshop.title}</p>
                 <p>{this.state.workshop.date}</p>
-                <p>{this.state.workshop.startHour}:{this.state.workshop.startMins} - {this.state.workshop.endHour}:{this.state.workshop.endMins}</p>
+                <p>{this.getTime()}</p>
                 <p>{this.state.workshop.location}</p>
               </div>
             </div>
