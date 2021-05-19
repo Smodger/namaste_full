@@ -179,7 +179,7 @@ export default class LessonList extends Component {
             <>
                 <div className="row mt-5">
                         <div className="col-12">
-                        <h4 style={{ textAlign : "center" }}>Upocming Tooting Bec lido classes</h4>
+                        <h4 style={{ textAlign : "center" }}>Upcoming Tooting Bec Lido Classes</h4>
                         <small>Please scroll through the table below and click to book.</small>
                         </div>
                     </div>

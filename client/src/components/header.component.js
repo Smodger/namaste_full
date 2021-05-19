@@ -29,7 +29,7 @@ export default class Header extends Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     const token = localStorage.hasOwnProperty('jwtToken');
     this.setState({
       token : token
@@ -40,10 +40,10 @@ export default class Header extends Component {
     if(this.state.token){
       return (
         <div className="d-none d-md-inline-block">
-          <Link to='/online-classes' className='navbar-brand d-none d-md-inline-block'>Online Library</Link>
-          <Link to='/create-retreat' className='navbar-brand d-none d-md-inline-block'>Create Retreat</Link>
-          <Link to='/create-lesson' className='navbar-brand d-none d-md-inline-block'>Create Lesson</Link>
-          <Link to='/create-workshop' className='navbar-brand d-none d-md-inline-block'>Create Workshop</Link>
+          <Link to='/online-classes' className='navbar-brand '>Online Library</Link>
+          <Link to='/create-retreat' className='navbar-brand '>Create Retreat</Link>
+          <Link to='/create-lesson' className='navbar-brand '>Create Lesson</Link>
+          <Link to='/create-workshop' className='navbar-brand '>Create Workshop</Link>
         </div>
       )
     }

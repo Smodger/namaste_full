@@ -30,7 +30,9 @@ const OnlineClasses = () => {
 
                 <p style={{"marginTop":25, "textAlign" : 'center'}}>You can purchase individual classes for £5, receiving a viewing link that will expire in 3 days, or choose a monthly subscription for £17 that gives you access to the entire library. Cancel your subscription at any time.</p>
 
-                <p style={{"marginTop":25, "textAlign" : 'center', marginBottom : 50}}>Feel free to message me on <a href="mailto:emthomsonyoga@gmail.com">emthomsonyoga@gmail.com</a> if you need help choosing what might suit you. </p>
+                <p style={{"marginTop":25, "textAlign" : 'center'}}>Feel free to message me on <a href="mailto:emthomsonyoga@gmail.com">emthomsonyoga@gmail.com</a> if you need help choosing what might suit you. </p>
+
+                <h4 style={{"marginTop": 50, "textAlign" : 'center', marginBottom : 50}}>Have a scroll through the collection below and click to view!</h4>
 
                 <iframe src="https://withribbon.com/video/plugin/4604"  allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" title="ribbon-snippet"
                 style={{
