@@ -14,9 +14,11 @@ export default class LessonList extends Component {
     this.deleteLesson = this.deleteLesson.bind(this);
 
     this.state = {
-      lessons : []
+      lessons : [],
+      token : null
     };
   }
+
 
   getLessons(){
     axios.get('/lessons')
@@ -30,6 +32,19 @@ export default class LessonList extends Component {
 
   componentDidMount(){
     this.getLessons();
+
+    const script = document.createElement("script");
+    script.src = "https://withribbon.com/v2.0/Em-Thomson-Yoga-1616589872561.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+  }
+
+  componentWillMount(){
+    const token = localStorage.hasOwnProperty('jwtToken')
+    this.setState({
+      token : token
+    })
   }
 
   deleteLesson(id){
@@ -158,48 +173,70 @@ export default class LessonList extends Component {
     }.bind(this))
   }
 
+  isLoggedIn() {
+      if(this.state.token){
+        return (
+            <>
+                <div className="row mt-5">
+                        <div className="col-12">
+                        <h4 style={{ textAlign : "center" }}>Upocming Tooting Bec lido classes</h4>
+                        <small>Please scroll through the table below and click to book.</small>
+                        </div>
+                    </div>
+                    <div className="row mt-3" style={{ marginBottom : 5+"rem" }}>
+                        <div id="ribbon-content" className="ribbon-box-styling" style={{ width : "100%", height: 300, overflow : "scroll" }}></div>
+                </div>
+            </>
+        )
+      }else {
+          return
+      }
+  }
+
   render(){
     const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
     const heroImg = urlPrefix + "classes-hero.jpg";
 
     return (
-      <div>
-        <div className="animated fadeIn delay-1s hero-info-img-about" style={{"backgroundImage": `url(${heroImg})`}}>
-          <div className="hero-landing-text-container">
-            <p className="hero-img-text">Em Thomson</p>
-            <p className="hero-img-subtext">Yoga teacher</p>
-          </div>
-        </div>
-        <div className="page-container">
-          <h3 className="page-heading">Class List</h3>
-          <div className="table-responsive-md">
-            <table className="table boarderless" style={{ marginTop : 20 }}>
-              <thead>
-                <tr>
-                  <th className="border-bottom-0 border-top-0">Day</th>
-                  <th className="border-bottom-0 border-top-0">Time</th>
-                  <th className="border-bottom-0 border-top-0">Location</th>
-                  <th className="border-bottom-0 border-top-0">Style</th>
-                  <th className="border-bottom-0 border-top-0"></th>
-                </tr>
-              </thead>
-              <tbody>
-                { this.mondayClasses() }
-                { this.tuesdayClasses() }
-                { this.wednesdayClasses() }
-                { this.thursdayClasses() }
-                { this.fridayClasses() }
-                { this.saturdayClasses() }
-                { this.sundayClasses() }
-              </tbody>
-            </table>
-          </div>
-          <div className="row mt-5">
-              <p className="mx-auto">Recorded zoom sessions available for viewing at your own leisure, priced at £5. Please email me to request one.</p>
-          </div>
-        </div>
-        <Images page="lessons"></Images>
-
+        <div>
+            <div className="animated fadeIn delay-1s hero-info-img-about" style={{"backgroundImage": `url(${heroImg})`}}>
+                <div className="hero-landing-text-container">
+                    <p className="hero-img-text">Em Thomson</p>
+                    <p className="hero-img-subtext">Yoga teacher</p>
+                </div>
+            </div>
+            <div className="page-container">
+                <h3 className="page-heading">Class List</h3>
+                {this.isLoggedIn()}
+                <div className="row mt-5">
+                    <div className="col-12">
+                        <h4 style={{ textAlign : "center" }}>Full Weekly Schedule</h4>
+                    </div>
+                </div>
+                <div className="table-responsive-md">
+                    <table className="table boarderless" style={{ marginTop : 20 }}>
+                    <thead>
+                        <tr>
+                        <th className="border-bottom-0 border-top-0">Day</th>
+                        <th className="border-bottom-0 border-top-0">Time</th>
+                        <th className="border-bottom-0 border-top-0">Location</th>
+                        <th className="border-bottom-0 border-top-0">Style</th>
+                        <th className="border-bottom-0 border-top-0"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { this.mondayClasses() }
+                        { this.tuesdayClasses() }
+                        { this.wednesdayClasses() }
+                        { this.thursdayClasses() }
+                        { this.fridayClasses() }
+                        { this.saturdayClasses() }
+                        { this.sundayClasses() }
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+            <Images page="lessons"></Images>
       </div>
     )
   }

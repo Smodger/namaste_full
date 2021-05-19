@@ -17,6 +17,7 @@ import ListWorkshops from './workshop-list.component';
 import {ToggleButton} from './menu-toggle.component';
 import Signup from './signup.component';
 import Login from './login.component';
+import OnlineClasses from "./online-classes.component";
 
 export default class Header extends Component {
 
@@ -38,10 +39,11 @@ export default class Header extends Component {
   isLoggedIn(){
     if(this.state.token){
       return (
-        <div>
-          <Link to='/create-retreat' className='navbar-brand'>Create Retreat</Link>
-          <Link to='/create-lesson' className='navbar-brand'>Create Lesson</Link>
-          <Link to='/create-workshop' className='navbar-brand'>Create Workshop</Link>
+        <div className="d-none d-md-inline-block">
+          <Link to='/online-classes' className='navbar-brand d-none d-md-inline-block'>Online Library</Link>
+          <Link to='/create-retreat' className='navbar-brand d-none d-md-inline-block'>Create Retreat</Link>
+          <Link to='/create-lesson' className='navbar-brand d-none d-md-inline-block'>Create Lesson</Link>
+          <Link to='/create-workshop' className='navbar-brand d-none d-md-inline-block'>Create Workshop</Link>
         </div>
       )
     }
@@ -51,20 +53,21 @@ export default class Header extends Component {
     return (
       <HashRouter>
         <div>
-          <nav className="navbar navbar-expand-lg">
-            <div className="header-logo"></div>
-            <Link to='/' className='navbar-brand'>Home</Link>
-            <Link to='/about' className='navbar-brand'>About Me</Link>
-            <Link to='/lessons' className='navbar-brand'>Class schedule</Link>
-            <Link to='/list-retreats' className='navbar-brand'>Retreats</Link>
-            <Link to='/list-workshops' className='navbar-brand'>Workshops</Link>
-            <Link to='/contact' className='navbar-brand'>Contact</Link>
-            {this.isLoggedIn()}
-            <div className="hamburger">
-              <ToggleButton click={this.props.menuClickHandler}/>
-            </div>
+            <nav className="navbar">
+                <div className="header-logo"></div>
+                <Link to='/' className='navbar-brand d-none d-md-inline-block'>Home</Link>
+                <Link to='/about' className='navbar-brand d-none d-md-inline-block'>About Me</Link>
+                <Link to='/lessons' className='navbar-brand d-none d-md-inline-block'>Class Schedule</Link>
+                <Link to='/list-retreats' className='navbar-brand d-none d-md-inline-block'>Retreats</Link>
+                <Link to='/list-workshops' className='navbar-brand d-none d-md-inline-block'>Workshops</Link>
+                <Link to='/contact' className='navbar-brand d-none d-md-inline-block'>Contact</Link>
+                {this.isLoggedIn()}
+                <div className="hamburger d-inline-block d-md-none">
+                    <ToggleButton click={this.props.menuClickHandler}/>
+                </div>
           </nav>
         </div>
+          
 
         <Route path="/" exact component={Home}></Route>
         <Route path="/lessons" component={LessonList}></Route>
@@ -80,6 +83,7 @@ export default class Header extends Component {
         <Route path="/editWorkshop/:id" component={EditWorkshops}></Route>
         <Route path="/signup" component={Signup}></Route>
         <Route path="/login" component={Login}></Route>
+        <Route path="/online-classes" component={OnlineClasses}></Route>
 
       </HashRouter>
     )
