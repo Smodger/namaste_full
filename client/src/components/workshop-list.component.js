@@ -79,7 +79,7 @@ export default class ListWorkshops extends Component {
     }
 
     const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
-    const heroImg = urlPrefix + "workshopHeader.jpg";
+    const heroImg = urlPrefix + "classes-hero.jpg";
 
     if(!this.state.showWorkshopDetails && !this.state.loading){
       return (

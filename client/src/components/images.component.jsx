@@ -4,7 +4,7 @@ import { s3env } from '../config';
 
 export const Images = (props) => {
 
-  const lidoYoga = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/lidoYoga.jpg';
+  const lidoYoga = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/lidoYoga2.jpeg';
   const battersea = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/battersea.jpg';
   const revive = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/revive.jpg';
   const aboutOne = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/about-one.jpg';

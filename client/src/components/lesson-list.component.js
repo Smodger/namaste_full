@@ -179,8 +179,8 @@ export default class LessonList extends Component {
             <>
                 <div className="row mt-5">
                         <div className="col-12">
-                        <h4 style={{ textAlign : "center" }}>Upcoming Tooting Bec Lido Classes</h4>
-                        <small>Please scroll through the table below and click to book.</small>
+                        <h4 style={{ textAlign : "center" }}>Scroll and book your upcoming classes below</h4>
+                        <small>If live schedule fails to load, please refresh the page or click blue Tooting Bec Lido link above in the weekly class schedule</small>
                         </div>
                     </div>
                     <div className="row mt-3" style={{ marginBottom : 5+"rem" }}>
@@ -195,7 +195,7 @@ export default class LessonList extends Component {
 
   render(){
     const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
-    const heroImg = urlPrefix + "classes-hero.jpg";
+    const heroImg = urlPrefix + "lidoYoga.jpg";
 
     return (
         <div>
@@ -206,13 +206,7 @@ export default class LessonList extends Component {
                 </div>
             </div>
             <div className="page-container">
-                <h3 className="page-heading">Class List</h3>
-                {this.isLoggedIn()}
-                <div className="row mt-5">
-                    <div className="col-12">
-                        <h4 style={{ textAlign : "center" }}>Full Weekly Schedule</h4>
-                    </div>
-                </div>
+                <h3 className="page-heading">Weekly Class Schedule</h3>
                 <div className="table-responsive-md">
                     <table className="table boarderless" style={{ marginTop : 20 }}>
                     <thead>
@@ -234,6 +228,10 @@ export default class LessonList extends Component {
                         { this.sundayClasses() }
                     </tbody>
                     </table>
+                </div>
+                {this.isLoggedIn()}
+                <div className="row mt-3">
+                    <h4 style={{ textAlign : "center" }}>Em also teaches at <a href="https://www.batterseayoga.com/emily-thomson">Battersea Yoga</a> and <a href="https://reviveyogalondon.com/">Revive</a> in South London. Click links to view their studio schedules.</h4>
                 </div>
             </div>
             <Images page="lessons"></Images>
