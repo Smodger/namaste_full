@@ -55,9 +55,8 @@ body {
 
 .navbar{
   /* display: flex; */
-  height: 10vh;
-  background-color: #0e3782;
-  justify-content: normal;
+  min-height: 10vh;
+  background-color: #0e3782;;
 }
 
 .navbar-brand{
