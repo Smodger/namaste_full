@@ -421,6 +421,11 @@ body {
     background-position: 69%;
   }
 
+  .hero-info-img-workshop {
+    background-size: cover;
+    background-position: 30% 40%;
+  }
+
   .navbar-brand{
     display: none;
   }

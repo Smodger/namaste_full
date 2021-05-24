@@ -40,7 +40,6 @@ export default class Header extends Component {
     if(this.state.token){
       return (
         <div className="d-none d-md-inline-block">
-          <Link to='/online-classes' className='navbar-brand '>Online Library</Link>
           <Link to='/create-retreat' className='navbar-brand '>Create Retreat</Link>
           <Link to='/create-lesson' className='navbar-brand '>Create Lesson</Link>
           <Link to='/create-workshop' className='navbar-brand '>Create Workshop</Link>
@@ -58,6 +57,7 @@ export default class Header extends Component {
                 <Link to='/' className='navbar-brand d-none d-md-inline-block'>Home</Link>
                 <Link to='/about' className='navbar-brand d-none d-md-inline-block'>About Me</Link>
                 <Link to='/lessons' className='navbar-brand d-none d-md-inline-block'>Class Schedule</Link>
+                <Link to='/online-classes' className='navbar-brand d-none d-md-inline-block'>Online Library</Link>
                 <Link to='/list-retreats' className='navbar-brand d-none d-md-inline-block'>Retreats</Link>
                 <Link to='/list-workshops' className='navbar-brand d-none d-md-inline-block'>Workshops</Link>
                 <Link to='/contact' className='navbar-brand d-none d-md-inline-block'>Contact</Link>

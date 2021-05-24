@@ -173,26 +173,6 @@ export default class LessonList extends Component {
     }.bind(this))
   }
 
-  isLoggedIn() {
-      if(this.state.token){
-        return (
-            <>
-                <div className="row mt-5">
-                        <div className="col-12">
-                        <h4 style={{ textAlign : "center" }}>Scroll and book your upcoming classes below</h4>
-                        <small>If live schedule fails to load, please refresh the page or click blue Tooting Bec Lido link above in the weekly class schedule</small>
-                        </div>
-                    </div>
-                    <div className="row mt-3" style={{ marginBottom : 5+"rem" }}>
-                        <div id="ribbon-content" className="ribbon-box-styling" style={{ width : "100%", height: 300, overflow : "scroll" }}></div>
-                </div>
-            </>
-        )
-      }else {
-          return
-      }
-  }
-
   render(){
     const urlPrefix = 'https://s3-' + s3env.region + '.amazonaws.com/' + s3env.bucket + '/';
     const heroImg = urlPrefix + "lidoYoga.jpg";
@@ -229,9 +209,17 @@ export default class LessonList extends Component {
                     </tbody>
                     </table>
                 </div>
-                {this.isLoggedIn()}
+                <div className="row mt-5">
+                    <div className="col-12">
+                        <h4 style={{ textAlign : "center" }}>Scroll and book your upcoming classes below</h4>
+                        <small>If live schedule fails to load, please refresh the page or click blue Tooting Bec Lido link above in the weekly class schedule</small>
+                    </div>
+                </div>
+                <div className="row mt-3" style={{ marginBottom : 5+"rem" }}>
+                    <div id="ribbon-content" className="ribbon-box-styling" style={{ width : "100%", height: 300, overflow : "scroll" }}></div>
+                </div>
                 <div className="row mt-3">
-                    <h4 class="w-100">Em also teaches at <a href="https://www.batterseayoga.com/emily-thomson">Battersea Yoga</a> and <a href="https://reviveyogalondon.com/">Revive</a> in South London.</h4>
+                    <h4 className="w-100">Em also teaches at <a href="https://www.batterseayoga.com/emily-thomson">Battersea Yoga</a> and <a href="https://reviveyogalondon.com/">Revive</a> in South London.</h4>
                     <h4>Click links to view their studio schedules.</h4>
                 </div>
             </div>
