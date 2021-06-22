@@ -17,7 +17,7 @@ export const About = (props) => {
         </div>
       </div>
       <div className="page-container">
-        <h3 className="page-heading">Who the hell is Em Thomson?</h3>
+        <h3 className="page-heading">About Em Thomson</h3>
 
         <p style={{"marginTop":50}}>Em has been teaching yoga for 5 years all around London and is hugely passionate about the human body, health and movement. She loves the community and positivity that go hand in hand with yoga and hopes that you do too!</p>
         <p>Em bases her own yoga business at Tooting Bec Lido Pavilion - a beautiful studio that overlooks the deep blue waters of the pool. Gorgeous view in any weather! Catch her there for weekly in person yoga classes. You can also find her teaching at Battersea Yoga or Revive in south London and she runs very successful yoga retreats and workshops.</p>

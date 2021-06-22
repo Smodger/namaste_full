@@ -382,8 +382,8 @@ body {
   z-index: 150;
 }
 
-.lesson-info{
-  color: #ed1a64;
+.lesson-info > a{
+    color: #ed1a64;
 }
 
 .ribbon-box-styling {

@@ -82,7 +82,7 @@ export default class Lesson extends Component {
 
   showAdditionalInfo(){
     if(this.state.lesson.additionalInfo){
-      return <td className="lesson-info d-none d-md-block">{this.state.lesson.additionalInfo}</td>
+      return <td className="lesson-info d-none d-md-block"><a href={this.getCorrectLink()}>{this.state.lesson.additionalInfo}</a></td>
     }
   }
 

@@ -16,7 +16,7 @@ export const MobileMenu = (props) => {
             <div className="header-logo-mobile"></div>
             <li><Link to='/' className="">Home</Link></li>
             <li><Link to='/about' className="">About Me</Link></li>
-            <li><Link to='/lessons' className="">Class schedule</Link></li>
+            <li><Link to='/lessons' className="">Book a Class</Link></li>
             <li><Link to='/online-classes' className=''>Online Library</Link></li>
             <li><Link to='/list-retreats' className="">Retreats</Link></li>
             <li><Link to='/list-workshops' className="">Workshops</Link></li>

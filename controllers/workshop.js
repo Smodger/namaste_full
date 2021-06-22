@@ -29,7 +29,7 @@ exports.showWorkshop = function(req,res){
 exports.createWorkshop = function(req, res){
 
   let imgArray = [];
-
+    console.log("******", req.body)
   if(req.files && req.files.length >= 0){
     req.files.map((image) => {
       image._id = mongoose.Types.ObjectId();

@@ -25,7 +25,7 @@ export default class WorkshopOverview extends Component {
   
   getTime = () => {
     const startTime = this.props.workshop.startHour + ":" + this.props.workshop.startMins;
-    const endTime = this.props.workshop.endHour + ":" + this.props.workshop.endHour;
+    const endTime = this.props.workshop.endHour + ":" + this.props.workshop.endMins;
 
     return moment(startTime, 'HH:mm').format('h:mma') + " - " + moment(endTime, 'HH:mm').format('h:mma');
   }

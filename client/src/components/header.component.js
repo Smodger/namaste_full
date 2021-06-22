@@ -56,7 +56,7 @@ export default class Header extends Component {
                 <div className="header-logo"></div>
                 <Link to='/' className='navbar-brand d-none d-md-inline-block'>Home</Link>
                 <Link to='/about' className='navbar-brand d-none d-md-inline-block'>About Me</Link>
-                <Link to='/lessons' className='navbar-brand d-none d-md-inline-block'>Class Schedule</Link>
+                <Link to='/lessons' className='navbar-brand d-none d-md-inline-block'>Book a Class</Link>
                 <Link to='/online-classes' className='navbar-brand d-none d-md-inline-block'>Online Library</Link>
                 <Link to='/list-retreats' className='navbar-brand d-none d-md-inline-block'>Retreats</Link>
                 <Link to='/list-workshops' className='navbar-brand d-none d-md-inline-block'>Workshops</Link>
