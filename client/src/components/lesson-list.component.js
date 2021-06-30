@@ -32,16 +32,17 @@ export default class LessonList extends Component {
 
   componentDidMount(){
     this.getLessons();
+  }
+
+  componentWillMount(){
+    const token = localStorage.hasOwnProperty('jwtToken')
 
     const script = document.createElement("script");
     script.src = "https://withribbon.com/v2.0/Em-Thomson-Yoga-1616589872561.js";
     script.async = true;
 
     document.body.appendChild(script);
-  }
 
-  componentWillMount(){
-    const token = localStorage.hasOwnProperty('jwtToken')
     this.setState({
       token : token
     })
