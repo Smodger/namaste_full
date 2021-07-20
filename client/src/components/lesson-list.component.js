@@ -32,16 +32,14 @@ export default class LessonList extends Component {
 
   componentDidMount(){
     this.getLessons();
+    const script = document.createElement("script");
+    script.src = "https://withribbon.com/v2.0/Em-Thomson-Yoga-1616589872561.js";
+
+    document.body.appendChild(script);
   }
 
   componentWillMount(){
     const token = localStorage.hasOwnProperty('jwtToken')
-
-    const script = document.createElement("script");
-    script.src = "https://withribbon.com/v2.0/Em-Thomson-Yoga-1616589872561.js";
-    script.async = true;
-
-    document.body.appendChild(script);
 
     this.setState({
       token : token
@@ -213,11 +211,10 @@ export default class LessonList extends Component {
                 <div className="row mt-5">
                     <div className="col-12">
                         <h4 style={{ textAlign : "center" }}>Scroll and book your upcoming classes below</h4>
-                        <small>If live schedule fails to load, please refresh the page or click blue Tooting Bec Lido link above in the weekly class schedule</small>
                     </div>
                 </div>
                 <div className="row mt-3" style={{ marginBottom : 5+"rem" }}>
-                    <div id="ribbon-content" className="ribbon-box-styling" style={{ width : "100%", height: 300, overflow : "scroll" }}></div>
+                    <div id="ribbon-content" className="ribbon-box-styling" style={{ width : "100%", height: 600, overflow : "scroll" }}></div>
                 </div>
                 <div className="row mt-3">
                     <h4 className="w-100 text-center">Em also teaches at <a href="https://www.batterseayoga.com/emily-thomson">Battersea Yoga</a> and <a href="https://reviveyogalondon.com/">Revive</a> in South London.</h4>
