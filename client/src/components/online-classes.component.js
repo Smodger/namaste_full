@@ -38,7 +38,7 @@ const OnlineClasses = () => {
                 <iframe src="https://withribbon.com/video/plugin/4604"  allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" title="ribbon-snippet"
                 style={{
                     width: "100%",
-                    height:550,
+                    height:1000,
                     border:0,
                     marginBottom : 100
                 }}></iframe>
