@@ -216,10 +216,6 @@ export default class LessonList extends Component {
                 <div className="row mt-3" style={{ marginBottom : 5+"rem" }}>
                     <div id="ribbon-content" className="ribbon-box-styling" style={{ width : "100%", height: 600, overflow : "scroll" }}></div>
                 </div>
-                <div className="row mt-3">
-                    <h4 className="w-100 text-center">Em also teaches at <a href="https://www.batterseayoga.com/emily-thomson">Battersea Yoga</a> and <a href="https://reviveyogalondon.com/">Revive</a> in South London.</h4>
-                    <h4 className="w-100 text-center">Click links to view their studio schedules.</h4>
-                </div>
             </div>
             <Images page="lessons"></Images>
       </div>
