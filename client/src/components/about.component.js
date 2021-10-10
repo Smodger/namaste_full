@@ -20,7 +20,7 @@ export const About = (props) => {
         <h3 className="page-heading">About Em Thomson</h3>
 
         <p style={{"marginTop":50}}>Em has been teaching yoga for 5 years all around London and is hugely passionate about the human body, health and movement. She loves the community and positivity that go hand in hand with yoga and hopes that you do too!</p>
-        <p>Em bases her own yoga business at Tooting Bec Lido Pavilion - a beautiful studio that overlooks the deep blue waters of the pool. Gorgeous view in any weather! Catch her there for weekly in person yoga classes. You can also find her teaching at Battersea Yoga or Revive in south London and she runs very successful yoga retreats and workshops.</p>
+        <p>Em bases her own yoga business at Tooting Bec Lido Pavilion - a beautiful studio that overlooks the deep blue waters of the pool. Gorgeous view in any weather! Catch her there for weekly in person yoga classes. Em also runs very successful yoga retreats and workshops.</p>
 
         <p style={{"marginTop":3+"rem"}}>In terms of style, Em is primarily trained in vinyasa and ashtanga, with a precise physical and functional approach to yoga. She pays close attention to detailed alignment and muscular engagement, whilst still maintaining creativity within her sequences. Her classes usually feature an overarching theme from week to week. The weekly focus can range from a specific muscle, area of the body, or progression towards a specific yoga pose. Her classes weave in philosophical concepts and mindfulness amidst movement, and her sequences are thoroughly planned out. Expect strong flows, with a fun energetic vibe and encouraging atmosphere. And probably a fair amount of sweat.</p>
         <p>Em’s classes are accessible for all. Modifications offered throughout for those seeking to take it easy, as well as more advanced options for those that wish to go further. </p>
@@ -36,7 +36,7 @@ export const About = (props) => {
 
         <p style={{"marginTop":50}}>Em teaches primarily in south London. She has a regular weekly schedule of public classes and is available for private/corporate classes.</p>
 
-        <p style={{"marginTop":25}}>Available to teach Vinyasa Flow, Ashtanga, Hatha, Dynamic, Core Power flow, Dance Flow.</p>
+        <p style={{"marginTop":25}}>Available to teach Vinyasa Flow, Ashtanga, Hatha, Dynamic, Core Power flow, Dance Flow and Slow Flow.</p>
 
         <p style={{"marginTop":25}}>Get yourself engaged with the present moment - stretch, breathe and clear the mind.</p>
 
