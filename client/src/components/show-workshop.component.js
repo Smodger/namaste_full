@@ -45,8 +45,8 @@ export default class ShowWorkshop extends Component {
     if(token){
       return (
         <div>
-          <Link to={"/editWorkshop/" + this.props.workshop._id}>Edit</Link>
-          <button className="btn btn-danger ml-3" onClick={this.deleteWorkshop}>Delete</button>
+          <Link className="mr-3" to={"/editWorkshop/" + this.props.workshop._id}>Edit</Link>
+          <button className="btn btn-danger ml-5" onClick={this.deleteWorkshop}>Delete</button>
         </div>
       )
     }else{
