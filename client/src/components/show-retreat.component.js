@@ -66,7 +66,7 @@ export default class showRetreat extends Component {
       return (
         <div>
           <Link to={"/editRetreat/" + this.props.retreat._id}>Edit</Link>
-          <button className="btn btn-danger" onClick={this.handleDeleteRetreat}>Delete</button>
+          <button className="btn btn-danger ml-3" onClick={this.handleDeleteRetreat}>Delete</button>
         </div>
       )
     }else{

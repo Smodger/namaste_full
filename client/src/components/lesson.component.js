@@ -25,7 +25,7 @@ export default class Lesson extends Component {
       return(
         <td>
           <Link className="mr-1" to={"/editLesson/" + this.state.lesson._id}>Edit</Link>
-          <button className="btn btn-danger" onClick={this.handleDeleteLesson}>Delete</button>
+          <button className="btn btn-danger ml-3" onClick={this.handleDeleteLesson}>Delete</button>
         </td>
       )
     }

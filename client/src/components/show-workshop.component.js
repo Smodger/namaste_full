@@ -46,7 +46,7 @@ export default class ShowWorkshop extends Component {
       return (
         <div>
           <Link to={"/editWorkshop/" + this.props.workshop._id}>Edit</Link>
-          <button className="btn btn-danger" onClick={this.deleteWorkshop}>Delete</button>
+          <button className="btn btn-danger ml-3" onClick={this.deleteWorkshop}>Delete</button>
         </div>
       )
     }else{
