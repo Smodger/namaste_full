@@ -1,6 +1,6 @@
 const userModel = require('../models/User.js');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const userSignUp = function(req, res, next){
