@@ -38,8 +38,6 @@ export const About = (props) => {
 
         <p style={{"marginTop":25}}>Available to teach Vinyasa Flow, Ashtanga, Hatha, Dynamic, Core Power flow, Dance Flow and Slow Flow.</p>
 
-        <p style={{"marginTop":25}}>Get yourself engaged with the present moment - stretch, breathe and clear the mind.</p>
-
       </div>
       <Images page="about"></Images>
     </div>
