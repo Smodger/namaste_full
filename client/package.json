@@ -18,7 +18,7 @@
     "simplemde": "^1.11.2"
   },
   "engines": {
-    "node": "16.x"
+    "node": "17.x"
   },
   "scripts": {
     "start": "react-scripts start",

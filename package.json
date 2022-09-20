@@ -49,7 +49,7 @@
     "url": "https://github.com/Smodger/namaste/issues"
   },
   "engines": {
-    "node": "16.x"
+    "node": "17.x"
   },
   "homepage": "https://github.com/Smodger/namaste#readme",
   "description": ""
