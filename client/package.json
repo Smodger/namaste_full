@@ -17,6 +17,9 @@
     "react-tooltip": "^3.11.6",
     "simplemde": "^1.11.2"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
