@@ -5,6 +5,7 @@ import { s3env } from '../config';
 
 import Lesson from './lesson.component'
 import {Images} from './images.component'
+import { Helmet } from 'react-helmet';
 
 export default class LessonList extends Component {
 
@@ -20,22 +21,45 @@ export default class LessonList extends Component {
   }
 
 
-  getLessons(){
-    axios.get('/lessons')
-      .then(res => {
-        this.setState({ lessons : res.data});
-      })
-      .catch(function(err){
-        console.log("error getting lessons", err);
-      })
-  }
+    getLessons(){
+        axios.get('/lessons')
+        .then(res => {
+            this.setState({ lessons : res.data});
+        })
+        .catch(function(err){
+            console.log("error getting lessons", err);
+        })
+    }
 
-  componentDidMount(){
+    addScript({ onLoad }) {
+      const script = document.createElement("script");
+
+      script.src = "https://momence.com/plugin/host-schedule/host-schedule.js";
+      script.async = true;
+      script.type = "module";
+      script.setAttribute("host_id", "4604")
+      script.setAttribute("teacher_ids", "[]")
+      script.setAttribute("location_ids", "[]")
+      script.setAttribute("tag_ids", "[]")
+
+      script.onload = () => {
+        if(onLoad) {
+          onLoad();
+        }
+      };
+
+      const parentEl = document.getElementById('ribbon-schedule')
+      parentEl.appendChild(script);
+      return script;
+  };
+
+  componentDidMount() {
     this.getLessons();
-    const script = document.createElement("script");
-    script.src = "https://withribbon.com/v2.0/Em-Thomson-Yoga-1616589872561.js";
-
-    document.body.appendChild(script);
+    this.addScript({
+        onLoad: () => {
+          console.log("Script loaded!");
+        },
+      });
   }
 
   componentWillMount(){
@@ -214,7 +238,7 @@ export default class LessonList extends Component {
                     </div>
                 </div>
                 <div className="row mt-3" style={{ marginBottom : 5+"rem" }}>
-                    <div id="ribbon-content" className="ribbon-box-styling" style={{ width : "100%", height: 600, overflow : "scroll" }}></div>
+                    <div id="ribbon-schedule" className="ribbon-box-styling" style={{ width : "100%", height: 600, overflow : "scroll" }}></div>
                 </div>
             </div>
             <Images page="lessons"></Images>
